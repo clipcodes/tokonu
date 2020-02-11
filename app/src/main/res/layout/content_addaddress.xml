@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Provinsi"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/textcolor2"
+        android:textSize="17sp"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:hint="Provinsi"
+        android:id="@+id/prov"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:lines="1"
+        android:textColor="@color/textcolor2"
+        android:textColorHint="@color/textcolorhint"
+        android:inputType="textCapWords"
+        android:textSize="17sp"
+        android:nextFocusDown="@+id/kabkota"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Kabupaten/Kota"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/textcolor2"
+        android:textSize="17sp"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/kabkota"
+        android:hint="Kabupaten/Kota"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/textcolor2"
+        android:textColorHint="@color/textcolorhint"
+        android:lines="1"
+        android:inputType="textCapWords"
+        android:textSize="17sp"
+        android:nextFocusDown="@+id/kec"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Kecamatan"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/textcolor2"
+        android:textSize="17sp"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/kec"
+        android:hint="Kecamatan"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:lines="1"
+        android:textColor="@color/textcolor2"
+        android:textColorHint="@color/textcolorhint"
+        android:inputType="textCapWords"
+        android:textSize="17sp"
+        android:nextFocusDown="@+id/address"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Alamat Pelengkap"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/textcolor2"
+        android:textSize="17sp"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/address"
+        android:hint="No. Rumah dll."
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:lines="2"
+        android:textColor="@color/textcolor2"
+        android:textColorHint="@color/textcolorhint"
+        android:inputType="textCapWords"
+        android:textSize="17sp"
+        android:nextFocusDown="@+id/pos"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Kode Pos"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        android:textColor="@color/textcolor2"
+        android:textSize="17sp"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/pos"
+        android:hint="Kode Pos"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:lines="1"
+        android:textColor="@color/textcolor2"
+        android:textColorHint="@color/textcolorhint"
+        android:inputType="numberDecimal"
+        android:imeOptions="actionDone"
+        android:textSize="17sp"
+        android:nextFocusDown="@+id/address"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

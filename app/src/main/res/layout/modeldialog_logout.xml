@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="300dp"
+             android:layout_height="wrap_content">
+<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content">
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="7dp"
+                        android:textAlignment="center"
+                        android:id="@+id/tex"
+                        android:text="Keluar Akun ?"
+                        android:textSize="17sp"
+                        android:layout_height="wrap_content" />
+            </FrameLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:layout_height="1dp"/>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <ProgressBar
+                        android:layout_width="30dp"
+                        android:id="@+id/proses"
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        android:layout_height="30dp" />
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/button"
+                        android:layout_gravity="center|right"
+                        android:layout_height="match_parent">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:text="Keluar"
+                            android:textStyle="bold"
+                            android:layout_margin="10dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content" />
+                </FrameLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
+</FrameLayout>

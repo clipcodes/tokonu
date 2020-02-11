@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="3dp"
+    app:cardElevation="1dp"
+    app:cardCornerRadius="5dp"
+    android:layout_width="170dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:id="@+id/thumb"
+                android:background="@color/greytranspa1"
+                android:scaleType="centerCrop"
+                android:layout_height="180dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="6dp"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:lines="1"
+                    android:text="$500"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/price"
+                    android:layout_gravity="center|start"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@drawable/icon_menuproduct"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="15sp"
+                android:layout_marginBottom="4dp"
+                android:lines="2"
+                android:text="Product Name"
+                android:textColor="@color/textcolor1"
+                android:layout_marginTop="3dp"
+                android:id="@+id/title"
+                android:layout_gravity="center|end"
+                android:layout_height="match_parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:progressTint="@color/ratingfill"
+                    android:progressBackgroundTint="@color/ratingempty"
+                    android:rating="4"
+                    android:layout_gravity="center"
+                    android:id="@+id/bintangg"  />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="11sp"
+                    android:text="(66)"
+                    android:id="@+id/totalfeed"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/textcolor1"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

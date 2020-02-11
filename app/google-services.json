@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "534173453620",
+    "firebase_url": "https://toko-nu.firebaseio.com",
+    "project_id": "toko-nu",
+    "storage_bucket": "toko-nu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534173453620:android:033a369c31f8612ed9a961",
+        "android_client_info": {
+          "package_name": "nu.toko"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534173453620-5l9kc5jncee6dqapmoh5bqtmpmmhgcfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBziiQDAMcNAjcBfhzJRepIepuARgWCB5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534173453620-5l9kc5jncee6dqapmoh5bqtmpmmhgcfg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

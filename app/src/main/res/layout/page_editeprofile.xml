@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+        android:id="@+id/appbar"
+        android:theme="@style/AppTheme">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:contentInsetLeft="0dp"
+            android:contentInsetStart="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            android:background="@android:color/white"
+            android:contentInsetRight="0dp"
+            android:contentInsetEnd="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetEnd="0dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:animateLayoutChanges="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="3dp"
+                    app:srcCompat="@drawable/icon_back"
+                    android:id="@+id/kembalitolbar"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textSize="18sp"
+                        android:lines="1"
+                        android:text="Edit Profile"
+                        android:id="@+id/titel"
+                        android:ellipsize="end"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+                </FrameLayout>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:background="@color/greytranspa0"
+        android:orientation="vertical"
+        android:layout_margin="3dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginBottom="80dp"
+                android:orientation="vertical" android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/greytranspa1"
+                android:layout_height="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="8dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textSize="15sp"
+                            android:text="Email"
+                            android:layout_gravity="center|start"
+                            android:textColor="@color/textcolor3"
+                            android:layout_height="wrap_content" />
+                    </FrameLayout>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:textSize="15sp"
+                        android:text="Email"
+                        android:layout_gravity="center|end"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+                </com.google.android.flexbox.FlexboxLayout>
+            </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:background="@color/greytranspa1"
+                    android:layout_height="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:textSize="15sp"
+                                android:text="Password"
+                                android:layout_gravity="center|start"
+                                android:textColor="@color/textcolor3"
+                                android:layout_height="wrap_content" />
+                        </FrameLayout>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:textSize="15sp"
+                            android:inputType="textPassword"
+                            android:text="Pass"
+                            android:layout_gravity="center|end"
+                            android:textColor="@color/textcolor1"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.flexbox.FlexboxLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:background="@color/greytranspa1"
+                    android:layout_height="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:textSize="15sp"
+                                android:text="Nama"
+                                android:layout_gravity="center|start"
+                                android:textColor="@color/textcolor3"
+                                android:layout_height="wrap_content" />
+                        </FrameLayout>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:textSize="15sp"
+                            android:text="Name"
+                            android:layout_gravity="center|end"
+                            android:textColor="@color/textcolor1"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.flexbox.FlexboxLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:background="@color/greytranspa1"
+                    android:layout_height="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:textSize="15sp"
+                                android:text="No. Hp"
+                                android:layout_gravity="center|start"
+                                android:textColor="@color/textcolor3"
+                                android:layout_height="wrap_content" />
+                        </FrameLayout>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:textSize="15sp"
+                            android:text="Customer Full Name"
+                            android:layout_gravity="center|end"
+                            android:textColor="@color/textcolor1"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.flexbox.FlexboxLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            android:padding="5dp"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:id="@+id/paynow"
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Save Profile"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="7dp"
+                    android:layout_height="wrap_content"/>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

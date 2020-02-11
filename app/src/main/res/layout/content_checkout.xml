@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="80dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/greytranspa1"
+            android:layout_height="10dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:id="@+id/address"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Alamat Pengiriman"
+                        android:textStyle="bold"
+                        android:layout_gravity="center|start"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Pilih Alamat Pengiriman"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center|start"
+                    android:id="@+id/alamatpengiriman"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/icon_chivronright"
+                android:layout_gravity="center|end"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/greytranspa1"
+            android:layout_height="15dp"/>
+
+<!--        <FrameLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:padding="8dp"-->
+<!--            android:id="@+id/paymentmethod"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_height="wrap_content">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_height="wrap_content">-->
+<!--                <FrameLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:text="Payment Method"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_gravity="center|start"-->
+<!--                        android:textColor="@color/textcolor1"-->
+<!--                        android:layout_height="wrap_content" />-->
+<!--                </FrameLayout>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:text="Choose your payment method"-->
+<!--                    android:id="@+id/method"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_gravity="center|start"-->
+<!--                    android:textColor="@color/textcolor1"-->
+<!--                    android:layout_height="wrap_content" />-->
+<!--            </LinearLayout>-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:src="@drawable/icon_chivronright"-->
+<!--                android:layout_gravity="center|end"-->
+<!--                android:layout_height="wrap_content"/>-->
+<!--        </FrameLayout>-->
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:background="@color/greytranspa1"-->
+<!--            android:layout_height="15dp"/>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Item Pembelian"
+                    android:textStyle="bold"
+                    android:layout_gravity="center|start"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:id="@+id/rvcartlist"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/greytranspa1"
+            android:layout_height="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Invoice"
+                    android:textStyle="bold"
+                    android:layout_gravity="center|start"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Sub Total"
+                    android:layout_gravity="center|start"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:text="$20"
+                    android:id="@+id/subtotal"
+                    android:layout_gravity="center|end"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Biaya Pengiriman"
+                    android:layout_gravity="center|start"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:text="$5"
+                    android:id="@+id/biayapengiriman"
+                    android:layout_gravity="center|end"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/greytranspa1"
+            android:layout_height="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Kode Promo"
+                    android:textStyle="bold"
+                    android:layout_gravity="center|start"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/greytranspa"
+                android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    app:cardElevation="0dp"
+                    android:layout_margin="1dp"
+                    android:background="@color/greytranspa1"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_margin="3dp"
+                        android:hint="Promo Code"
+                        android:textSize="14sp"
+                        android:id="@+id/promocode"
+                        android:layout_height="wrap_content"/>
+                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="45dp"
+    android:id="@+id/nestedscrol"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="20sp"
+                android:id="@+id/title"
+                android:text="This is my product"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/textcolor1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="17sp"
+                android:id="@+id/price"
+                android:text="Rp.100.000"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/merah"
+                android:layout_height="wrap_content" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/diskonkontainer"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="14sp"
+                    android:id="@+id/pricediscount"
+                    android:text="Rp.120.000"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:textColor="@color/textcolor3"
+                    android:layout_height="wrap_content" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/cardview_dark_background"
+                    android:layout_height="1dp"/>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="4dp"
+                android:layout_height="wrap_content">
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="start|center"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:layout_marginStart="5dp"
+                    android:rating="4"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:progressTint="#ebffc107"
+                    android:progressBackgroundTint="@color/textcolor1"
+                    android:layout_marginEnd="4dp"
+                    android:id="@+id/star"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="(5)"
+                    android:id="@+id/totalfeedback"
+                    android:textSize="13sp"
+                    android:textColor="@color/textcolor3"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="  20 Terjual"
+                    android:id="@+id/totalterjual"
+                    android:textSize="13sp"
+                    android:textColor="@color/textcolor3"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/greytranspa1"
+                android:layout_height="15dp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        app:layout_flexBasisPercent="15%"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/icon_pickup"
+                            android:layout_height="40dp"/>
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        app:layout_flexBasisPercent="35%"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Ongkos Kirim : "
+                            android:layout_height="wrap_content"/>
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        app:layout_flexBasisPercent="60%"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="start|center"
+                            android:text="Rp.2.000"
+                            android:layout_height="wrap_content"/>
+                    </FrameLayout>
+                </com.google.android.flexbox.FlexboxLayout>
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/greytranspa1"
+                android:layout_height="15dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="8dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Product Information"
+                        android:textStyle="bold"
+                        android:layout_gravity="center|start"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Toko"
+                        android:layout_gravity="center|start"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Toko A"
+                        android:id="@+id/namamitra"
+                        android:layout_gravity="end|center"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Kondisi"
+                        android:layout_gravity="center|start"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Baru"
+                        android:id="@+id/kondisi"
+                        android:layout_gravity="end|center"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Stok"
+                        android:layout_gravity="center|start"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:id="@+id/stok"
+                        android:text="5"
+                        android:layout_gravity="end|center"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Kategori"
+                        android:layout_gravity="center|start"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Clothes"
+                        android:id="@+id/kategori"
+                        android:layout_gravity="end|center"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Dikirim Dari"
+                        android:layout_gravity="center|start"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Kota Malang"
+                        android:layout_gravity="end|center"
+                        android:layout_marginTop="6dp"
+                        android:id="@+id/pengirimanmitra"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/greytranspa1"
+            android:layout_marginTop="10dp"
+            android:layout_height="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="15sp"
+            android:text="Description"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:layout_gravity="center|start"
+            android:textColor="@color/textcolor1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="15sp"
+            android:text="Kota Malang"
+            android:layout_gravity="start|center"
+            android:layout_marginTop="6dp"
+            android:id="@+id/deskripsi"
+            android:textColor="@color/textcolor2"
+            android:layout_height="wrap_content" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/rvdescription"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/feedbackcontainer"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:background="@color/greytranspa1"
+            android:layout_marginTop="10dp"
+            android:layout_height="15dp"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="15sp"
+                android:text="Ulasan Pembeli"
+                android:textStyle="bold"
+                android:layout_gravity="center|start"
+                android:textColor="@color/textcolor1"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="end"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:src="@drawable/icon_star"
+                    android:layout_gravity="center"
+                    android:layout_height="20dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:layout_marginStart="3dp"
+                    android:textStyle="bold"
+                    android:text="4.5"
+                    android:layout_gravity="center"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/rvbuyerfeedback"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="13sp"
+            android:layout_marginStart="3dp"
+            android:textStyle="bold"
+            android:text="Tampilkan Lebih"
+            android:layout_marginTop="6dp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/greytranspa1"
+            android:layout_marginTop="10dp"
+            android:layout_height="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Lainnya"
+                    android:textStyle="bold"
+                    android:layout_gravity="center|start"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:id="@+id/rvmore"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

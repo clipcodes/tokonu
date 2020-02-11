@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="4dp"
+    android:id="@+id/kor"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="23dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="6dp"
+        android:src="@drawable/icon_notificationstatus"
+        android:id="@+id/tipe"
+        android:layout_gravity="center"
+        android:layout_height="23dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Username"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/textcolor2"
+                android:layout_marginEnd="3dp"
+                android:id="@+id/username"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="baru saja"
+                android:textColor="@color/textcolor3"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="center|end"
+                android:id="@+id/created"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Komentar"
+            android:textColor="@color/textcolor3"
+            android:textSize="14sp"
+            android:id="@+id/notification"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

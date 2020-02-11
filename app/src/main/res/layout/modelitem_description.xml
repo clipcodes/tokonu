@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_marginTop="5dp"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="12dp"
+        android:src="@drawable/icon_dots"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="5dp"
+        android:layout_height="12dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="100% Money Back Guarantee"
+        android:textSize="15sp"
+        android:id="@+id/description"
+        android:textColor="@color/textcolor2"
+        android:layout_marginStart="3dp"
+        android:layout_gravity="center|top"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
