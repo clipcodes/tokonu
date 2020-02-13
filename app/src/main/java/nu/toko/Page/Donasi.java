@@ -3,6 +3,7 @@ package nu.toko.Page;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -32,6 +33,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.File;
 import java.net.URI;
 
+import nu.toko.Dialog.DialogInfo;
 import nu.toko.R;
 import nu.toko.Reqs.ReqString;
 import nu.toko.Utils.UserPrefs;
@@ -50,6 +52,7 @@ public class Donasi extends AppCompatActivity {
     FrameLayout pilihfile;
     ImageView imagetampil, ikonupload;
     RequestQueue requestQueue;
+    String nll = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,6 +90,7 @@ public class Donasi extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String nl = namalengkap.getText().toString();
+                nll = namalengkap.getText().toString();
                 String jml = jumlahtransfer.getText().toString();
                 if (nl.isEmpty()){
                     Toast.makeText(Donasi.this, "Nama Lengkap Kosong", Toast.LENGTH_SHORT).show();
@@ -114,6 +118,13 @@ public class Donasi extends AppCompatActivity {
         @Override
         public void onResponse(String response) {
             Log.i(TAG, "onResponse: "+response);
+            kirim.setVisibility(View.GONE);
+            new DialogInfo(Donasi.this, "Terima Kasih "+nll+", Anda berhasil melakukan donasi.").mentriger(new DialogInfo.Go() {
+                @Override
+                public void trigerbos() {
+                    onBackPressed();
+                }
+            });
         }
     };
 

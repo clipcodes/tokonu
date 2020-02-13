@@ -44,6 +44,7 @@ import nu.toko.R;
 import nu.toko.Reqs.ReqString;
 import nu.toko.Sqlite.CartDB;
 import nu.toko.Utils.Others;
+import nu.toko.Utils.UserPrefs;
 
 import static nu.toko.Utils.Staticvar.BERAT_PRODUK;
 import static nu.toko.Utils.Staticvar.CREATED_AT;
@@ -61,9 +62,11 @@ import static nu.toko.Utils.Staticvar.KOMEN;
 import static nu.toko.Utils.Staticvar.KONDISI_PRODUK;
 import static nu.toko.Utils.Staticvar.NAMA_PRODUK;
 import static nu.toko.Utils.Staticvar.NAME;
+import static nu.toko.Utils.Staticvar.ONGKIR;
 import static nu.toko.Utils.Staticvar.PRODUCTSUBKATEGORI;
 import static nu.toko.Utils.Staticvar.PRODUKDETAIL;
 import static nu.toko.Utils.Staticvar.RATING;
+import static nu.toko.Utils.Staticvar.SLASH;
 import static nu.toko.Utils.Staticvar.STOK;
 import static nu.toko.Utils.Staticvar.TANGGAL;
 import static nu.toko.Utils.Staticvar.TERJUAL;
@@ -115,7 +118,7 @@ public class Details extends AppCompatActivity {
 
     FrameLayout diskonkontainer;
 
-    TextView pricediscount;
+    TextView pricediscount, ongkirtex;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -140,6 +143,7 @@ public class Details extends AppCompatActivity {
         container_toolbar = findViewById(R.id.container_toolbar);
         favorites = findViewById(R.id.favorites);
         buynow = findViewById(R.id.buynow);
+        ongkirtex = findViewById(R.id.ongkir);
         imagesModels = new ArrayList<>();
         productModelNUList = new ArrayList<>();
         productname = findViewById(R.id.productname);
@@ -246,6 +250,27 @@ public class Details extends AppCompatActivity {
             }
         });
     }
+
+    Response.Listener<String> ongkir = new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            Log.i(TAG, "onResponse ongkir: "+response);
+            try {
+                JSONArray jsonArray = new JSONArray(response);
+                JSONObject json = jsonArray.getJSONObject(0);
+                JSONArray costs = json.getJSONArray("costs");
+                JSONObject costsO = costs.getJSONObject(0);
+                JSONArray cost = costsO.getJSONArray("cost");
+                JSONObject costO = cost.getJSONObject(0);
+
+                ongkirtex.setText("Rp"+Others.PercantikHarga(Integer.valueOf(costO.getString("value"))));
+
+                buyerFeedbackAdapter.notifyDataSetChanged();
+            } catch (JSONException e){
+                Log.i(TAG, "onResponse: "+e.getMessage());
+            }
+        }
+    };
 
     Response.Listener<String> suksesfeedback = new Response.Listener<String>() {
         @Override
@@ -384,6 +409,9 @@ public class Details extends AppCompatActivity {
                     imagesModel.setUrl_gambar(jsonObject1.getString(URL_GAMBAR));
                     imagesModels.add(imagesModel);
                 }
+
+                String Url = SLASH+UserPrefs.getId(getApplicationContext())+SLASH+jsonObject.getString("id_produk");
+                reqString.go(ongkir, ONGKIR+Url);
 
                 adapImages.notifyDataSetChanged();
             } catch (JSONException e){

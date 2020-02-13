@@ -103,6 +103,7 @@ public class Categories extends AppCompatActivity {
 
         IDCATEGORY = getIntent().getIntExtra("id", 0);
         CATEGORY = getIntent().getStringExtra("kat");
+
         init();
         URLFLEKSIBEL = PRODUCTKATEGORI+IDCATEGORY;
         reqString.go(suksesproducthome, URLFLEKSIBEL);
