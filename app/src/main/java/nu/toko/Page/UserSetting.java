@@ -37,6 +37,7 @@ public class UserSetting extends AppCompatActivity {
     ProgressBar progress;
     RequestQueue requestQueue;
     CardView save;
+    String TAG = getClass().getSimpleName();
     
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,12 +65,27 @@ public class UserSetting extends AppCompatActivity {
 
         email.setText(UserPrefs.getEmail(getApplicationContext()));
         nama_pembeli.setText(UserPrefs.getNama(getApplicationContext()));
-        no_telp.setText(UserPrefs.getNo_telp(getApplicationContext()));
-        provinsi_pembeli.setText(UserPrefs.getProvinsi(getApplicationContext()));
-        kecamatan_pembeli.setText(UserPrefs.getKecamatan(getApplicationContext()));
-        kabupaten_pembeli.setText(UserPrefs.getKabupaten(getApplicationContext()));
-        kode_pos_pembeli.setText(UserPrefs.getKode_pos(getApplicationContext()));
-        alamat_pembeli.setText(UserPrefs.getAlamat(getApplicationContext()));
+
+        Log.i(TAG, "init: "+UserPrefs.getProvinsi(getApplicationContext()).equals("0"));
+
+        if (!UserPrefs.getNo_telp(getApplicationContext()).equals("0")){
+            no_telp.setText(UserPrefs.getNo_telp(getApplicationContext()));
+        }
+        if (!UserPrefs.getProvinsi(getApplicationContext()).equals("0")){
+            provinsi_pembeli.setText(UserPrefs.getProvinsi(getApplicationContext()));
+        }
+        if (!UserPrefs.getKecamatan(getApplicationContext()).equals("0")){
+            kecamatan_pembeli.setText(UserPrefs.getKecamatan(getApplicationContext()));
+        }
+        if (!UserPrefs.getKabupaten(getApplicationContext()).equals("0")){
+            kabupaten_pembeli.setText(UserPrefs.getKabupaten(getApplicationContext()));
+        }
+        if (!UserPrefs.getKode_pos(getApplicationContext()).equals("0")){
+            kode_pos_pembeli.setText(UserPrefs.getKode_pos(getApplicationContext()));
+        }
+        if (!UserPrefs.getAlamat(getApplicationContext()).equals("0")){
+            alamat_pembeli.setText(UserPrefs.getAlamat(getApplicationContext()));
+        }
 
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,21 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import nu.toko.Dialog.DialogLogout;
-import nu.toko.Model.UserMitra;
 import nu.toko.Page.Bantuan;
 import nu.toko.Page.CartOrder;
 import nu.toko.Page.Chats;
-import nu.toko.Page.EditProfile;
 import nu.toko.Page.Login;
 import nu.toko.Page.UserSetting;
 import nu.toko.R;
@@ -93,6 +90,7 @@ public class Account extends Fragment {
                         @Override
                         public void trigerbos() {
                             UserPrefs.setLogin(getActivity(), false);
+                            if (FirebaseAuth.getInstance().getCurrentUser()!=null)FirebaseAuth.getInstance().signOut();
                             FirebaseMessaging.getInstance().unsubscribeFromTopic("user"+ UserPrefs.getId(getActivity()));
                             Intent i = new Intent(getActivity(), Login.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

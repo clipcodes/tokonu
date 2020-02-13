@@ -1,5 +1,6 @@
 package nu.toko.Fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.SignInButton;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
@@ -46,6 +48,8 @@ public class SignIn extends Fragment {
     TextView gotex;
     ProgressBar progress;
     RequestQueue requestQueue;
+    KirimData kirimData;
+    SignInButton google;
 
     public SignIn() {
     }
@@ -81,12 +85,20 @@ public class SignIn extends Fragment {
 
     void init(View view){
         requestQueue = Volley.newRequestQueue(getActivity());
+        google = view.findViewById(R.id.google);
         email = view.findViewById(R.id.email);
         pass = view.findViewById(R.id.password);
         login = view.findViewById(R.id.login);
         progress = view.findViewById(R.id.progress);
         gotex = view.findViewById(R.id.gotex);
         err = view.findViewById(R.id.err);
+
+        google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                kirimData.trigerhome();
+            }
+        });
     }
 
     void go(boolean go){
@@ -135,4 +147,26 @@ public class SignIn extends Fragment {
             }
         }
     };
+
+    public interface KirimData{
+        void trigerhome();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            kirimData = (KirimData) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement TextClicked");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        kirimData = null;
+        super.onDetach();
+    }
 }

@@ -137,6 +137,7 @@
                 android:visibility="invisible"
                 android:layout_height="25dp"/>
         </androidx.cardview.widget.CardView>
+
         <TextView
             android:layout_width="wrap_content"
             android:text=""

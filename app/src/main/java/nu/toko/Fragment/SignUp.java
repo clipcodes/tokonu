@@ -1,5 +1,6 @@
 package nu.toko.Fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +39,7 @@ public class SignUp extends Fragment {
     TextView err;
     TextView gotex;
     ProgressBar progress;
+    KirimData kirimData;
 
     public SignUp() {
     }
@@ -171,5 +173,27 @@ public class SignUp extends Fragment {
             }
         }
     };
+
+    public interface KirimData{
+        void trigerhome(int x);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            kirimData = (KirimData) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement TextClicked");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        kirimData = null;
+        super.onDetach();
+    }
 
 }

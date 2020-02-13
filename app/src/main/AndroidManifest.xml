@@ -53,9 +53,6 @@
         <activity android:name=".Page.Checkout"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Page.EditProfile"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Page.DetailPayment"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
