@@ -88,10 +88,10 @@ public class CartOrder extends AppCompatActivity {
                 i.putExtra("subtotal", Total);
 
                 if (UserPrefs.getKabupaten(getApplicationContext()).equals("0")
-                        && UserPrefs.getKecamatan(getApplicationContext()).equals("0")
-                        && UserPrefs.getProvinsi(getApplicationContext()).equals("0")
-                        && UserPrefs.getKode_pos(getApplicationContext()).equals("0")
-                        && UserPrefs.getAlamat(getApplicationContext()).equals("0")){
+                        || UserPrefs.getKecamatan(getApplicationContext()).equals("0")
+                        || UserPrefs.getProvinsi(getApplicationContext()).equals("0")
+                        || UserPrefs.getKode_pos(getApplicationContext()).equals("0")
+                        || UserPrefs.getAlamat(getApplicationContext()).equals("0")){
                     new DialogLengkapi(CartOrder.this).mentriger(new DialogLengkapi.Go() {
                         @Override
                         public void trigerbos() {
@@ -114,9 +114,10 @@ public class CartOrder extends AppCompatActivity {
         Total = 0;
         for (int i = 0; i < productModelNU.size(); i++){
             if (productModelNU.get(i).isChecked()){
-                Log.i(TAG, "onItemClick: "+productModelNU.get(i).getHarga_admin());
-                Log.i(TAG, "onItemClick: "+productModelNU.get(i).getHarga_mitra());
-                Total+=(productModelNU.get(i).getHarga_admin()+productModelNU.get(i).getHarga_mitra()) * productModelNU.get(i).getQty();
+                Log.i(TAG, "onItemClick A: "+productModelNU.get(i).getHarga_admin());
+                Log.i(TAG, "onItemClick M: "+productModelNU.get(i).getHarga_mitra());
+                Log.i(TAG, "onItemClick D: "+productModelNU.get(i).getDiskon());
+                Total+=((productModelNU.get(i).getHarga_admin()+productModelNU.get(i).getHarga_mitra())-productModelNU.get(i).getDiskon()) * productModelNU.get(i).getQty();
                 subtotal.setText("Rp."+Others.PercantikHarga(Total));
             }
         }
@@ -130,7 +131,7 @@ public class CartOrder extends AppCompatActivity {
                     if (productModelNU.get(i).isChecked()){
                         Log.i(TAG, "onItemClick: "+productModelNU.get(i).getHarga_admin());
                         Log.i(TAG, "onItemClick: "+productModelNU.get(i).getHarga_mitra());
-                        Total+=(productModelNU.get(i).getHarga_admin()+productModelNU.get(i).getHarga_mitra()) * productModelNU.get(i).getQty();
+                        Total+=((productModelNU.get(i).getHarga_admin()+productModelNU.get(i).getHarga_mitra())-productModelNU.get(i).getDiskon()) * productModelNU.get(i).getQty();
                         subtotal.setText("Rp."+Others.PercantikHarga(Total));
                     }
                 }

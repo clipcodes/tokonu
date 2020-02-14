@@ -164,6 +164,7 @@ public class SignUp extends Fragment {
                 UserPrefs.setKecamatan(object.getString("kecamatan"), getActivity());
                 UserPrefs.setKode_pos(object.getString("kode_pos"), getActivity());
                 UserPrefs.setUrl_profil(object.getString("url_profil"), getActivity());
+                UserPrefs.setNamakab(object.getString("namakota"), getActivity());
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 FirebaseMessaging.getInstance().subscribeToTopic("user"+object.getString("id"));
                 startActivity(i);

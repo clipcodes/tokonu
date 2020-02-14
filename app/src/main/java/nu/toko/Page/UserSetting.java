@@ -26,6 +26,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import nu.toko.MainActivity;
+import nu.toko.Model.AddressModel;
+import nu.toko.Model.KotaModel;
+import nu.toko.Model.ProvModel;
 import nu.toko.Model.UserPembeliModel;
 import nu.toko.R;
 import nu.toko.Reqs.ReqString;
@@ -39,17 +42,19 @@ import static nu.toko.Utils.Staticvar.USER_EDIT;
 
 public class UserSetting extends AppCompatActivity {
 
-    EditText email, nama_pembeli, no_telp, kabupaten_pembeli, kecamatan_pembeli, kode_pos_pembeli, alamat_pembeli, password;
+    EditText email, nama_pembeli, no_telp, kecamatan_pembeli, kode_pos_pembeli, alamat_pembeli, password;
     TextView err;
     TextView gotex;
     ProgressBar progress;
-    AutoCompleteTextView provinsi_pembeli;
+    TextView provinsi_pembeli, kabupaten_pembeli;
     RequestQueue requestQueue;
     CardView save;
     String TAG = getClass().getSimpleName();
     ArrayList<String> PROVNAME;
     ArrayList<String> PROVID;
     ReqString reqString;
+    String idprovterpilih = null;
+    String kabterpilih = "";
     
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +65,7 @@ public class UserSetting extends AppCompatActivity {
 
     }
     
-    void init(){ 
+    void init(){
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         reqString = new ReqString(this, requestQueue);
         PROVNAME = new ArrayList<>();
@@ -79,10 +84,26 @@ public class UserSetting extends AppCompatActivity {
         kode_pos_pembeli = findViewById(R.id.kode_pos_pembeli);
         alamat_pembeli = findViewById(R.id.alamat_pembeli);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, PROVNAME);
-        provinsi_pembeli.setThreshold(1);
-        provinsi_pembeli.setAdapter(adapter);
-        reqString.go(prov, DATPROVINSI);
+        findViewById(R.id.pilihprov).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), PageProv.class);
+                startActivityForResult(i, 121);
+            }
+        });
+
+        findViewById(R.id.pilihkabkot).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (idprovterpilih==null){
+                    Toast.makeText(getApplicationContext(), "Pilih Provinsi Dahulu", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent i = new Intent(getApplicationContext(), PageKota.class);
+                i.putExtra("idprov", idprovterpilih);
+                startActivityForResult(i, 131);
+            }
+        });
 
         email.setText(UserPrefs.getEmail(getApplicationContext()));
         nama_pembeli.setText(UserPrefs.getNama(getApplicationContext()));
@@ -98,7 +119,7 @@ public class UserSetting extends AppCompatActivity {
         if (!UserPrefs.getKecamatan(getApplicationContext()).equals("0")){
             kecamatan_pembeli.setText(UserPrefs.getKecamatan(getApplicationContext()));
         }
-        if (!UserPrefs.getKabupaten(getApplicationContext()).equals("0")){
+        if (!UserPrefs.getNamakab(getApplicationContext()).equals("0")){
             kabupaten_pembeli.setText(UserPrefs.getKabupaten(getApplicationContext()));
         }
         if (!UserPrefs.getKode_pos(getApplicationContext()).equals("0")){
@@ -114,6 +135,7 @@ public class UserSetting extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +143,7 @@ public class UserSetting extends AppCompatActivity {
                 usr.setAlamat_pembeli(alamat_pembeli.getText().toString());
                 usr.setEmail_pembeli(email.getText().toString());
                 usr.setProvinsi_pembeli(provinsi_pembeli.getText().toString());
-                usr.setKabupaten_pembeli(kabupaten_pembeli.getText().toString());
+                usr.setKabupaten_pembeli(kabterpilih);
                 usr.setKecamatan_pembeli(kecamatan_pembeli.getText().toString());
                 usr.setKode_pos_pembeli(kode_pos_pembeli.getText().toString());
                 usr.setNama_pembeli(nama_pembeli.getText().toString());
@@ -142,13 +164,13 @@ public class UserSetting extends AppCompatActivity {
                     return;
                 }
 
-                if (usr.getProvinsi_pembeli().isEmpty()){
+                if (usr.getProvinsi_pembeli().contains("Pilih")){
                     err.setText("Isikan Provinsi Tinggal");
                     return;
                 }
 
-                if (usr.getKabupaten_pembeli().isEmpty()){
-                    err.setText("Isikan Provinsi Tinggal");
+                if (kabterpilih.contains("Pilih")){
+                    err.setText("Isikan Kota/Kab Tinggal");
                     return;
                 }
 
@@ -203,6 +225,7 @@ public class UserSetting extends AppCompatActivity {
                 UserPrefs.setKecamatan(object.getString("kecamatan"), getApplicationContext());
                 UserPrefs.setKode_pos(object.getString("kode_pos"), getApplicationContext());
                 UserPrefs.setUrl_profil(object.getString("url_profil"), getApplicationContext());
+                UserPrefs.setNamakab(object.getString("namakota"), getApplicationContext());
 
                 go(false);
 
@@ -213,21 +236,24 @@ public class UserSetting extends AppCompatActivity {
         }
     };
 
-    private Response.Listener<String> prov = new Response.Listener<String>() {
-        @Override
-        public void onResponse(String response) {
-            Log.i("RESPON", response);
-            try {
-                JSONArray array = new JSONArray(response);
-                for (int i = 0; i < array.length(); i++){
-                    JSONObject object = array.getJSONObject(i);
-                    PROVNAME.add(object.getString("nama_provinsi"));
-                    PROVID.add(object.getString("provinsi_id"));
-                }
-            } catch (JSONException e) {
-                Log.i("RESPON EROR", e.getMessage());
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+            if (requestCode == 121){
+                ProvModel model = new ProvModel();
+                model.setNama_provinsi(data.getStringExtra("nama"));
+                model.setProvinsi_id(data.getStringExtra("id"));
+                provinsi_pembeli.setText(data.getStringExtra("nama"));
+                idprovterpilih = data.getStringExtra("id");
+            }
+            if (requestCode == 131){
+                KotaModel model = new KotaModel();
+                model.setNama_kota(data.getStringExtra("nama"));
+                model.setKota_id(data.getStringExtra("id"));
+                kabupaten_pembeli.setText(data.getStringExtra("nama"));
+                kabterpilih = data.getStringExtra("id");
             }
         }
-    };
-
+    }
 }

@@ -104,6 +104,15 @@ public class Checkout extends AppCompatActivity {
         biayapengiriman.setText("Rp.2.000");
         paytotal.setText("Rp."+Others.PercantikHarga(subtotalintent+biayakirim));
 
+        String alamatholder =
+                UserPrefs.getProvinsi(getApplicationContext())+" "+
+                UserPrefs.getNamakab(getApplicationContext())+" "+
+                UserPrefs.getKecamatan(getApplicationContext())+", "+
+                UserPrefs.getAlamat(getApplicationContext());
+
+        alamatpengiriman.setText(alamatholder);
+        alamatkirim = alamatholder;
+
         rvcartlist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvcartlist.setAdapter(checkoutListAdapter);
 
@@ -113,13 +122,13 @@ public class Checkout extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        address.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), PageAddress.class);
-                startActivityForResult(i, ALAMAT);
-            }
-        });
+//        address.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getApplicationContext(), PageAddress.class);
+//                startActivityForResult(i, ALAMAT);
+//            }
+//        });
 //        paymentmethod.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

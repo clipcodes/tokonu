@@ -145,17 +145,32 @@
                 android:textColor="@color/textcolor2"
                 android:textSize="17sp"
                 android:layout_height="wrap_content"/>
-            <AutoCompleteTextView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:hint="Provinsi"
-                android:id="@+id/provinsi_pembeli"
-                android:nextFocusDown="@+id/kabupaten_pembeli"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="17sp"
-                android:inputType="textCapWords"
-                android:lines="1"
-                android:layout_height="wrap_content"/>
+                android:layout_marginStart="13dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginTop="6dp"
+                android:id="@+id/pilihprov"
+                android:background="@color/greytranspa1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/textcolor2"
+                    android:text="Pilih Provinsi"
+                    android:id="@+id/provinsi_pembeli"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/icon_chivronright"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="6dp"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:text="Kabupaten"
@@ -166,17 +181,32 @@
                 android:textColor="@color/textcolor2"
                 android:textSize="17sp"
                 android:layout_height="wrap_content"/>
-            <EditText
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:hint="Kabupaten"
-                android:id="@+id/kabupaten_pembeli"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:inputType="textCapWords"
-                android:nextFocusDown="@+id/kecamatan_pembeli"
-                android:lines="1"
-                android:textSize="17sp"
-                android:layout_height="wrap_content"/>
+                android:layout_marginStart="13dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginTop="6dp"
+                android:id="@+id/pilihkabkot"
+                android:background="@color/greytranspa1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/textcolor2"
+                    android:text="Pilih Kota/Kab"
+                    android:id="@+id/kabupaten_pembeli"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/icon_chivronright"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="6dp"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:text="Kecamatan"

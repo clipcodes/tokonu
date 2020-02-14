@@ -45,11 +45,11 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:src="@drawable/icon_chivronright"
-                android:layout_gravity="center|end"
-                android:layout_height="wrap_content"/>
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:src="@drawable/icon_chivronright"-->
+<!--                android:layout_gravity="center|end"-->
+<!--                android:layout_height="wrap_content"/>-->
         </FrameLayout>
 
         <View

@@ -5,6 +5,7 @@ import java.util.Comparator;
 import static nu.toko.Utils.Staticvar.BERAT_PRODUK;
 import static nu.toko.Utils.Staticvar.CREATED_AT;
 import static nu.toko.Utils.Staticvar.DESKRIPSI_PRODUK;
+import static nu.toko.Utils.Staticvar.DISKON;
 import static nu.toko.Utils.Staticvar.GAMBARFIRST;
 import static nu.toko.Utils.Staticvar.HARGA_ADMIN;
 import static nu.toko.Utils.Staticvar.HARGA_MITRA;
@@ -30,6 +31,7 @@ public class ProductModelNU {
     private String kondisi_produk;
     private String terjual;
     private String stok;
+    private int diskon;
     private float rating;
     private int harga_mitra;
     private int harga_admin;
@@ -56,13 +58,14 @@ public class ProductModelNU {
                     + HARGA_ADMIN + " TEXT,"
                     + CREATED_AT + " TEXT,"
                     + QTY + " TEXT,"
-                    + GAMBARFIRST + " TEXT"
+                    + GAMBARFIRST + " TEXT,"
+                    + DISKON + " TEXT"
                     + ")";
 
     public ProductModelNU() {
     }
 
-    public ProductModelNU(String id_produk, String id_mitra, String nama_produk, String deskripsi_produk, String id_sub_kategori, String berat_produk, String kondisi_produk, String terjual, String stok, int harga_mitra, int harga_admin, String created_at, int qty, String gambarfirst) {
+    public ProductModelNU(String id_produk, String id_mitra, String nama_produk, String deskripsi_produk, String id_sub_kategori, String berat_produk, String kondisi_produk, String terjual, String stok, int harga_mitra, int harga_admin, String created_at, int qty, String gambarfirst, int diskon) {
         this.id_produk = id_produk;
         this.id_mitra = id_mitra;
         this.nama_produk = nama_produk;
@@ -77,6 +80,7 @@ public class ProductModelNU {
         this.created_at = created_at;
         this.qty = qty;
         this.gambarfirst = gambarfirst;
+        this.setDiskon(diskon);
     }
 
     public String getId_mitra() {
@@ -235,5 +239,13 @@ public class ProductModelNU {
 
     public void setDikirimdari(String dikirimdari) {
         this.dikirimdari = dikirimdari;
+    }
+
+    public int getDiskon() {
+        return diskon;
+    }
+
+    public void setDiskon(int diskon) {
+        this.diskon = diskon;
     }
 }

@@ -49,6 +49,7 @@ import nu.toko.Utils.UserPrefs;
 import static nu.toko.Utils.Staticvar.BERAT_PRODUK;
 import static nu.toko.Utils.Staticvar.CREATED_AT;
 import static nu.toko.Utils.Staticvar.DESKRIPSI_PRODUK;
+import static nu.toko.Utils.Staticvar.DISKON;
 import static nu.toko.Utils.Staticvar.FEEDBACKALL;
 import static nu.toko.Utils.Staticvar.HARGA_ADMIN;
 import static nu.toko.Utils.Staticvar.HARGA_MITRA;
@@ -399,6 +400,7 @@ public class Details extends AppCompatActivity {
                 pnu.setHarga_admin(jsonObject.getInt(HARGA_ADMIN));
                 pnu.setCreated_at(jsonObject.getString(CREATED_AT));
                 pnu.setQty(1);
+                pnu.setDiskon(jsonObject.getInt(DISKON));
                 pnu.setOwner(um);
 
                 for (int g = 0; g < jsonArray.length(); g++){

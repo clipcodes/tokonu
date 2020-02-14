@@ -1,29 +1,26 @@
 package nu.toko.Adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Filter;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import nu.toko.Model.KotaModel;
 import nu.toko.Model.ProvModel;
 import nu.toko.R;
 
-public class ProvAdapter extends RecyclerView.Adapter<ProvAdapter.ViewHolder>{
+public class KotaAdapter extends RecyclerView.Adapter<KotaAdapter.ViewHolder>{
 
     Activity activity;
-    List<ProvModel> items;
+    List<KotaModel> items;
     OnClick onItemClickListener;
 
-    public ProvAdapter(Activity activity, List<ProvModel> items){
+    public KotaAdapter(Activity activity, List<KotaModel> items){
         this.activity = activity;
         this.items = items;
     }
@@ -38,7 +35,7 @@ public class ProvAdapter extends RecyclerView.Adapter<ProvAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.tex.setText(items.get(position).getNama_provinsi());
+        holder.tex.setText(items.get(position).getNama_kota());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +63,6 @@ public class ProvAdapter extends RecyclerView.Adapter<ProvAdapter.ViewHolder>{
         onItemClickListener = clickListener;
     }
     public interface OnClick {
-        void onItemClick(ProvModel addressModel);
+        void onItemClick(KotaModel addressModel);
     }
 }
