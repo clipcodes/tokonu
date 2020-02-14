@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,27 +19,37 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import nu.toko.MainActivity;
 import nu.toko.Model.UserPembeliModel;
 import nu.toko.R;
+import nu.toko.Reqs.ReqString;
 import nu.toko.Reqs.UserReqs;
 import nu.toko.Utils.UserPrefs;
 
+import static nu.toko.Utils.Staticvar.DATPROVINSI;
+import static nu.toko.Utils.Staticvar.PROVINSI;
 import static nu.toko.Utils.Staticvar.USER_DAFTAR;
 import static nu.toko.Utils.Staticvar.USER_EDIT;
 
 public class UserSetting extends AppCompatActivity {
 
-    EditText email, nama_pembeli, no_telp, provinsi_pembeli, kabupaten_pembeli, kecamatan_pembeli, kode_pos_pembeli, alamat_pembeli, password;
+    EditText email, nama_pembeli, no_telp, kabupaten_pembeli, kecamatan_pembeli, kode_pos_pembeli, alamat_pembeli, password;
     TextView err;
     TextView gotex;
     ProgressBar progress;
+    AutoCompleteTextView provinsi_pembeli;
     RequestQueue requestQueue;
     CardView save;
     String TAG = getClass().getSimpleName();
+    ArrayList<String> PROVNAME;
+    ArrayList<String> PROVID;
+    ReqString reqString;
     
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,10 +57,14 @@ public class UserSetting extends AppCompatActivity {
         setContentView(R.layout.users_setting);
         
         init();
+
     }
     
     void init(){ 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
+        reqString = new ReqString(this, requestQueue);
+        PROVNAME = new ArrayList<>();
+        PROVID = new ArrayList<>();
         save = findViewById(R.id.save);
         email = findViewById(R.id.email);
         progress = findViewById(R.id.progress);
@@ -62,6 +78,11 @@ public class UserSetting extends AppCompatActivity {
         kabupaten_pembeli = findViewById(R.id.kabupaten_pembeli);
         kode_pos_pembeli = findViewById(R.id.kode_pos_pembeli);
         alamat_pembeli = findViewById(R.id.alamat_pembeli);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, PROVNAME);
+        provinsi_pembeli.setThreshold(1);
+        provinsi_pembeli.setAdapter(adapter);
+        reqString.go(prov, DATPROVINSI);
 
         email.setText(UserPrefs.getEmail(getApplicationContext()));
         nama_pembeli.setText(UserPrefs.getNama(getApplicationContext()));
@@ -186,6 +207,23 @@ public class UserSetting extends AppCompatActivity {
                 go(false);
 
                 Toast.makeText(UserSetting.this, "Tersimpan", Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                Log.i("RESPON EROR", e.getMessage());
+            }
+        }
+    };
+
+    private Response.Listener<String> prov = new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            Log.i("RESPON", response);
+            try {
+                JSONArray array = new JSONArray(response);
+                for (int i = 0; i < array.length(); i++){
+                    JSONObject object = array.getJSONObject(i);
+                    PROVNAME.add(object.getString("nama_provinsi"));
+                    PROVID.add(object.getString("provinsi_id"));
+                }
             } catch (JSONException e) {
                 Log.i("RESPON EROR", e.getMessage());
             }

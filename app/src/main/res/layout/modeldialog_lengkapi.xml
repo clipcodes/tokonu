@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:textAlignment="center"
+                        android:text="Lengkapi semua identitas anda sebelum melanjutkan pembelian."
+                        android:id="@+id/tex"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="16sp"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/greytranspa1"
+                    android:layout_height="1dp"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ProgressBar
+                        android:layout_width="30dp"
+                        android:id="@+id/proses"
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        android:layout_height="30dp" />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/button"
+                        android:layout_gravity="center|right"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="Lengkapi Profil"
+                            android:textStyle="bold"
+                            android:id="@+id/texbut"
+                            android:layout_margin="10dp"
+                            android:textColor="@color/textcolor2"
+                            android:textSize="16sp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content" />
+                    </FrameLayout>
+                </FrameLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>

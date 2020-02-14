@@ -46,6 +46,7 @@ public class Staticvar {
     public static final String FEEDBACKALL = DOMAIN+API+"feedback/all/";
     public static final String BERITA = DOMAIN+API+"berita";
     public static final String ONGKIR = DOMAIN+API+"ongkir";
+    public static final String DATPROVINSI = DOMAIN+API+"data/provinsi";
     public static final String SLASH = "/";
 
     public static final String GAMBAR_BERITA = "gambar_berita";

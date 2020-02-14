@@ -20,12 +20,14 @@ import java.util.List;
 
 import nu.toko.Adapter.CartListAdapter;
 import nu.toko.Adapter.CheckoutListAdapter;
+import nu.toko.Dialog.DialogLengkapi;
 import nu.toko.Model.CartListModel;
 import nu.toko.Model.ProductModelNU;
 import nu.toko.R;
 import nu.toko.Sqlite.CartDB;
 import nu.toko.Sqlite.CheckoutDB;
 import nu.toko.Utils.Others;
+import nu.toko.Utils.UserPrefs;
 
 public class CartOrder extends AppCompatActivity {
 
@@ -84,7 +86,22 @@ public class CartOrder extends AppCompatActivity {
                 }
                 Intent i = new Intent(getApplicationContext(), Checkout.class);
                 i.putExtra("subtotal", Total);
-                startActivity(i);
+
+                if (UserPrefs.getKabupaten(getApplicationContext()).equals("0")
+                        && UserPrefs.getKecamatan(getApplicationContext()).equals("0")
+                        && UserPrefs.getProvinsi(getApplicationContext()).equals("0")
+                        && UserPrefs.getKode_pos(getApplicationContext()).equals("0")
+                        && UserPrefs.getAlamat(getApplicationContext()).equals("0")){
+                    new DialogLengkapi(CartOrder.this).mentriger(new DialogLengkapi.Go() {
+                        @Override
+                        public void trigerbos() {
+                            Intent i = new Intent(getApplicationContext(), UserSetting.class);
+                            startActivity(i);
+                        }
+                    });
+                } else {
+                    startActivity(i);
+                }
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
