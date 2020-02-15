@@ -15,6 +15,7 @@ import static nu.toko.Model.ProductModelNU.CREATE_TABLE;
 import static nu.toko.Model.ProductModelNU.TABLE_NAME;
 import static nu.toko.Utils.Staticvar.BERAT_PRODUK;
 import static nu.toko.Utils.Staticvar.CREATED_AT;
+import static nu.toko.Utils.Staticvar.DBONGKIR;
 import static nu.toko.Utils.Staticvar.DESKRIPSI_PRODUK;
 import static nu.toko.Utils.Staticvar.DISKON;
 import static nu.toko.Utils.Staticvar.GAMBARFIRST;
@@ -33,7 +34,7 @@ public class CheckoutDB extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_NAME = "checkoutt";
+    private static final String DATABASE_NAME = "checkoutxx";
 
     public CheckoutDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -70,6 +71,7 @@ public class CheckoutDB extends SQLiteOpenHelper {
         values.put(QTY, data.getQty());
         values.put(GAMBARFIRST, data.getGambarfirst());
         values.put(DISKON, data.getDiskon());
+        values.put(DBONGKIR, data.getOngkir());
 
         db.insert(TABLE_NAME, null, values);
 
@@ -83,7 +85,7 @@ public class CheckoutDB extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(TABLE_NAME,
                 new String[]{ID_PRODUK, ID_MITRA, NAMA_PRODUK, DESKRIPSI_PRODUK, ID_SUB_KATEGORI, BERAT_PRODUK, KONDISI_PRODUK, TERJUAL, STOK,
-                        HARGA_MITRA, HARGA_ADMIN, CREATED_AT, QTY, GAMBARFIRST, DISKON},ID_PRODUK + "=?",
+                        HARGA_MITRA, HARGA_ADMIN, CREATED_AT, QTY, GAMBARFIRST, DISKON, DISKON},ID_PRODUK + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
 
 
@@ -105,7 +107,8 @@ public class CheckoutDB extends SQLiteOpenHelper {
                 cursor.getString(cursor.getColumnIndex(CREATED_AT)),
                 cursor.getInt(cursor.getColumnIndex(QTY)),
                 cursor.getString(cursor.getColumnIndex(GAMBARFIRST)),
-                cursor.getInt(cursor.getColumnIndex(DISKON)));
+                cursor.getInt(cursor.getColumnIndex(DISKON)),
+                cursor.getInt(cursor.getColumnIndex(DBONGKIR)));
         }
 
         cursor.close();
@@ -149,6 +152,7 @@ public class CheckoutDB extends SQLiteOpenHelper {
                 data.setCreated_at(cursor.getString(cursor.getColumnIndex(CREATED_AT)));
                 data.setGambarfirst(cursor.getString(cursor.getColumnIndex(GAMBARFIRST)));
                 data.setDiskon(cursor.getInt(cursor.getColumnIndex(DISKON)));
+                data.setOngkir(cursor.getInt(cursor.getColumnIndex(DBONGKIR)));
 
                 datas.add(data);
             } while (cursor.moveToNext());
@@ -185,6 +189,7 @@ public class CheckoutDB extends SQLiteOpenHelper {
                 data.setCreated_at(cursor.getString(cursor.getColumnIndex(CREATED_AT)));
                 data.setGambarfirst(cursor.getString(cursor.getColumnIndex(GAMBARFIRST)));
                 data.setDiskon(cursor.getInt(cursor.getColumnIndex(DISKON)));
+                data.setOngkir(cursor.getInt(cursor.getColumnIndex(DBONGKIR)));
 
                 datas.add(data);
             } while (cursor.moveToNext());

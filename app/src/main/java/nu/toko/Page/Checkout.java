@@ -26,6 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import nu.toko.Adapter.CheckoutListAdapter;
 import nu.toko.Model.ProductModelNU;
@@ -68,6 +69,8 @@ public class Checkout extends AppCompatActivity {
     List<ProductModelNU> productModelNU;
     String alamatkirim;
     RequestQueue requestQueue;
+    TextView koinu;
+    int koinusumbang = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,7 +79,7 @@ public class Checkout extends AppCompatActivity {
 
         Others.MahathirOptionGambar(getApplicationContext());
         subtotalintent = getIntent().getIntExtra("subtotal", 0);
-        biayakirim = 2000;
+        biayakirim = getIntent().getIntExtra("ongkir", 0);
         init();
 
     }
@@ -99,10 +102,14 @@ public class Checkout extends AppCompatActivity {
         paytotal = findViewById(R.id.paytotal);
         paynow = findViewById(R.id.paynow);
         paynowtex = findViewById(R.id.paynowtex);
+        koinu = findViewById(R.id.koinu);
+
+        koinusumbang = ThreadLocalRandom.current().nextInt(500, 999);
 
         subtotal.setText("Rp."+Others.PercantikHarga(subtotalintent));
-        biayapengiriman.setText("Rp.2.000");
         paytotal.setText("Rp."+Others.PercantikHarga(subtotalintent+biayakirim));
+        biayapengiriman.setText("Rp."+Others.PercantikHarga(biayakirim));
+        koinu.setText("Rp."+Others.PercantikHarga(koinusumbang));
 
         String alamatholder =
                 UserPrefs.getProvinsi(getApplicationContext())+" "+
@@ -172,7 +179,7 @@ public class Checkout extends AppCompatActivity {
                         for (int l = 0; l < productModelNU.size(); l++){
                             if (productModelNU.get(l).getId_mitra().equals(mitra.get(i))){
                                 sub_total += (productModelNU.get(l).getHarga_admin()+productModelNU.get(l).getHarga_mitra())*productModelNU.get(l).getQty();
-                                harga_ongkir += 1000;
+                                harga_ongkir += productModelNU.get(l).getOngkir();
 
                                 JSONObject object = new JSONObject();
                                 object.put(QTY, productModelNU.get(i).getQty());
@@ -180,7 +187,7 @@ public class Checkout extends AppCompatActivity {
                                 jsonArray.put(object);
                             }
                         }
-                        harga_total = sub_total+harga_ongkir;
+                        harga_total = sub_total+harga_ongkir+koinusumbang;
                         transaks.put(SUB_TOTAL, sub_total);
                         transaks.put(HARGA_ONGKIR, harga_ongkir);
                         transaks.put(HARGA_TOTAL, harga_total);

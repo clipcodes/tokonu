@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import static nu.toko.Utils.Staticvar.BERAT_PRODUK;
 import static nu.toko.Utils.Staticvar.CREATED_AT;
+import static nu.toko.Utils.Staticvar.DBONGKIR;
 import static nu.toko.Utils.Staticvar.DESKRIPSI_PRODUK;
 import static nu.toko.Utils.Staticvar.DISKON;
 import static nu.toko.Utils.Staticvar.GAMBARFIRST;
@@ -14,6 +15,7 @@ import static nu.toko.Utils.Staticvar.ID_PRODUK;
 import static nu.toko.Utils.Staticvar.ID_SUB_KATEGORI;
 import static nu.toko.Utils.Staticvar.KONDISI_PRODUK;
 import static nu.toko.Utils.Staticvar.NAMA_PRODUK;
+import static nu.toko.Utils.Staticvar.ONGKIR;
 import static nu.toko.Utils.Staticvar.QTY;
 import static nu.toko.Utils.Staticvar.STOK;
 import static nu.toko.Utils.Staticvar.TERJUAL;
@@ -40,6 +42,7 @@ public class ProductModelNU {
     private String gambarfirst;
     private String totalfeedback;
     private String dikirimdari;
+    private int ongkir;
     private boolean checked;
     private UserMitra owner;
 
@@ -59,13 +62,14 @@ public class ProductModelNU {
                     + CREATED_AT + " TEXT,"
                     + QTY + " TEXT,"
                     + GAMBARFIRST + " TEXT,"
-                    + DISKON + " TEXT"
+                    + DISKON + " TEXT,"
+                    + DBONGKIR + " TEXT"
                     + ")";
 
     public ProductModelNU() {
     }
 
-    public ProductModelNU(String id_produk, String id_mitra, String nama_produk, String deskripsi_produk, String id_sub_kategori, String berat_produk, String kondisi_produk, String terjual, String stok, int harga_mitra, int harga_admin, String created_at, int qty, String gambarfirst, int diskon) {
+    public ProductModelNU(String id_produk, String id_mitra, String nama_produk, String deskripsi_produk, String id_sub_kategori, String berat_produk, String kondisi_produk, String terjual, String stok, int harga_mitra, int harga_admin, String created_at, int qty, String gambarfirst, int diskon, int ongkir) {
         this.id_produk = id_produk;
         this.id_mitra = id_mitra;
         this.nama_produk = nama_produk;
@@ -80,7 +84,8 @@ public class ProductModelNU {
         this.created_at = created_at;
         this.qty = qty;
         this.gambarfirst = gambarfirst;
-        this.setDiskon(diskon);
+        this.diskon = diskon;
+        this.ongkir = ongkir;
     }
 
     public String getId_mitra() {
@@ -247,5 +252,13 @@ public class ProductModelNU {
 
     public void setDiskon(int diskon) {
         this.diskon = diskon;
+    }
+
+    public int getOngkir() {
+        return ongkir;
+    }
+
+    public void setOngkir(int ongkir) {
+        this.ongkir = ongkir;
     }
 }

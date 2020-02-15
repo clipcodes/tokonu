@@ -40,6 +40,7 @@ public class CartOrder extends AppCompatActivity {
     int Total;
     TextView continuebuytex;
     TextView subtotal;
+    int totalongkir;
     String TAG = getClass().getSimpleName();
 
     @Override
@@ -86,6 +87,7 @@ public class CartOrder extends AppCompatActivity {
                 }
                 Intent i = new Intent(getApplicationContext(), Checkout.class);
                 i.putExtra("subtotal", Total);
+                i.putExtra("ongkir", totalongkir);
 
                 if (UserPrefs.getKabupaten(getApplicationContext()).equals("0")
                         || UserPrefs.getKecamatan(getApplicationContext()).equals("0")
@@ -117,8 +119,10 @@ public class CartOrder extends AppCompatActivity {
                 Log.i(TAG, "onItemClick A: "+productModelNU.get(i).getHarga_admin());
                 Log.i(TAG, "onItemClick M: "+productModelNU.get(i).getHarga_mitra());
                 Log.i(TAG, "onItemClick D: "+productModelNU.get(i).getDiskon());
+                Log.i(TAG, "onItemClick O: "+productModelNU.get(i).getOngkir());
                 Total+=((productModelNU.get(i).getHarga_admin()+productModelNU.get(i).getHarga_mitra())-productModelNU.get(i).getDiskon()) * productModelNU.get(i).getQty();
                 subtotal.setText("Rp."+Others.PercantikHarga(Total));
+                totalongkir += productModelNU.get(i).getOngkir();
             }
         }
 
@@ -132,6 +136,7 @@ public class CartOrder extends AppCompatActivity {
                         Log.i(TAG, "onItemClick: "+productModelNU.get(i).getHarga_admin());
                         Log.i(TAG, "onItemClick: "+productModelNU.get(i).getHarga_mitra());
                         Total+=((productModelNU.get(i).getHarga_admin()+productModelNU.get(i).getHarga_mitra())-productModelNU.get(i).getDiskon()) * productModelNU.get(i).getQty();
+                        totalongkir += productModelNU.get(i).getOngkir();
                         subtotal.setText("Rp."+Others.PercantikHarga(Total));
                     }
                 }

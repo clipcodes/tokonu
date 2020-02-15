@@ -1,17 +1,13 @@
 package nu.toko.Adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Filter;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import nu.toko.Model.ProvModel;
@@ -32,7 +28,6 @@ public class ProvAdapter extends RecyclerView.Adapter<ProvAdapter.ViewHolder>{
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = activity.getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.modelitem_pilihan, parent, false);
-
         return new ViewHolder(view);
     }
 

@@ -92,6 +92,7 @@ public class Staticvar {
     public static final String PRICE = "price";
     public static final String VIEWER = "viewer";
     public static final String DISKON = "diskon";
+    public static final String DBONGKIR = "ongkir";
     public static final String TYPE = "type";
     public static final String NOTIFICATION = "notification";
     public static final String CREATED_AT = "created_at";

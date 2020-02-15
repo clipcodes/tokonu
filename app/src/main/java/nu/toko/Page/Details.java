@@ -264,7 +264,11 @@ public class Details extends AppCompatActivity {
                 JSONArray cost = costsO.getJSONArray("cost");
                 JSONObject costO = cost.getJSONObject(0);
 
-                ongkirtex.setText("Rp"+Others.PercantikHarga(Integer.valueOf(costO.getString("value"))));
+                ongkirtex.setText("Rp."+Others.PercantikHarga(costO.getInt("value")));
+
+                pnu.setOngkir(costO.getInt("value"));
+
+                Log.i(TAG, "onResponse: ongkir "+costO.getInt("value"));
 
                 buyerFeedbackAdapter.notifyDataSetChanged();
             } catch (JSONException e){
