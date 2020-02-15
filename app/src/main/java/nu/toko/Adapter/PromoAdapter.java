@@ -1,6 +1,8 @@
 package nu.toko.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.List;
 
 import nu.toko.Model.SlideModel;
+import nu.toko.Page.Categories;
 import nu.toko.R;
 
 import static nu.toko.Utils.Staticvar.FOTOPRODUK;
@@ -33,11 +36,22 @@ public class PromoAdapter extends PagerAdapter {
     itself acts as the object key
     */
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.modelitem_promo, null);
         ImageView imageView = view.findViewById(R.id.imagepromo);
 
         ImageLoader.getInstance().displayImage(FOTOSLIDE + images.get(position).getUrl_slide(), imageView);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, Categories.class);
+                i.putExtra("id", images.get(position).getParameter());
+                i.putExtra("kat", images.get(position).getLink_slide());
+                context.startActivity(i);
+            }
+        });
+
 //        imageView.setImageDrawable(context.getResources().getDrawable(images[position]));
 
         container.addView(view);

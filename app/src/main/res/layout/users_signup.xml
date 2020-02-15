@@ -9,25 +9,57 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Email"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor2"
+            android:textSize="17sp"
+            android:layout_height="wrap_content"/>
         <EditText
             android:layout_width="match_parent"
             android:hint="Email"
             android:id="@+id/email"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:lines="1"
             android:inputType="textEmailAddress"
             android:textSize="18sp"
             android:nextFocusDown="@+id/password"
             android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Password"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor2"
+            android:textSize="17sp"
+            android:layout_height="wrap_content"/>
         <EditText
             android:layout_width="match_parent"
             android:hint="Password"
             android:id="@+id/password"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:nextFocusDown="@+id/nama_pembeli"
             android:lines="1"
             android:inputType="textPassword"
             android:textSize="18sp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Nama Lengkap"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor2"
+            android:textSize="17sp"
             android:layout_height="wrap_content"/>
         <EditText
             android:layout_width="match_parent"
@@ -36,8 +68,19 @@
             android:lines="1"
             android:nextFocusDown="@+id/no_telp"
             android:inputType="textCapWords"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:textSize="18sp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Nomor HP"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor2"
+            android:textSize="17sp"
             android:layout_height="wrap_content"/>
         <EditText
             android:layout_width="match_parent"
@@ -45,29 +88,92 @@
             android:id="@+id/no_telp"
             android:inputType="numberDecimal"
             android:nextFocusDown="@+id/provinsi_pembeli"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:lines="1"
             android:textSize="18sp"
             android:layout_height="wrap_content"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:hint="Provinsi"
-            android:id="@+id/provinsi_pembeli"
-            android:nextFocusDown="@+id/kabupaten_pembeli"
-            android:layout_margin="10dp"
-            android:textSize="18sp"
-            android:inputType="textCapWords"
-            android:lines="1"
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Provinsi"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor2"
+            android:textSize="17sp"
             android:layout_height="wrap_content"/>
-        <EditText
+        <FrameLayout
             android:layout_width="match_parent"
-            android:hint="Kabupaten"
-            android:id="@+id/kabupaten_pembeli"
-            android:layout_margin="10dp"
-            android:inputType="textCapWords"
-            android:nextFocusDown="@+id/kecamatan_pembeli"
-            android:lines="1"
-            android:textSize="18sp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginTop="6dp"
+            android:id="@+id/pilihprov"
+            android:background="@color/greytranspa1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/textcolor2"
+                android:text="Pilih Provinsi"
+                android:id="@+id/provinsi_pembeli"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/icon_chivronright"
+                android:layout_gravity="center|end"
+                android:layout_marginEnd="6dp"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Kabupaten/Kota"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor2"
+            android:textSize="17sp"
+            android:layout_height="wrap_content"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginTop="6dp"
+            android:id="@+id/pilihkabkot"
+            android:background="@color/greytranspa1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/textcolor2"
+                android:text="Pilih Kota/Kab"
+                android:id="@+id/kabupaten_pembeli"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/icon_chivronright"
+                android:layout_gravity="center|end"
+                android:layout_marginEnd="6dp"
+                android:layout_height="wrap_content"/>
+        </FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Kecamatan"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor2"
+            android:textSize="17sp"
             android:layout_height="wrap_content"/>
         <EditText
             android:layout_width="match_parent"
@@ -75,9 +181,20 @@
             android:id="@+id/kecamatan_pembeli"
             android:nextFocusDown="@+id/alamat_pembeli"
             android:inputType="textCapWords"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:textSize="18sp"
             android:lines="1"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Alamat Pelengkap"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor2"
+            android:textSize="17sp"
             android:layout_height="wrap_content"/>
         <EditText
             android:layout_width="match_parent"
@@ -85,9 +202,20 @@
             android:id="@+id/alamat_pembeli"
             android:nextFocusDown="@+id/kode_pos_pembeli"
             android:inputType="textCapWords"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:lines="1"
             android:textSize="18sp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Kode Pos"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor2"
+            android:textSize="17sp"
             android:layout_height="wrap_content"/>
         <EditText
             android:layout_width="match_parent"
@@ -96,7 +224,8 @@
             android:nextFocusDown="@+id/signup"
             android:id="@+id/kode_pos_pembeli"
             android:lines="1"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:textSize="18sp"
             android:layout_height="wrap_content"/>
         <LinearLayout

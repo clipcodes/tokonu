@@ -59,8 +59,10 @@ import static nu.toko.Utils.Staticvar.ID_SLIDE;
 import static nu.toko.Utils.Staticvar.ID_SUB_KATEGORI;
 import static nu.toko.Utils.Staticvar.KATEGORI;
 import static nu.toko.Utils.Staticvar.KONDISI_PRODUK;
+import static nu.toko.Utils.Staticvar.LINK_SLIDE;
 import static nu.toko.Utils.Staticvar.NAMA_KATEGORI;
 import static nu.toko.Utils.Staticvar.NAMA_PRODUK;
+import static nu.toko.Utils.Staticvar.PARAMETER;
 import static nu.toko.Utils.Staticvar.PRODUCTHOME;
 import static nu.toko.Utils.Staticvar.RATING;
 import static nu.toko.Utils.Staticvar.SLIDE;
@@ -290,6 +292,8 @@ public class Home extends Fragment {
                     SlideModel slideModel = new SlideModel();
                     slideModel.setId_slide(object.getInt(ID_SLIDE));
                     slideModel.setUrl_slide(object.getString(URL_SLIDE));
+                    slideModel.setLink_slide(object.getString(LINK_SLIDE));
+                    slideModel.setParameter(object.getString(PARAMETER));
 
                     slideModelList.add(slideModel);
                 }

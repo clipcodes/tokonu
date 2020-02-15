@@ -53,6 +53,16 @@
                 android:layout_height="25dp"/>
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="or"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/textcolor3"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"/>
+
         <com.google.android.gms.common.SignInButton
             android:layout_width="match_parent"
             android:layout_marginStart="6dp"

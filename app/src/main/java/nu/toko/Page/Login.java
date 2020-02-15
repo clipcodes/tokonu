@@ -49,7 +49,7 @@ import nu.toko.Utils.UserPrefs;
 
 import static nu.toko.Utils.Staticvar.USER_DAFTAR;
 
-public class Login extends AppCompatActivity implements SignIn.KirimData {
+public class Login extends AppCompatActivity implements SignIn.KirimData, SignUp.KirimData {
 
     String TAG = getClass().getSimpleName();
     FrameLayout container;

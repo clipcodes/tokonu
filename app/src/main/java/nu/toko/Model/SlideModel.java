@@ -3,6 +3,8 @@ package nu.toko.Model;
 public class SlideModel {
 
     private int id_slide;
+    private String link_slide;
+    private String parameter;
     private String url_slide;
 
     public int getId_slide() {
@@ -19,5 +21,21 @@ public class SlideModel {
 
     public void setUrl_slide(String url_slide) {
         this.url_slide = url_slide;
+    }
+
+    public String getParameter() {
+        return parameter;
+    }
+
+    public void setParameter(String parameter) {
+        this.parameter = parameter;
+    }
+
+    public String getLink_slide() {
+        return link_slide;
+    }
+
+    public void setLink_slide(String link_slide) {
+        this.link_slide = link_slide;
     }
 }

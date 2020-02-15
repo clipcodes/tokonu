@@ -138,6 +138,8 @@ public class Staticvar {
 
     public static final String ID_SLIDE = "id_slide";
     public static final String URL_SLIDE = "url_slide";
+    public static final String LINK_SLIDE = "link_slide";
+    public static final String PARAMETER = "parameter";
 
     public static final String ID_GAMBAR = "id_gambar";
     public static final String URL_GAMBAR = "url_gambar";

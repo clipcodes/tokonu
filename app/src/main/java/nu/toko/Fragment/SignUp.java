@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -23,11 +25,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import nu.toko.MainActivity;
+import nu.toko.Model.KotaModel;
+import nu.toko.Model.ProvModel;
 import nu.toko.Model.UserPembeliModel;
+import nu.toko.Page.PageKota;
+import nu.toko.Page.PageProv;
 import nu.toko.R;
 import nu.toko.Reqs.UserReqs;
 import nu.toko.Utils.UserPrefs;
 
+import static android.app.Activity.RESULT_OK;
 import static nu.toko.Utils.Staticvar.USER_DAFTAR;
 
 public class SignUp extends Fragment {
@@ -35,11 +42,14 @@ public class SignUp extends Fragment {
     CardView signup;
     ProgressBar loding;
     RequestQueue requestQueue;
-    EditText email, nama_pembeli, no_telp, provinsi_pembeli, kabupaten_pembeli, kecamatan_pembeli, kode_pos_pembeli, alamat_pembeli, password;
+    EditText email, nama_pembeli, no_telp, kecamatan_pembeli, kode_pos_pembeli, alamat_pembeli, password;
     TextView err;
     TextView gotex;
     ProgressBar progress;
     KirimData kirimData;
+    String idprovterpilih = null;
+    String kabterpilih = "";
+    TextView provinsi_pembeli, kabupaten_pembeli;
 
     public SignUp() {
     }
@@ -57,7 +67,7 @@ public class SignUp extends Fragment {
                 usr.setAlamat_pembeli(alamat_pembeli.getText().toString());
                 usr.setEmail_pembeli(email.getText().toString());
                 usr.setProvinsi_pembeli(provinsi_pembeli.getText().toString());
-                usr.setKabupaten_pembeli(kabupaten_pembeli.getText().toString());
+                usr.setKabupaten_pembeli(kabterpilih);
                 usr.setKecamatan_pembeli(kecamatan_pembeli.getText().toString());
                 usr.setKode_pos_pembeli(kode_pos_pembeli.getText().toString());
                 usr.setNama_pembeli(nama_pembeli.getText().toString());
@@ -78,13 +88,13 @@ public class SignUp extends Fragment {
                     return;
                 }
 
-                if (usr.getProvinsi_pembeli().isEmpty()){
-                    err.setText("Isikan Provinsi Tinggal");
+                if (usr.getProvinsi_pembeli().contains("Pilih")){
+                    err.setText("Pilih Provinsi Tinggal");
                     return;
                 }
 
-                if (usr.getKabupaten_pembeli().isEmpty()){
-                    err.setText("Isikan Provinsi Tinggal");
+                if (kabterpilih.contains("Pilih")){
+                    err.setText("Pilih Kota/Kab Tinggal");
                     return;
                 }
 
@@ -100,6 +110,11 @@ public class SignUp extends Fragment {
 
                 if (password.getText().toString().isEmpty()){
                     err.setText("Isikan Password");
+                    return;
+                }
+
+                if (kode_pos_pembeli.getText().toString().isEmpty()){
+                    err.setText("Isikan Kode Pos");
                     return;
                 }
 
@@ -140,6 +155,28 @@ public class SignUp extends Fragment {
         kabupaten_pembeli = view.findViewById(R.id.kabupaten_pembeli);
         kode_pos_pembeli = view.findViewById(R.id.kode_pos_pembeli);
         alamat_pembeli = view.findViewById(R.id.alamat_pembeli);
+
+
+        view.findViewById(R.id.pilihprov).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), PageProv.class);
+                startActivityForResult(i, 121);
+            }
+        });
+
+        view.findViewById(R.id.pilihkabkot).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (idprovterpilih==null){
+                    Toast.makeText(getActivity(), "Pilih Provinsi Dahulu", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent i = new Intent(getActivity(), PageKota.class);
+                i.putExtra("idprov", idprovterpilih);
+                startActivityForResult(i, 131);
+            }
+        });
     }
 
     private Response.Listener<String> res = new Response.Listener<String>() {
@@ -175,8 +212,29 @@ public class SignUp extends Fragment {
         }
     };
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+            if (requestCode == 121){
+                ProvModel model = new ProvModel();
+                model.setNama_provinsi(data.getStringExtra("nama"));
+                model.setProvinsi_id(data.getStringExtra("id"));
+                provinsi_pembeli.setText(data.getStringExtra("nama"));
+                idprovterpilih = data.getStringExtra("id");
+            }
+            if (requestCode == 131){
+                KotaModel model = new KotaModel();
+                model.setNama_kota(data.getStringExtra("nama"));
+                model.setKota_id(data.getStringExtra("id"));
+                kabupaten_pembeli.setText(data.getStringExtra("nama"));
+                kabterpilih = data.getStringExtra("id");
+            }
+        }
+    }
+
     public interface KirimData{
-        void trigerhome(int x);
+        void trigerhome();
     }
 
     @Override

@@ -60,7 +60,7 @@ public class UserSetting extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.users_setting);
-        
+
         init();
 
     }
@@ -120,7 +120,7 @@ public class UserSetting extends AppCompatActivity {
             kecamatan_pembeli.setText(UserPrefs.getKecamatan(getApplicationContext()));
         }
         if (!UserPrefs.getNamakab(getApplicationContext()).equals("0")){
-            kabupaten_pembeli.setText(UserPrefs.getKabupaten(getApplicationContext()));
+            kabupaten_pembeli.setText(UserPrefs.getNamakab(getApplicationContext()));
         }
         if (!UserPrefs.getKode_pos(getApplicationContext()).equals("0")){
             kode_pos_pembeli.setText(UserPrefs.getKode_pos(getApplicationContext()));
@@ -183,7 +183,6 @@ public class UserSetting extends AppCompatActivity {
                     err.setText("Isikan Alamat Pelengkap");
                     return;
                 }
-
                 go(true);
 
                 new UserReqs(UserSetting.this, requestQueue).daftar(res, usr, null, USER_EDIT+UserPrefs.getId(getApplicationContext()));

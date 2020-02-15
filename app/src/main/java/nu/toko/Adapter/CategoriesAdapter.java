@@ -93,7 +93,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 public void onClick(View v) {
                     Intent i = new Intent(activity, Categories.class);
                     i.putExtra("kat", categoriesModel.getNama_kategori());
-                    i.putExtra("id", categoriesModel.getId_kategori());
+                    i.putExtra("id", Integer.valueOf(categoriesModel.getId_kategori()));
                     activity.startActivity(i);
                 }
             });
