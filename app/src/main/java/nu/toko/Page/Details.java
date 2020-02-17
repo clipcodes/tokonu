@@ -234,19 +234,16 @@ public class Details extends AppCompatActivity {
             Log.i(TAG, "onResponse ongkir: "+response);
             try {
                 JSONArray jsonArray = new JSONArray(response);
-                JSONObject json = jsonArray.getJSONObject(0);
-                JSONArray costs = json.getJSONArray("costs");
-                JSONObject costsO = costs.getJSONObject(0);
-                JSONArray cost = costsO.getJSONArray("cost");
-                JSONObject costO = cost.getJSONObject(0);
+//                JSONObject json = jsonArray.getJSONObject(0);
+//                JSONArray costs = json.getJSONArray("costs");
+//                JSONObject costsO = costs.getJSONObject(0);
+//                JSONArray cost = costsO.getJSONArray("cost");
+//                JSONObject costO = cost.getJSONObject(0);
 
-                ongkirtex.setText("Rp."+Others.PercantikHarga(costO.getInt("value")));
-
-                pnu.setOngkir(costO.getInt("value"));
-
-                Log.i(TAG, "onResponse: ongkir "+costO.getInt("value"));
-
-                buyerFeedbackAdapter.notifyDataSetChanged();
+//                Log.i(TAG, "onResponse: ongkir "+costO.getInt("value"));
+//                ongkirtex.setText("Rp."+Others.PercantikHarga(costO.getInt("value")));
+//                pnu.setOngkir(costO.getInt("value"));
+//                buyerFeedbackAdapter.notifyDataSetChanged();
 
                 //Bisa diklik ketika sudah ada harga ongkir
                 buynow.setOnClickListener(new View.OnClickListener() {

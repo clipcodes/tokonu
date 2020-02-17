@@ -97,46 +97,24 @@
                 android:background="@color/greytranspa1"
                 android:layout_height="15dp"/>
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:padding="8dp"
+                android:orientation="vertical"
                 android:layout_height="wrap_content">
-                <com.google.android.flexbox.FlexboxLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="5dp"
                     android:layout_height="wrap_content">
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        app:layout_flexBasisPercent="15%"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/icon_pickup"
-                            android:layout_height="40dp"/>
-                    </FrameLayout>
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        app:layout_flexBasisPercent="35%"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Ongkos Kirim : "
-                            android:layout_height="wrap_content"/>
-                    </FrameLayout>
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        app:layout_flexBasisPercent="60%"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_gravity="start|center"
-                            android:id="@+id/ongkir"
-                            android:text="Rp.0"
-                            android:layout_height="wrap_content"/>
-                    </FrameLayout>
-                </com.google.android.flexbox.FlexboxLayout>
-            </FrameLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Ongkos Kirim"
+                        android:textStyle="bold"
+                        android:layout_gravity="center|start"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"

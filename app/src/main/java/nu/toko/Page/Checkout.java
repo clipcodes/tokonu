@@ -49,7 +49,9 @@ import static nu.toko.Utils.Staticvar.ITEM;
 import static nu.toko.Utils.Staticvar.NAMALENGKAP;
 import static nu.toko.Utils.Staticvar.NOMINAL;
 import static nu.toko.Utils.Staticvar.NOREK;
+import static nu.toko.Utils.Staticvar.ONGKIR;
 import static nu.toko.Utils.Staticvar.QTY;
+import static nu.toko.Utils.Staticvar.SLASH;
 import static nu.toko.Utils.Staticvar.SUB_TOTAL;
 
 public class Checkout extends AppCompatActivity {
@@ -61,6 +63,7 @@ public class Checkout extends AppCompatActivity {
     CheckoutDB checkoutDB;
     int ALAMAT = 992;
     int PAYMETHOD = 5443;
+    int KURIR = 665;
     TextView alamatpengiriman, subtotal, biayapengiriman, paytotal, paynowtex;
     FrameLayout address;
     int subtotalintent, biayakirim;
@@ -71,6 +74,8 @@ public class Checkout extends AppCompatActivity {
     RequestQueue requestQueue;
     TextView koinu;
     int koinusumbang = 0;
+    String kurirdipilih = null;
+    int i;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -143,6 +148,13 @@ public class Checkout extends AppCompatActivity {
 //                startActivityForResult(i, PAYMETHOD);
 //            }
 //        });
+        findViewById(R.id.kurir).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), KurirChoose.class);
+                startActivityForResult(i, KURIR);
+            }
+        });
         paynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,8 +239,33 @@ public class Checkout extends AppCompatActivity {
             if (requestCode == PAYMETHOD){
 //                method.setText("Dikirim Menggunakan "+data.getStringExtra("method"));
             }
+            if (requestCode == KURIR){
+                ((TextView)findViewById(R.id.kurirtex)).setText("Menggunakan Kurir");
+                ((TextView)findViewById(R.id.selectkurirtex)).setText(data.getStringExtra("kurir"));
+                kurirdipilih = data.getStringExtra("kode");
+            }
         }
     }
+
+    Response.Listener<String> ongkir = new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            Log.i(TAG, "onResponse ongkir: "+response);
+            try {
+                JSONArray jsonArray = new JSONArray(response);
+                JSONObject json = jsonArray.getJSONObject(0);
+                JSONArray costs = json.getJSONArray("costs");
+                JSONObject costsO = costs.getJSONObject(0);
+                JSONArray cost = costsO.getJSONArray("cost");
+                JSONObject costO = cost.getJSONObject(0);
+
+                Log.i(TAG, "onResponse: val "+costO.getInt("value"));
+
+            } catch (JSONException e){
+                Log.i(TAG, "onResponse: "+e.getMessage());
+            }
+        }
+    };
 
     @Override
     protected void onDestroy() {
