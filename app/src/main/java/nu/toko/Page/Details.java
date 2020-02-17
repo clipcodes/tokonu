@@ -217,30 +217,6 @@ public class Details extends AppCompatActivity {
 //            }
 //        });
 
-        buynow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (new CartDB(getApplicationContext()).get(idproduk).getNama_produk() == null){
-                    new CartDB(getApplicationContext()).insert(pnu);
-                }
-                Intent i = new Intent(getApplicationContext(), CartOrder.class);
-                startActivity(i);
-            }
-        });
-
-        cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (new CartDB(getApplicationContext()).get(idproduk).getNama_produk() == null){
-                    cartimg.setColorFilter(getResources().getColor(R.color.colorPrimary));
-                    new CartDB(getApplicationContext()).insert(pnu);
-                } else {
-                    cartimg.setColorFilter(getResources().getColor(R.color.greytranspa));
-                    new CartDB(getApplicationContext()).delete(idproduk);
-                }
-            }
-        });
-
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -271,6 +247,31 @@ public class Details extends AppCompatActivity {
                 Log.i(TAG, "onResponse: ongkir "+costO.getInt("value"));
 
                 buyerFeedbackAdapter.notifyDataSetChanged();
+
+                //Bisa diklik ketika sudah ada harga ongkir
+                buynow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (new CartDB(getApplicationContext()).get(idproduk).getNama_produk() == null){
+                            new CartDB(getApplicationContext()).insert(pnu);
+                        }
+                        Intent i = new Intent(getApplicationContext(), CartOrder.class);
+                        startActivity(i);
+                    }
+                });
+
+                cart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (new CartDB(getApplicationContext()).get(idproduk).getNama_produk() == null){
+                            cartimg.setColorFilter(getResources().getColor(R.color.colorPrimary));
+                            new CartDB(getApplicationContext()).insert(pnu);
+                        } else {
+                            cartimg.setColorFilter(getResources().getColor(R.color.greytranspa));
+                            new CartDB(getApplicationContext()).delete(idproduk);
+                        }
+                    }
+                });
             } catch (JSONException e){
                 Log.i(TAG, "onResponse: "+e.getMessage());
             }

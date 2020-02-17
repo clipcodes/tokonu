@@ -38,6 +38,7 @@ public class Staticvar {
     public static final String TRANSAKSIDITERIMA = DOMAIN+API+"transaksi/diterima/";
     public static final String TRANSAKSIDETAIL = DOMAIN+API+"transaksi/detail/";
     public static final String GAMBARADD = DOMAIN+API+"produk/gambar/add";
+    public static final String BANKSUPPORT = DOMAIN+API+"admin/banksupport";
     public static final String BAYAR = DOMAIN+API+"transaksi/bayar";
     public static final String USER_LOGIN = DOMAIN+API+"user/login";
     public static final String USER_DAFTAR = DOMAIN+API+"user/daftar";
@@ -108,6 +109,7 @@ public class Staticvar {
     public static final String TOTALFEEDBACK = "totalfeedback";
     public static final String DIKIRIMDARI = "dikirimdari";
     public static final String BUKTI = "bukti";
+    public static final String DISKONPERCENT = "percent";
 
     public static final String ID_PRODUK = "id_produk";
     public static final String QTY = "qty";

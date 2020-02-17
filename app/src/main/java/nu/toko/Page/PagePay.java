@@ -48,10 +48,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import nu.toko.Adapter.BankSupportAdapter;
 import nu.toko.Adapter.BillingAdapter;
 import nu.toko.Adapter.BillingItemAdapter;
 import nu.toko.Adapter.PayListAdapter;
 import nu.toko.MainActivity;
+import nu.toko.Model.BankSupportModel;
 import nu.toko.Model.BillingItemModel;
 import nu.toko.Model.BillingModelNU;
 import nu.toko.Model.ProductModel;
@@ -60,6 +62,7 @@ import nu.toko.R;
 import nu.toko.Reqs.ReqString;
 import nu.toko.Utils.Others;
 
+import static nu.toko.Utils.Staticvar.BANKSUPPORT;
 import static nu.toko.Utils.Staticvar.BAYAR;
 import static nu.toko.Utils.Staticvar.GAMBARADD;
 import static nu.toko.Utils.Staticvar.GAMBARFIRST;
@@ -98,8 +101,12 @@ public class PagePay extends AppCompatActivity {
     TextView subtotal, ongkir, total, paytex;
     Calendar c;
     String tanggal = "";
-    TextView err, namalengkapbank, namabank, norekbank;
-    EditText tanggaltransfer, jumlahtransfer, namabanktujuan, namalengkap, norek;
+    TextView err;
+    EditText tanggaltransfer, jumlahtransfer, namalengkap;
+    RecyclerView rvbanksupport;
+    BankSupportAdapter bankSupportAdapter;
+    List<BankSupportModel> bankSupportModelList;
+    String namabanktujuan, norektujuan;
 
     File file = null;
 
@@ -111,18 +118,24 @@ public class PagePay extends AppCompatActivity {
         idtrans = String.valueOf(getIntent().getIntExtra(ID_TRANSAKSI, 0));
         init();
         new ReqString(this, requestQueue).go(respon, TRANSAKSIDETAIL+idtrans);
+        new ReqString(this, requestQueue).go(bank, BANKSUPPORT);
     }
 
     void init(){
+        rvbanksupport = findViewById(R.id.rvbanksupport);
         paytex = findViewById(R.id.paytex);
         progres = findViewById(R.id.progres);
         pilihfile = findViewById(R.id.pilihfile);
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         rvpay = findViewById(R.id.rvpay);
+        bankSupportModelList = new ArrayList<>();
+        bankSupportAdapter = new BankSupportAdapter(this, bankSupportModelList);
         billingItemModels = new ArrayList<>();
         billadap = new PayListAdapter(this, billingItemModels);
         rvpay.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvpay.setAdapter(billadap);
+        rvbanksupport.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvbanksupport.setAdapter(bankSupportAdapter);
         pilihfile.setOnClickListener(new klik());
         imagetampil = findViewById(R.id.imagetampil);
         cofirm = findViewById(R.id.cofirm);
@@ -132,16 +145,20 @@ public class PagePay extends AppCompatActivity {
         total = findViewById(R.id.total);
         tentukan = findViewById(R.id.tentukan);
         err = findViewById(R.id.err);
-        namalengkapbank = findViewById(R.id.namalengkapbank);
-        namabank = findViewById(R.id.namabank);
-        norekbank = findViewById(R.id.norekbank);
-        norek = findViewById(R.id.norek);
         tanggaltransfer = findViewById(R.id.tanggaltransfer);
         jumlahtransfer = findViewById(R.id.jumlahtransfer);
-        namabanktujuan = findViewById(R.id.namabanktujuan);
         namalengkap = findViewById(R.id.namalengkap);
         tentukan.setOnClickListener(new klik());
         findViewById(R.id.back).setOnClickListener(new klik());
+
+        bankSupportAdapter.setOnItemClickListener(new BankSupportAdapter.OnClick() {
+            @Override
+            public void onItemClick(BankSupportModel bs) {
+                namabanktujuan = bs.getBank();
+                norektujuan = bs.getNorek();
+                Log.i(TAG, "onItemClick: "+bs.getBank());
+            }
+        });
     }
 
     class klik implements View.OnClickListener {
@@ -162,9 +179,9 @@ public class PagePay extends AppCompatActivity {
                     err.setText("");
 
                     String nama = namalengkap.getText().toString();
-                    String bank = namabanktujuan.getText().toString();
+                    String bank = namabanktujuan;
                     String nominal = jumlahtransfer.getText().toString();
-                    String noo = norek.getText().toString();
+                    String noo = norektujuan;
 
                     if (tanggal.isEmpty()){
                         err.setText("Tentukan Tanggal Transfer");
@@ -248,9 +265,6 @@ public class PagePay extends AppCompatActivity {
 
                 JSONObject mitra = jsonObject.getJSONObject("mitra");
                 bill.setId_mitra(mitra.getInt(ID_MITRA));
-                namabank.setText(": "+mitra.getString("nama_bank"));
-                namalengkapbank.setText(": "+mitra.getString("nama_mitra"));
-                norekbank.setText(": "+mitra.getString("no_rekening_mitra"));
 
                 subtotal.setText("Rp."+Others.PercantikHarga(jsonObject.getInt(SUB_TOTAL)));
                 ongkir.setText("Rp."+Others.PercantikHarga(jsonObject.getInt(HARGA_ONGKIR)));
@@ -286,6 +300,30 @@ public class PagePay extends AppCompatActivity {
                 }
 
                 billadap.notifyDataSetChanged();
+            } catch (JSONException e){
+                Log.i(TAG, "extracdata: Err "+e.getMessage());
+            }
+        }
+    };
+
+
+    Response.Listener<String> bank = new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            Log.i(TAG, "onResponse: "+response);
+            try {
+                JSONArray array = new JSONArray(response);
+                for (int i = 0; i < array.length(); i++){
+                    JSONObject object = array.getJSONObject(i);
+                    BankSupportModel bs = new BankSupportModel();
+                    bs.setBank(object.getString("bank"));
+                    bs.setNama(object.getString("nama"));
+                    bs.setNorek(object.getString("norek"));
+
+                    bankSupportModelList.add(bs);
+                }
+
+                bankSupportAdapter.notifyDataSetChanged();
             } catch (JSONException e){
                 Log.i(TAG, "extracdata: Err "+e.getMessage());
             }

@@ -80,6 +80,7 @@ public class CartOrder extends AppCompatActivity {
                 if (productModelNU.size()<=0){
                     onBackPressed();
                 }
+
                 for (int i = 0; i < productModelNU.size(); i++){
                     if (productModelNU.get(i).isChecked()){
                         new CheckoutDB(getApplicationContext()).insert(productModelNU.get(i));

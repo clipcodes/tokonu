@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#27ae60</color>
     <color name="colorAccent">#27ae60</color>
     <color name="colorPrimarytranspa">#90D0F8E1</color>
+    <color name="colorPrimarytranspa1">#8FFCBD</color>
+    <color name="colorPrimarytranspa2">#8FFCBD</color>
     <color name="textcolor1">#3B5166</color>
     <color name="textcolor2">#445D75</color>
     <color name="textcolor3">#4E677E</color>

@@ -45,6 +45,7 @@ public class ProductModelNU {
     private int ongkir;
     private boolean checked;
     private UserMitra owner;
+    private String diskonpercent;
 
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
@@ -260,5 +261,13 @@ public class ProductModelNU {
 
     public void setOngkir(int ongkir) {
         this.ongkir = ongkir;
+    }
+
+    public String getDiskonpercent() {
+        return diskonpercent;
+    }
+
+    public void setDiskonpercent(String diskonpercent) {
+        this.diskonpercent = diskonpercent;
     }
 }

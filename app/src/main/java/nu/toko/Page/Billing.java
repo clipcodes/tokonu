@@ -29,6 +29,7 @@ import nu.toko.Model.ProductModelNU;
 import nu.toko.R;
 import nu.toko.Reqs.ReqString;
 import nu.toko.Utils.Others;
+import nu.toko.Utils.UserPrefs;
 
 import static nu.toko.Utils.Staticvar.GAMBARFIRST;
 import static nu.toko.Utils.Staticvar.HARGA_ONGKIR;
@@ -91,7 +92,7 @@ public class Billing extends AppCompatActivity {
     @Override
     protected void onStart() {
         billingModels.clear();
-        new ReqString(this, requestQueue).go(respontrans, TRANSAKSIBAYAR+"1");
+        new ReqString(this, requestQueue).go(respontrans, TRANSAKSIBAYAR+ UserPrefs.getId(getApplicationContext()));
         super.onStart();
     }
 

@@ -66,12 +66,10 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-
             <View
                 android:layout_width="match_parent"
                 android:background="@color/greytranspa1"
                 android:layout_height="10dp"/>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/rvpay"
@@ -169,7 +167,7 @@
                     android:text="Cara Pembayaran"
                     android:textStyle="bold"
                     android:layout_gravity="center|start"
-                    android:textColor="@color/textcolor1"
+                    android:textColor="@color/colorPrimary"
                     android:layout_height="wrap_content" />
             </FrameLayout>
             <LinearLayout
@@ -177,127 +175,24 @@
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
-                <TextView
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:text="1. Lakukan transfer ke rekening di bawah ini : "
-                    android:layout_gravity="center|start"
-                    android:id="@+id/tips1"
-                    android:textColor="@color/textcolor2"
-                    android:layout_height="wrap_content" />
-                <com.google.android.flexbox.FlexboxLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginStart="15dp"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="16sp"
-                        app:layout_flexBasisPercent="40%"
-                        android:text="Nama Lengkap"
-                        android:layout_gravity="center|start"
-                        android:textColor="@color/textcolor2"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="16sp"
-                        app:layout_flexBasisPercent="60%"
-                        android:text=": Mahathir Muhammad"
+                        android:layout_width="wrap_content"
+                        android:textSize="15sp"
+                        android:text="1. Pilih Opsi Bank Dan Lakukan Transfer"
                         android:textStyle="bold"
-                        android:id="@+id/namalengkapbank"
                         android:layout_gravity="center|start"
-                        android:textColor="@color/textcolor2"
+                        android:textColor="@color/textcolor1"
                         android:layout_height="wrap_content" />
-                </com.google.android.flexbox.FlexboxLayout>
-                <com.google.android.flexbox.FlexboxLayout
+                </FrameLayout>
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="16sp"
-                        app:layout_flexBasisPercent="40%"
-                        android:text="Nama Bank"
-                        android:layout_gravity="center|start"
-                        android:textColor="@color/textcolor2"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:id="@+id/namabank"
-                        app:layout_flexBasisPercent="60%"
-                        android:text=": BCA"
-                        android:layout_gravity="center|start"
-                        android:textColor="@color/textcolor2"
-                        android:layout_height="wrap_content" />
-                </com.google.android.flexbox.FlexboxLayout>
-                <com.google.android.flexbox.FlexboxLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginStart="15dp"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="16sp"
-                        app:layout_flexBasisPercent="40%"
-                        android:text="No. Rekening"
-                        android:layout_gravity="center|start"
-                        android:textColor="@color/textcolor2"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_flexBasisPercent="60%"
-                        android:id="@+id/norekbank"
-                        android:text=": 085642735"
-                        android:layout_gravity="center|start"
-                        android:textColor="@color/textcolor2"
-                        android:layout_height="wrap_content" />
-                </com.google.android.flexbox.FlexboxLayout>
+                    android:id="@+id/rvbanksupport"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:text="2. Foto bukti pembayaran/transfer."
-                    android:layout_gravity="center|start"
-                    android:id="@+id/tips2"
-                    android:textColor="@color/textcolor2"
-                    android:layout_height="wrap_content" />
-            </FrameLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:text="3. Lengkapi data pembayaran dibawah beserta bukti fotonya lalu tekan konfirmasi pembayaran"
-                    android:layout_gravity="center|start"
-                    android:textColor="@color/textcolor2"
-                    android:layout_height="wrap_content" />
-            </FrameLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:text="4. Tunggu konfirmasi pembayaran dari admin."
-                    android:layout_gravity="center|start"
-                    android:textColor="@color/textcolor2"
-                    android:layout_height="wrap_content" />
-            </FrameLayout>
         </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:background="@color/greytranspa1"
-                android:layout_height="10dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -310,7 +205,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:textSize="15sp"
-                        android:text="Konfirmasi Pembayaran"
+                        android:text="2. Lengkapi Data Pengirim"
                         android:textStyle="bold"
                         android:layout_gravity="center|start"
                         android:textColor="@color/textcolor1"
@@ -326,41 +221,9 @@
                         android:hint="Nama Lengkap Pengirim"
                         android:layout_gravity="center|start"
                         android:id="@+id/namalengkap"
-                        android:nextFocusDown="@id/namabanktujuan"
+                        android:nextFocusDown="@id/jumlahtransfer"
                         android:inputType="textCapWords"
                         android:textColorHint="@color/textcolorhint"
-                        android:textColor="@color/textcolor2"
-                        android:layout_height="wrap_content" />
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:textSize="15sp"
-                        android:hint="Nama Bank"
-                        android:id="@+id/namabanktujuan"
-                        android:nextFocusDown="@id/norek"
-                        android:textColorHint="@color/textcolorhint"
-                        android:layout_gravity="center|start"
-                        android:inputType="textCapCharacters"
-                        android:textColor="@color/textcolor2"
-                        android:layout_height="wrap_content" />
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:textSize="15sp"
-                        android:hint="No Rekening"
-                        android:id="@+id/norek"
-                        android:nextFocusDown="@id/jumlahtransfer"
-                        android:inputType="numberDecimal"
-                        android:textColorHint="@color/textcolorhint"
-                        android:layout_gravity="center|start"
                         android:textColor="@color/textcolor2"
                         android:layout_height="wrap_content" />
                 </FrameLayout>
@@ -418,11 +281,6 @@
                 </com.google.android.flexbox.FlexboxLayout>
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:background="@color/greytranspa1"
-                android:layout_height="10dp"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:padding="8dp"
@@ -434,7 +292,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:textSize="15sp"
-                    android:text="Konfirmasi Pembayaran"
+                    android:text="3. Upload Foto Bukti Transfer"
                     android:textStyle="bold"
                     android:layout_gravity="center|start"
                     android:textColor="@color/textcolor1"

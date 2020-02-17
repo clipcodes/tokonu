@@ -38,7 +38,7 @@ public class Loader extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.users_signin, container, false);
+        return inflater.inflate(R.layout.page_loader, container, false);
     }
 
 }

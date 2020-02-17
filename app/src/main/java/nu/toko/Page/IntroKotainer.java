@@ -19,6 +19,7 @@ import nu.toko.Fragment.Intro1;
 import nu.toko.Fragment.Intro2;
 import nu.toko.Fragment.Intro3;
 import nu.toko.R;
+import nu.toko.Utils.Pref;
 
 public class IntroKotainer extends AppCompatActivity {
 
@@ -32,6 +33,12 @@ public class IntroKotainer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_introkontainer);
 
+        if (Pref.read(getApplicationContext(), "intro", "0").equals("0")){
+            Intent i = new Intent(getApplicationContext(), Login.class);
+            startActivity(i);
+        } else {
+            Pref.write(getApplicationContext(), "intro", "0");
+        }
         init();
 
     }

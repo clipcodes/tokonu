@@ -46,6 +46,7 @@ import nu.toko.Reqs.ReqString;
 import static nu.toko.Utils.Staticvar.BERAT_PRODUK;
 import static nu.toko.Utils.Staticvar.DESKRIPSI_PRODUK;
 import static nu.toko.Utils.Staticvar.DIKIRIMDARI;
+import static nu.toko.Utils.Staticvar.DISKONPERCENT;
 import static nu.toko.Utils.Staticvar.FILTERBYLOCATION;
 import static nu.toko.Utils.Staticvar.FILTERBYRANGE;
 import static nu.toko.Utils.Staticvar.FILTERLOCATION;
@@ -252,6 +253,7 @@ public class Categories extends AppCompatActivity {
                     pnu.setRating((float)object.getDouble(RATING));
                     pnu.setTotalfeedback(object.getString(TOTALFEEDBACK));
                     pnu.setDikirimdari(object.getString(DIKIRIMDARI));
+                    pnu.setDiskonpercent(object.getString(DISKONPERCENT));
 
                     JSONObject mitrajson = new JSONObject(object.getString("mitra"));
                     UserMitra um = new UserMitra();

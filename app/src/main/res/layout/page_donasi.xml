@@ -97,7 +97,7 @@
                         android:hint="Nama Lengkap Donatur"
                         android:layout_gravity="center|start"
                         android:id="@+id/namalengkap"
-                        android:nextFocusDown="@id/namabanktujuan"
+                        android:nextFocusDown="@id/jumlahtransfer"
                         android:inputType="textCapWords"
                         android:textColorHint="@color/textcolorhint"
                         android:textColor="@color/textcolor2"

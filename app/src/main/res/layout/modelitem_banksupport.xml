@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/greytranspa0"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_marginTop="6dp"
+    android:layout_height="wrap_content">
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            app:layout_flexBasisPercent="40%"
+            android:text="Nama Bank"
+            android:layout_gravity="center|start"
+            android:textColor="@color/textcolor2"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:id="@+id/bank"
+            app:layout_flexBasisPercent="60%"
+            android:text=": BCA"
+            android:layout_gravity="center|start"
+            android:textColor="@color/textcolor2"
+            android:layout_height="wrap_content" />
+    </com.google.android.flexbox.FlexboxLayout>
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            app:layout_flexBasisPercent="40%"
+            android:text="Nama Lengkap"
+            android:layout_gravity="center|start"
+            android:textColor="@color/textcolor2"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            app:layout_flexBasisPercent="60%"
+            android:text=": Mahathir Muhammad"
+            android:textStyle="bold"
+            android:id="@+id/nama"
+            android:layout_gravity="center|start"
+            android:textColor="@color/textcolor2"
+            android:layout_height="wrap_content" />
+    </com.google.android.flexbox.FlexboxLayout>
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            app:layout_flexBasisPercent="40%"
+            android:text="No. Rekening"
+            android:layout_gravity="center|start"
+            android:textColor="@color/textcolor2"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_flexBasisPercent="60%"
+            android:id="@+id/norek"
+            android:text=": 085642735"
+            android:layout_gravity="center|start"
+            android:textColor="@color/textcolor2"
+            android:layout_height="wrap_content" />
+    </com.google.android.flexbox.FlexboxLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:background="@color/greytranspa"
+        android:layout_height="1dp"/>
+</LinearLayout>

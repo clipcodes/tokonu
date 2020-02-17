@@ -39,13 +39,33 @@
                         android:textStyle="bold"
                         android:layout_height="wrap_content"/>
                 </FrameLayout>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:id="@+id/diskoncontainer"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:src="@drawable/diskon"
+                        android:layout_gravity="center"
+                        android:layout_height="45dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="10%"
+                        android:layout_gravity="center"
+                        android:textSize="13sp"
+                        android:id="@+id/diskon"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:layout_height="wrap_content"/>
+                </FrameLayout>
             </FrameLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_margin="6dp"
                 android:layout_height="wrap_content">
-
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">

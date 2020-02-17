@@ -56,6 +56,10 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.ViewHo
             holder.habis.setVisibility(View.VISIBLE);
             return;
         }
+        if (!items.get(position).getDiskonpercent().equals("0")){
+            holder.diskoncontainer.setVisibility(View.VISIBLE);
+            holder.diskon.setText(items.get(position).getDiskonpercent()+"%");
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,18 +79,20 @@ public class Product2Adapter extends RecyclerView.Adapter<Product2Adapter.ViewHo
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, price, totalfeedback, namatoko, lokasi, stock;
+        TextView title, price, totalfeedback, namatoko, lokasi, stock, diskon;
         ImageView thumb;
-        FrameLayout habis;
+        FrameLayout habis, diskoncontainer;
         RatingBar star;
 
         public ViewHolder(final View itemView) {
             super(itemView);
+            diskoncontainer = itemView.findViewById(R.id.diskoncontainer);
             title = itemView.findViewById(R.id.title);
             price = itemView.findViewById(R.id.price);
             thumb = itemView.findViewById(R.id.thumb);
             stock = itemView.findViewById(R.id.stock);
             habis = itemView.findViewById(R.id.habis);
+            diskon = itemView.findViewById(R.id.diskon);
             star = itemView.findViewById(R.id.star);
             namatoko = itemView.findViewById(R.id.namatoko);
             lokasi = itemView.findViewById(R.id.lokasi);
