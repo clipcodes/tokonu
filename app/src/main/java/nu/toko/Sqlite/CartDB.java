@@ -109,7 +109,7 @@ public class CartDB extends SQLiteOpenHelper {
                 cursor.getInt(cursor.getColumnIndex(QTY)),
                 cursor.getString(cursor.getColumnIndex(GAMBARFIRST)),
                 cursor.getInt(cursor.getColumnIndex(DISKON)),
-                cursor.getInt(cursor.getColumnIndex(DBONGKIR)));
+                cursor.getString(cursor.getColumnIndex(DBONGKIR)));
         }
 
         cursor.close();
@@ -154,7 +154,7 @@ public class CartDB extends SQLiteOpenHelper {
                 data.setChecked(true);
                 data.setGambarfirst(cursor.getString(cursor.getColumnIndex(GAMBARFIRST)));
                 data.setDiskon(cursor.getInt(cursor.getColumnIndex(DISKON)));
-                data.setOngkir(cursor.getInt(cursor.getColumnIndex(DBONGKIR)));
+                data.setOngkir(cursor.getString(cursor.getColumnIndex(DBONGKIR)));
 
                 datas.add(data);
             } while (cursor.moveToNext());
@@ -180,7 +180,7 @@ public class CartDB extends SQLiteOpenHelper {
     public void delete(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, ID_PRODUK + " = ?",
-                new String[]{String.valueOf(id)});
+                new String[]{id});
         db.close();
     }
 

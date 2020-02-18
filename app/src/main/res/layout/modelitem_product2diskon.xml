@@ -25,25 +25,9 @@
                     android:scaleType="centerCrop"
                     android:layout_height="match_parent" />
                 <FrameLayout
-                    android:layout_width="match_parent"
-                    android:background="@color/greytranspa3"
-                    android:id="@+id/habis"
-                    android:visibility="gone"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="BARANG HABIS"
-                        android:textSize="19sp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:layout_height="wrap_content"/>
-                </FrameLayout>
-                <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_gravity="top|end"
                     android:id="@+id/diskoncontainer"
-                    android:visibility="gone"
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_width="45dp"
@@ -52,9 +36,9 @@
                         android:layout_height="45dp"/>
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="10%"
+                        android:text="0%"
                         android:layout_gravity="center"
-                        android:textSize="13sp"
+                        android:textSize="12sp"
                         android:id="@+id/diskon"
                         android:textStyle="bold"
                         android:textColor="@color/white"

@@ -102,6 +102,7 @@ public class Staticvar {
     public static final String UPDATED_AT = "updated_at";
     public static final String RATING = "rating";
     public static final String ALAMAT_KIRIM = "alamat_kirim";
+    public static final String CODE_KURIR = "code_kurir";
     public static final String KURIR = "kurir";
     public static final String URL_BUKTI_TRANSAKSI = "url_bukti_transaksi";
     public static final String NAMALENGKAP = "namalengkap";

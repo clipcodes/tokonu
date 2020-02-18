@@ -96,6 +96,7 @@ public class Categories extends AppCompatActivity {
     NavigationView nav;
     DrawerLayout drawer;
     EditText minedt, maxedt;
+    FrameLayout terlaris, terbaru, termahal, termurah;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -106,7 +107,7 @@ public class Categories extends AppCompatActivity {
         CATEGORY = getIntent().getStringExtra("kat");
 
         init();
-        URLFLEKSIBEL = PRODUCTKATEGORI+IDCATEGORY;
+        URLFLEKSIBEL = PRODUCTKATEGORI+IDCATEGORY+"/terbaru";
         reqString.go(suksesproducthome, URLFLEKSIBEL);
         reqString.go(suksessubkategori, SUBKATEGORI+IDCATEGORY);
         reqString.go(sukseslokasifilter, FILTERLOCATION);
@@ -140,6 +141,15 @@ public class Categories extends AppCompatActivity {
                 drawer.openDrawer(GravityCompat.END);
             }
         });
+        terlaris = findViewById(R.id.terlaris);
+        terbaru = findViewById(R.id.terbaru);
+        termahal = findViewById(R.id.termahal);
+        termurah = findViewById(R.id.termurah);
+        terlaris.setOnClickListener(new klikmenu());
+        terbaru.setOnClickListener(new klikmenu());
+        termahal.setOnClickListener(new klikmenu());
+        termurah.setOnClickListener(new klikmenu());
+
         minedt = findViewById(R.id.minedt);
         maxedt = findViewById(R.id.maxedt);
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
@@ -213,6 +223,50 @@ public class Categories extends AppCompatActivity {
         onscroll();
     }
 
+    class klikmenu implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.terlaris:
+                    findViewById(R.id.interbaru).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    findViewById(R.id.interlaris).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorPrimary));
+                    findViewById(R.id.intermahal).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    findViewById(R.id.intermurah).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    PAGE = 1;
+                    URLFLEKSIBEL = PRODUCTKATEGORI+IDCATEGORY+"/terlaris";
+                    break;
+                case R.id.terbaru:
+                    findViewById(R.id.interbaru).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorPrimary));
+                    findViewById(R.id.interlaris).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    findViewById(R.id.intermahal).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    findViewById(R.id.intermurah).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    PAGE = 1;
+                    URLFLEKSIBEL = PRODUCTKATEGORI+IDCATEGORY+"/terbaru";
+                    break;
+                case R.id.termurah:
+                    findViewById(R.id.interbaru).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    findViewById(R.id.interlaris).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    findViewById(R.id.intermahal).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    findViewById(R.id.intermurah).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorPrimary));
+                    PAGE = 1;
+                    URLFLEKSIBEL = PRODUCTKATEGORI+IDCATEGORY+"/termurah";
+                    break;
+                case R.id.termahal:
+                    findViewById(R.id.interbaru).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    findViewById(R.id.interlaris).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    findViewById(R.id.intermahal).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorPrimary));
+                    findViewById(R.id.intermurah).setBackgroundColor(getApplicationContext().getResources().getColor(R.color.greytranspa2));
+                    PAGE = 1;
+                    URLFLEKSIBEL = PRODUCTKATEGORI+IDCATEGORY+"/termahal";
+                    break;
+            }
+            productModelList.clear();
+            PAGE = 1;
+            product2Adapter.notifyDataSetChanged();
+            reqString.go(suksesproducthome, URLFLEKSIBEL);
+        }
+    }
+
     private void onscroll(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             nested.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
@@ -276,6 +330,10 @@ public class Categories extends AppCompatActivity {
                 isLoadData = true;
                 loadingbot.hide();
                 PAGE+= 1;
+
+                if (PAGE == 1){
+                    product2Adapter.notifyDataSetChanged();
+                }
             } catch (JSONException e){
                 Log.i("Error", "onResponse: Err:"+e.getMessage());
             }

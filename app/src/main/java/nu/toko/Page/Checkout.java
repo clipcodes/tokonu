@@ -29,9 +29,11 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import nu.toko.Adapter.CheckoutListAdapter;
+import nu.toko.Model.OngkosKirimModel;
 import nu.toko.Model.ProductModelNU;
 import nu.toko.R;
 import nu.toko.Reqs.ReqString;
+import nu.toko.Sqlite.CartDB;
 import nu.toko.Sqlite.CheckoutDB;
 import nu.toko.Utils.Others;
 import nu.toko.Utils.UserPrefs;
@@ -39,6 +41,7 @@ import nu.toko.Utils.UserPrefs;
 import static nu.toko.Utils.Staticvar.ALAMAT_KIRIM;
 import static nu.toko.Utils.Staticvar.BANK;
 import static nu.toko.Utils.Staticvar.CHECKOUT;
+import static nu.toko.Utils.Staticvar.CODE_KURIR;
 import static nu.toko.Utils.Staticvar.EMAIL;
 import static nu.toko.Utils.Staticvar.HARGA_ONGKIR;
 import static nu.toko.Utils.Staticvar.HARGA_TOTAL;
@@ -66,7 +69,8 @@ public class Checkout extends AppCompatActivity {
     int KURIR = 665;
     TextView alamatpengiriman, subtotal, biayapengiriman, paytotal, paynowtex;
     FrameLayout address;
-    int subtotalintent, biayakirim;
+    int subtotalintent;
+    int biayakirim = 0;
     ProgressBar progress;
     CardView paynow;
     List<ProductModelNU> productModelNU;
@@ -84,7 +88,6 @@ public class Checkout extends AppCompatActivity {
 
         Others.MahathirOptionGambar(getApplicationContext());
         subtotalintent = getIntent().getIntExtra("subtotal", 0);
-        biayakirim = getIntent().getIntExtra("ongkir", 0);
         init();
 
     }
@@ -158,9 +161,12 @@ public class Checkout extends AppCompatActivity {
         paynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (kurirdipilih == null) {
+                    Toast.makeText(getApplicationContext(), "Pilih Opsi Pengiriman", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (alamatkirim == null) {
-                    Toast.makeText(Checkout.this, "Alamat Pengiriman Kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Alamat Pengiriman Kosong", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -184,6 +190,7 @@ public class Checkout extends AppCompatActivity {
                         transaks.put(ID_MITRA, mitra.get(i));
                         transaks.put(ID_PEMBELI, UserPrefs.getId(getApplicationContext()));
                         transaks.put(ALAMAT_KIRIM, alamatkirim);
+                        transaks.put(CODE_KURIR, kurirdipilih);
                         JSONArray jsonArray = new JSONArray();
                         int sub_total = 0;
                         int harga_ongkir = 0;
@@ -191,12 +198,15 @@ public class Checkout extends AppCompatActivity {
                         for (int l = 0; l < productModelNU.size(); l++){
                             if (productModelNU.get(l).getId_mitra().equals(mitra.get(i))){
                                 sub_total += (productModelNU.get(l).getHarga_admin()+productModelNU.get(l).getHarga_mitra())*productModelNU.get(l).getQty();
-                                harga_ongkir += productModelNU.get(l).getOngkir();
+                                harga_ongkir += productModelNU.get(l).getFixongkir();
 
                                 JSONObject object = new JSONObject();
                                 object.put(QTY, productModelNU.get(i).getQty());
                                 object.put(ID_PRODUK, productModelNU.get(i).getId_produk());
                                 jsonArray.put(object);
+
+                                new CartDB(getApplicationContext()).delete(productModelNU.get(i).getId_produk());
+                                new CheckoutDB(getApplicationContext()).delete(productModelNU.get(i).getId_produk());
                             }
                         }
                         harga_total = sub_total+harga_ongkir+koinusumbang;
@@ -243,29 +253,46 @@ public class Checkout extends AppCompatActivity {
                 ((TextView)findViewById(R.id.kurirtex)).setText("Menggunakan Kurir");
                 ((TextView)findViewById(R.id.selectkurirtex)).setText(data.getStringExtra("kurir"));
                 kurirdipilih = data.getStringExtra("kode");
+
+                //Reload Totalan Biaya Kirim
+                biayakirim = 0;
+
+                //Lopig by produk yang ada
+                for (int i = 0; i < productModelNU.size(); i++) {
+                    try {
+                        //Ambil Array Produk Ongkir
+                        JSONArray jsonArray = new JSONArray(productModelNU.get(i).getOngkir());
+                        //Loop Panjang Ongkir
+                        for (int x = 0; x < jsonArray.length(); x++) {
+                            //Fetch Data Ongkir
+                            JSONArray parentarr = jsonArray.getJSONArray(x);
+                            JSONObject json = parentarr.getJSONObject(0);
+                            JSONArray costs = json.getJSONArray("costs");
+                            //Ketika Kode Sama Dengan Code Ongkir Yang Dipilih Maka Lanjut
+                            if (json.getString("code").equals(kurirdipilih)){
+                                JSONObject costsO = costs.getJSONObject(0);
+                                JSONArray cost = costsO.getJSONArray("cost");
+                                JSONObject costO = cost.getJSONObject(0);
+
+                                productModelNU.get(i).setFixongkir(costO.getInt("value"));
+
+                                biayakirim += costO.getInt("value");
+
+                                Log.i(TAG, "onActivityResult: val "+costO.getInt("value"));
+                            }
+                        }
+
+                    } catch (JSONException e) {
+                        Log.i(TAG, "onActivityResult: err "+e.getMessage());
+                    }
+                }
+
+                biayapengiriman.setText("Rp."+Others.PercantikHarga(biayakirim));
+
+                Log.i(TAG, "onActivityResult: biaya "+biayakirim);
             }
         }
     }
-
-    Response.Listener<String> ongkir = new Response.Listener<String>() {
-        @Override
-        public void onResponse(String response) {
-            Log.i(TAG, "onResponse ongkir: "+response);
-            try {
-                JSONArray jsonArray = new JSONArray(response);
-                JSONObject json = jsonArray.getJSONObject(0);
-                JSONArray costs = json.getJSONArray("costs");
-                JSONObject costsO = costs.getJSONObject(0);
-                JSONArray cost = costsO.getJSONArray("cost");
-                JSONObject costO = cost.getJSONObject(0);
-
-                Log.i(TAG, "onResponse: val "+costO.getInt("value"));
-
-            } catch (JSONException e){
-                Log.i(TAG, "onResponse: "+e.getMessage());
-            }
-        }
-    };
 
     @Override
     protected void onDestroy() {

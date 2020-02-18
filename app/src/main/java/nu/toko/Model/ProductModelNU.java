@@ -15,7 +15,6 @@ import static nu.toko.Utils.Staticvar.ID_PRODUK;
 import static nu.toko.Utils.Staticvar.ID_SUB_KATEGORI;
 import static nu.toko.Utils.Staticvar.KONDISI_PRODUK;
 import static nu.toko.Utils.Staticvar.NAMA_PRODUK;
-import static nu.toko.Utils.Staticvar.ONGKIR;
 import static nu.toko.Utils.Staticvar.QTY;
 import static nu.toko.Utils.Staticvar.STOK;
 import static nu.toko.Utils.Staticvar.TERJUAL;
@@ -42,10 +41,11 @@ public class ProductModelNU {
     private String gambarfirst;
     private String totalfeedback;
     private String dikirimdari;
-    private int ongkir;
     private boolean checked;
     private UserMitra owner;
     private String diskonpercent;
+    private int fixongkir;
+    private String ongkir;
 
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
@@ -70,7 +70,7 @@ public class ProductModelNU {
     public ProductModelNU() {
     }
 
-    public ProductModelNU(String id_produk, String id_mitra, String nama_produk, String deskripsi_produk, String id_sub_kategori, String berat_produk, String kondisi_produk, String terjual, String stok, int harga_mitra, int harga_admin, String created_at, int qty, String gambarfirst, int diskon, int ongkir) {
+    public ProductModelNU(String id_produk, String id_mitra, String nama_produk, String deskripsi_produk, String id_sub_kategori, String berat_produk, String kondisi_produk, String terjual, String stok, int harga_mitra, int harga_admin, String created_at, int qty, String gambarfirst, int diskon, String ongkir) {
         this.id_produk = id_produk;
         this.id_mitra = id_mitra;
         this.nama_produk = nama_produk;
@@ -255,19 +255,27 @@ public class ProductModelNU {
         this.diskon = diskon;
     }
 
-    public int getOngkir() {
-        return ongkir;
-    }
-
-    public void setOngkir(int ongkir) {
-        this.ongkir = ongkir;
-    }
-
     public String getDiskonpercent() {
         return diskonpercent;
     }
 
     public void setDiskonpercent(String diskonpercent) {
         this.diskonpercent = diskonpercent;
+    }
+
+    public String getOngkir() {
+        return ongkir;
+    }
+
+    public void setOngkir(String ongkir) {
+        this.ongkir = ongkir;
+    }
+
+    public int getFixongkir() {
+        return fixongkir;
+    }
+
+    public void setFixongkir(int fixongkir) {
+        this.fixongkir = fixongkir;
     }
 }

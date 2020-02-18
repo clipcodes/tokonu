@@ -190,7 +190,7 @@ public class Details extends AppCompatActivity {
 
         //Viewpager Photo Product
         vpphotos = findViewById(R.id.vpphotos);
-        adapImages = new AdapImages(this, imagesModels);
+        adapImages = new AdapImages(getApplicationContext(), imagesModels);
         vpphotos.setAdapter(adapImages);
         wormDotsIndicator = findViewById(R.id.wormDotsIndicator);
         wormDotsIndicator.setViewPager(vpphotos);
@@ -201,7 +201,7 @@ public class Details extends AppCompatActivity {
 
         rvmore = findViewById(R.id.rvmore);
         product3Adapter = new ProductAdapter(this, productModelNUList);
-        rvmore.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false));
+        rvmore.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1, RecyclerView.HORIZONTAL, false));
         rvmore.setAdapter(product3Adapter);
 
         buyerFeedbackModelList = new ArrayList<>();
@@ -213,7 +213,6 @@ public class Details extends AppCompatActivity {
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-
                 if (Math.abs(verticalOffset) > 400){
                     container_toolbar.setVisibility(View.VISIBLE);
                 } else {
@@ -233,6 +232,7 @@ public class Details extends AppCompatActivity {
         });
     }
 
+    //NGECEK ONGKIR
     Response.Listener<String> ongkir = new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
@@ -240,18 +240,24 @@ public class Details extends AppCompatActivity {
             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); i++){
-                JSONObject json = jsonArray.getJSONObject(0);
-                JSONArray costs = json.getJSONArray("costs");
-                JSONObject costsO = costs.getJSONObject(0);
-                JSONArray cost = costsO.getJSONArray("cost");
-                JSONObject costO = cost.getJSONObject(0);
+                    JSONArray parentarr = jsonArray.getJSONArray(i);
+                    JSONObject json = parentarr.getJSONObject(0);
+                    JSONArray costs = json.getJSONArray("costs");
+                    JSONObject costsO = costs.getJSONObject(0);
+                    JSONArray cost = costsO.getJSONArray("cost");
+                    JSONObject costO = cost.getJSONObject(0);
 
-                OngkosKirimModel ongkosKirimModel = new OngkosKirimModel();
-                ongkosKirimModel.setKurir(json.getString("name"));
-                ongkosKirimModel.setValue(costO.getString("value"));
-                Log.i(TAG, "onResponse: ongkir "+costO.getInt("json"));
-                Log.i(TAG, "onResponse: ongkir "+costO.getInt("value"));
+                    OngkosKirimModel ongkosKirimModel = new OngkosKirimModel();
+                    ongkosKirimModel.setKurir(json.getString("name"));
+                    ongkosKirimModel.setCode(json.getString("code"));
+                    ongkosKirimModel.setValue(costO.getInt("value"));
+
+                    Log.i(TAG, "onResponse: name "+json.getString("name"));
+                    Log.i(TAG, "onResponse: value "+costO.getInt("value"));
+                    ongkosKirimModelList.add(ongkosKirimModel);
                 }
+
+                pnu.setOngkir(response);
 
                 kurirOngkosAdapter.notifyDataSetChanged();
 
@@ -279,8 +285,10 @@ public class Details extends AppCompatActivity {
                         }
                     }
                 });
+
+                buynow.setCardBackgroundColor(getResources().getColor(R.color.colorPrimary));
             } catch (JSONException e){
-                Log.i(TAG, "onResponse: "+e.getMessage());
+                Log.i(TAG, "onResponse: err "+e.getMessage());
             }
         }
     };

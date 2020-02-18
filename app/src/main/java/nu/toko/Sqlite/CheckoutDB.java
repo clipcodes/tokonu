@@ -108,7 +108,7 @@ public class CheckoutDB extends SQLiteOpenHelper {
                 cursor.getInt(cursor.getColumnIndex(QTY)),
                 cursor.getString(cursor.getColumnIndex(GAMBARFIRST)),
                 cursor.getInt(cursor.getColumnIndex(DISKON)),
-                cursor.getInt(cursor.getColumnIndex(DBONGKIR)));
+                cursor.getString(cursor.getColumnIndex(DBONGKIR)));
         }
 
         cursor.close();
@@ -152,7 +152,7 @@ public class CheckoutDB extends SQLiteOpenHelper {
                 data.setCreated_at(cursor.getString(cursor.getColumnIndex(CREATED_AT)));
                 data.setGambarfirst(cursor.getString(cursor.getColumnIndex(GAMBARFIRST)));
                 data.setDiskon(cursor.getInt(cursor.getColumnIndex(DISKON)));
-                data.setOngkir(cursor.getInt(cursor.getColumnIndex(DBONGKIR)));
+                data.setOngkir(cursor.getString(cursor.getColumnIndex(DBONGKIR)));
 
                 datas.add(data);
             } while (cursor.moveToNext());
@@ -189,7 +189,7 @@ public class CheckoutDB extends SQLiteOpenHelper {
                 data.setCreated_at(cursor.getString(cursor.getColumnIndex(CREATED_AT)));
                 data.setGambarfirst(cursor.getString(cursor.getColumnIndex(GAMBARFIRST)));
                 data.setDiskon(cursor.getInt(cursor.getColumnIndex(DISKON)));
-                data.setOngkir(cursor.getInt(cursor.getColumnIndex(DBONGKIR)));
+                data.setOngkir(cursor.getString(cursor.getColumnIndex(DBONGKIR)));
 
                 datas.add(data);
             } while (cursor.moveToNext());
@@ -212,10 +212,10 @@ public class CheckoutDB extends SQLiteOpenHelper {
         return count;
     }
 
-    public void delete(ProductModelNU data) {
+    public void delete(String data) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, ID_PRODUK + " = ?",
-                new String[]{String.valueOf(data.getId_produk())});
+                new String[]{data});
         db.close();
     }
 

@@ -2,8 +2,6 @@ package nu.toko.Adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import nu.toko.Model.ProductModel;
@@ -25,11 +21,7 @@ import nu.toko.Page.Details;
 import nu.toko.R;
 import nu.toko.Utils.Others;
 
-import static nu.toko.Utils.Staticvar.DESCRIPTION;
 import static nu.toko.Utils.Staticvar.FOTOPRODUK;
-import static nu.toko.Utils.Staticvar.IMAGES;
-import static nu.toko.Utils.Staticvar.PRICE;
-import static nu.toko.Utils.Staticvar.TITLE;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder>{
 
@@ -45,7 +37,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = activity.getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.modeitem_product, parent, false);
+        View view = layoutInflater.inflate(R.layout.modelitem_product, parent, false);
 
         return new ViewHolder(view);
     }
