@@ -1,6 +1,7 @@
 package nu.toko.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import nu.toko.Model.OngkosKirimModel;
 import nu.toko.Model.ProvModel;
 import nu.toko.R;
+import nu.toko.Utils.Others;
 
 public class KurirOngkosAdapter extends RecyclerView.Adapter<KurirOngkosAdapter.ViewHolder>{
 
     Activity activity;
-    List<ProvModel> items;
+    List<OngkosKirimModel> items;
     OnClick onItemClickListener;
 
-    public KurirOngkosAdapter(Activity activity, List<ProvModel> items){
+    public KurirOngkosAdapter(Activity activity, List<OngkosKirimModel> items){
         this.activity = activity;
         this.items = items;
     }
@@ -33,13 +36,8 @@ public class KurirOngkosAdapter extends RecyclerView.Adapter<KurirOngkosAdapter.
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.tex.setText(items.get(position).getNama_provinsi());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickListener.onItemClick(items.get(position));
-            }
-        });
+        holder.kurir.setText(items.get(position).getKurir());
+        holder.ongkos.setText("Rp."+Others.PercantikHarga(Integer.valueOf(items.get(position).getValue())));
     }
 
     @Override
@@ -49,11 +47,12 @@ public class KurirOngkosAdapter extends RecyclerView.Adapter<KurirOngkosAdapter.
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tex;
+        TextView kurir, ongkos;
 
         public ViewHolder(final View itemView) {
             super(itemView);
-            tex = itemView.findViewById(R.id.tex);
+            kurir = itemView.findViewById(R.id.kurir);
+            ongkos = itemView.findViewById(R.id.ongkos);
         }
     }
 

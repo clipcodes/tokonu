@@ -35,9 +35,11 @@ import java.util.List;
 import nu.toko.Adapter.AdapImages;
 import nu.toko.Adapter.BuyerFeedbackAdapter;
 import nu.toko.Adapter.DescriptionAdapter;
+import nu.toko.Adapter.KurirOngkosAdapter;
 import nu.toko.Adapter.ProductAdapter;
 import nu.toko.Model.BuyerFeedbackModel;
 import nu.toko.Model.ImagesModel;
+import nu.toko.Model.OngkosKirimModel;
 import nu.toko.Model.ProductModelNU;
 import nu.toko.Model.UserMitra;
 import nu.toko.R;
@@ -121,6 +123,10 @@ public class Details extends AppCompatActivity {
 
     TextView pricediscount, ongkirtex;
 
+    RecyclerView rvongkoskirim;
+    KurirOngkosAdapter kurirOngkosAdapter;
+    List<OngkosKirimModel> ongkosKirimModelList;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,6 +148,11 @@ public class Details extends AppCompatActivity {
         reqString = new ReqString(this, requestQueue);
         appBarLayout = findViewById(R.id.appBarLayout);
         container_toolbar = findViewById(R.id.container_toolbar);
+        rvongkoskirim = findViewById(R.id.rvongkoskirim);
+        ongkosKirimModelList = new ArrayList<>();
+        kurirOngkosAdapter = new KurirOngkosAdapter(this, ongkosKirimModelList);
+        rvongkoskirim.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvongkoskirim.setAdapter(kurirOngkosAdapter);
         favorites = findViewById(R.id.favorites);
         buynow = findViewById(R.id.buynow);
         ongkirtex = findViewById(R.id.ongkir);
@@ -210,12 +221,6 @@ public class Details extends AppCompatActivity {
                 }
             }
         });
-        
-//        favorites.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) { new FavoritesDB(getApplicationContext()).insert(new ProductModel(datatitle, dataimages, datadesc, Integer.valueOf(dataprice)));
-//            }
-//        });
 
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,16 +239,21 @@ public class Details extends AppCompatActivity {
             Log.i(TAG, "onResponse ongkir: "+response);
             try {
                 JSONArray jsonArray = new JSONArray(response);
-//                JSONObject json = jsonArray.getJSONObject(0);
-//                JSONArray costs = json.getJSONArray("costs");
-//                JSONObject costsO = costs.getJSONObject(0);
-//                JSONArray cost = costsO.getJSONArray("cost");
-//                JSONObject costO = cost.getJSONObject(0);
+                for (int i = 0; i < jsonArray.length(); i++){
+                JSONObject json = jsonArray.getJSONObject(0);
+                JSONArray costs = json.getJSONArray("costs");
+                JSONObject costsO = costs.getJSONObject(0);
+                JSONArray cost = costsO.getJSONArray("cost");
+                JSONObject costO = cost.getJSONObject(0);
 
-//                Log.i(TAG, "onResponse: ongkir "+costO.getInt("value"));
-//                ongkirtex.setText("Rp."+Others.PercantikHarga(costO.getInt("value")));
-//                pnu.setOngkir(costO.getInt("value"));
-//                buyerFeedbackAdapter.notifyDataSetChanged();
+                OngkosKirimModel ongkosKirimModel = new OngkosKirimModel();
+                ongkosKirimModel.setKurir(json.getString("name"));
+                ongkosKirimModel.setValue(costO.getString("value"));
+                Log.i(TAG, "onResponse: ongkir "+costO.getInt("json"));
+                Log.i(TAG, "onResponse: ongkir "+costO.getInt("value"));
+                }
+
+                kurirOngkosAdapter.notifyDataSetChanged();
 
                 //Bisa diklik ketika sudah ada harga ongkir
                 buynow.setOnClickListener(new View.OnClickListener() {
