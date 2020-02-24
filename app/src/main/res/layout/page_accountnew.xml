@@ -50,7 +50,7 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/icon_settings"
+                            android:src="@drawable/setting"
                             android:layout_height="24dp"/>
                     </FrameLayout>
                     <FrameLayout
@@ -62,7 +62,7 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/icon_keranjangfill"
+                            android:src="@drawable/keranjang"
                             android:layout_height="24dp"/>
                     </FrameLayout>
                     <FrameLayout
@@ -74,7 +74,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/icon_chat"
+                            android:src="@drawable/chatt"
                             android:layout_height="20dp"/>
                     </FrameLayout>
                 </LinearLayout>
@@ -144,7 +144,7 @@
                 <ImageView
                     android:layout_width="23dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/icon_chatcolorprimary"
+                    android:src="@drawable/chattwarna"
                     android:layout_height="23dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -210,7 +210,7 @@
                 <ImageView
                     android:layout_width="23dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/icon_bug"
+                    android:src="@drawable/pusatbantua"
                     android:layout_height="23dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -243,7 +243,7 @@
                 <ImageView
                     android:layout_width="23dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/icon_logoutprimary"
+                    android:src="@drawable/logout"
                     android:layout_height="23dp"/>
                 <TextView
                     android:layout_width="wrap_content"

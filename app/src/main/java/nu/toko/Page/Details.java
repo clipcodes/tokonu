@@ -99,7 +99,7 @@ public class Details extends AppCompatActivity {
 
     CardView buynow;
 
-    TextView productname, price, title, totalfeedback, totalterjual, kondisi
+    TextView productname, price, title, rating, review, kondisi, ratingfeed
             , stok, kategori, pengirimanmitra, deskripsi, namamitra;
 
     ImageView favorites;
@@ -175,8 +175,9 @@ public class Details extends AppCompatActivity {
         diskonkontainer = findViewById(R.id.diskonkontainer);
         pricediscount = findViewById(R.id.pricediscount);
 
-        totalfeedback = findViewById(R.id.totalfeedback);
-        totalterjual = findViewById(R.id.totalterjual);
+		ratingfeed = findViewById(R.id.ratingfeed);
+        review = findViewById(R.id.review);
+        rating = findViewById(R.id.rating);
         productname.setText(produknama);
         price.setText("Rp."+ Others.PercantikHarga(harga));
         title.setText(produknama);
@@ -354,7 +355,9 @@ public class Details extends AppCompatActivity {
                         pnu.setGambarfirst(j.getString(URL_GAMBAR));
                     }
 
-                    productModelNUList.add(pnu);
+                    if(!object.getString(ID_PRODUK).equals(idproduk)){
+                        productModelNUList.add(pnu);
+                    }
                 }
 
                 product3Adapter.notifyDataSetChanged();
@@ -371,7 +374,9 @@ public class Details extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(response);
 
-                totalterjual.setText("  "+jsonObject.getString("totalfeedback")+" Reviews | "+jsonObject.getString("terjual")+" Terjual");
+                review.setText("  "+jsonObject.getString("totalfeedback")+" Reviews | "+jsonObject.getString("terjual")+" Terjual");
+                rating.setText("("+jsonObject.getString("rating")+")");
+                ratingfeed.setText("("+jsonObject.getString("rating")+")");
                 star.setRating(Float.valueOf(jsonObject.getString("rating")));
                 kondisi.setText(jsonObject.getString("kondisi_produk"));
                 stok.setText(jsonObject.getString("stok"));

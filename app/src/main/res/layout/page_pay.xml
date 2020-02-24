@@ -316,11 +316,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp">
                     <ImageView
-                        android:layout_width="40dp"
+                        android:layout_width="50dp"
                         android:layout_gravity="center"
                         android:id="@+id/ikonupload"
-                        android:src="@drawable/icon_file"
-                        android:layout_height="40dp"/>
+                        android:src="@drawable/uploadbukti"
+                        android:layout_height="50dp"/>
                 </FrameLayout>
                 <ImageView
                     android:layout_width="match_parent"

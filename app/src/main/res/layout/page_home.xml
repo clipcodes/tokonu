@@ -50,7 +50,7 @@
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_margin="5dp"
-                                android:src="@drawable/icon_coin"
+                                android:src="@drawable/koinnu"
                                 android:layout_height="30dp"/>
                             <View
                                 android:layout_width="1dp"
@@ -187,7 +187,7 @@
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/icon_keranjangfill"
+                            android:src="@drawable/keranjang"
                             android:layout_height="24dp"/>
                     </FrameLayout>
                     <FrameLayout
@@ -198,7 +198,7 @@
                         <ImageView
                             android:layout_width="22dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/icon_chat"
+                            android:src="@drawable/chatt"
                             android:layout_height="22dp"/>
                     </FrameLayout>
                 </com.google.android.flexbox.FlexboxLayout>

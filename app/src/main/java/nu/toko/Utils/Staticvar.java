@@ -8,7 +8,7 @@ public class Staticvar {
 
     public static final String GOGAIP = "http://192.168.1.104:8000/";
     public static final String HPIP = "http://192.168.43.36:8000/";
-    public static final String DOM = "http://https:/javafoundation.id/";
+    public static final String DOM = "http://sundl.site/";
     public static final String DOMAIN = DOM;
     public static final String ANDROIDLOGIN = "androidlogin";
     public static final String ANDROIDREGISTER = "androidregister";

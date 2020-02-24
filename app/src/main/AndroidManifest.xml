@@ -38,6 +38,9 @@
         </activity>
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".Intro"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Page.Login"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>

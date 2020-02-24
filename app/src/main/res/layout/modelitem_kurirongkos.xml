@@ -14,7 +14,7 @@
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/icon_pickup"
+                        android:src="@drawable/ongkir"
                         android:layout_height="35dp"/>
                     <LinearLayout
                         android:layout_width="wrap_content"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="45dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto" 
     android:id="@+id/nestedscrol"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_height="wrap_content"
@@ -76,20 +75,20 @@
                     android:layout_marginEnd="4dp"
                     android:id="@+id/star"
                     android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="(0)"
-                    android:id="@+id/totalfeedback"
-                    android:textSize="13sp"
-                    android:textColor="@color/textcolor3"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="  0 Terjual"
-                    android:id="@+id/totalterjual"
-                    android:textSize="13sp"
-                    android:textColor="@color/textcolor3"
-                    android:layout_height="wrap_content"/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:text="(0)"
+					android:id="@+id/rating"
+					android:textSize="13sp"
+					android:textColor="@color/textcolor3"
+					android:layout_height="wrap_content"/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:text=" Review"
+					android:id="@+id/review"
+					android:textSize="13sp"
+					android:textColor="@color/textcolor3"
+					android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <View
@@ -159,7 +158,6 @@
                         android:text="Toko A"
                         android:id="@+id/namamitra"
                         android:layout_gravity="end|center"
-                        android:layout_marginTop="6dp"
                         android:textColor="@color/textcolor2"
                         android:layout_height="wrap_content" />
                 </FrameLayout>
@@ -180,7 +178,6 @@
                         android:text="Baru"
                         android:id="@+id/kondisi"
                         android:layout_gravity="end|center"
-                        android:layout_marginTop="6dp"
                         android:textColor="@color/textcolor2"
                         android:layout_height="wrap_content" />
                 </FrameLayout>
@@ -201,7 +198,6 @@
                         android:id="@+id/stok"
                         android:text="5"
                         android:layout_gravity="end|center"
-                        android:layout_marginTop="6dp"
                         android:textColor="@color/textcolor2"
                         android:layout_height="wrap_content" />
                 </FrameLayout>
@@ -222,7 +218,6 @@
                         android:text="Clothes"
                         android:id="@+id/kategori"
                         android:layout_gravity="end|center"
-                        android:layout_marginTop="6dp"
                         android:textColor="@color/textcolor2"
                         android:layout_height="wrap_content" />
                 </FrameLayout>
@@ -242,7 +237,6 @@
                         android:textSize="15sp"
                         android:text="Kota Malang"
                         android:layout_gravity="end|center"
-                        android:layout_marginTop="6dp"
                         android:id="@+id/pengirimanmitra"
                         android:textColor="@color/textcolor2"
                         android:layout_height="wrap_content" />
@@ -325,6 +319,7 @@
                     android:textSize="15sp"
                     android:layout_marginStart="3dp"
                     android:textStyle="bold"
+                    android:id="@+id/ratingfeed"
                     android:text="0"
                     android:layout_gravity="center"
                     android:textColor="@color/textcolor1"
@@ -378,5 +373,9 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#ffffff"/>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

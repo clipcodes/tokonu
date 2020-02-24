@@ -94,10 +94,10 @@
                         android:id="@+id/filter"
                         android:layout_height="match_parent">
                         <ImageView
-                            android:layout_width="wrap_content"
-                            app:srcCompat="@drawable/icon_filter"
+                            android:layout_width="40dp"
+                            app:srcCompat="@drawable/filter"
                             android:layout_gravity="center"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="40dp" />
                     </FrameLayout>
                 </com.google.android.flexbox.FlexboxLayout>
             </androidx.appcompat.widget.Toolbar>
