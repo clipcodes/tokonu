@@ -5,6 +5,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -156,6 +159,13 @@ public class PagePay extends AppCompatActivity {
             public void onItemClick(BankSupportModel bs) {
                 namabanktujuan = bs.getBank();
                 norektujuan = bs.getNorek();
+
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("x", bs.getNorek());
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(PagePay.this, "Nomor Rekening Disalin", Toast.LENGTH_SHORT).show();
+
                 Log.i(TAG, "onItemClick: "+bs.getBank());
             }
         });

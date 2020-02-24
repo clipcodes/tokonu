@@ -29,6 +29,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import nu.toko.Adapter.CheckoutListAdapter;
+import nu.toko.Dialog.DialogInfo;
+import nu.toko.Model.KodeVocerModel;
 import nu.toko.Model.OngkosKirimModel;
 import nu.toko.Model.ProductModelNU;
 import nu.toko.R;
@@ -49,6 +51,8 @@ import static nu.toko.Utils.Staticvar.ID_MITRA;
 import static nu.toko.Utils.Staticvar.ID_PEMBELI;
 import static nu.toko.Utils.Staticvar.ID_PRODUK;
 import static nu.toko.Utils.Staticvar.ITEM;
+import static nu.toko.Utils.Staticvar.KODEPOS;
+import static nu.toko.Utils.Staticvar.KODEVOCER;
 import static nu.toko.Utils.Staticvar.NAMALENGKAP;
 import static nu.toko.Utils.Staticvar.NOMINAL;
 import static nu.toko.Utils.Staticvar.NOREK;
@@ -66,6 +70,7 @@ public class Checkout extends AppCompatActivity {
     CheckoutDB checkoutDB;
     int ALAMAT = 992;
     int PAYMETHOD = 5443;
+    int VOCER = 5233;
     int KURIR = 665;
     TextView alamatpengiriman, subtotal, biayapengiriman, paytotal, paynowtex;
     FrameLayout address;
@@ -79,6 +84,7 @@ public class Checkout extends AppCompatActivity {
     TextView koinu;
     int koinusumbang = 0;
     String kurirdipilih = null;
+    int vocersum =0;
     int i;
 
     @Override
@@ -115,9 +121,9 @@ public class Checkout extends AppCompatActivity {
         koinusumbang = ThreadLocalRandom.current().nextInt(500, 999);
 
         subtotal.setText("Rp."+Others.PercantikHarga(subtotalintent));
-        paytotal.setText("Rp."+Others.PercantikHarga(subtotalintent+biayakirim));
         biayapengiriman.setText("Rp."+Others.PercantikHarga(biayakirim));
         koinu.setText("Rp."+Others.PercantikHarga(koinusumbang));
+        total();
 
         String alamatholder =
                 UserPrefs.getProvinsi(getApplicationContext())+" "+
@@ -225,6 +231,23 @@ public class Checkout extends AppCompatActivity {
                 }
             }
         });
+
+        findViewById(R.id.vocer).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), KodeVocer.class);
+                startActivityForResult(i, VOCER);
+            }
+        });
+    }
+
+    void total(){
+        int total = 0;
+        total += subtotalintent;
+        total += biayakirim;
+        total += koinusumbang;
+        total -= vocersum;
+        paytotal.setText("Rp."+Others.PercantikHarga(total));
     }
 
     Response.Listener<String> responcheckout = new Response.Listener<String>() {
@@ -248,6 +271,30 @@ public class Checkout extends AppCompatActivity {
             }
             if (requestCode == PAYMETHOD){
 //                method.setText("Dikirim Menggunakan "+data.getStringExtra("method"));
+            }
+            if (requestCode == VOCER){
+                KodeVocerModel km = new KodeVocerModel();
+                km.setKode(data.getStringExtra("kode"));
+                km.setParameter(data.getIntExtra("parameter", 0));
+                km.setNominal(data.getIntExtra("nominal", 0));
+                km.setKeterangan(data.getStringExtra("keterangan"));
+
+                if (subtotalintent >= km.getParameter()){
+                    findViewById(R.id.vocercontainer).setVisibility(View.VISIBLE);
+                    ((TextView)findViewById(R.id.potongan)).setText("-Rp."+Others.PercantikHarga(km.getNominal()));
+                    ((TextView)findViewById(R.id.vocertex)).setText("Menggunakan Kode Voucher : ");
+                    ((TextView)findViewById(R.id.vocertexterpilih)).setText(km.getKode());
+                    vocersum = km.getNominal();
+                    total();
+                } else {
+                    new DialogInfo(Checkout.this, km.getKeterangan()).mentriger(new DialogInfo.Go() {
+                        @Override
+                        public void trigerbos() {
+
+                        }
+                    });
+                }
+                Log.i(TAG, "onActivityResult: Vocer "+km.getKode());
             }
             if (requestCode == KURIR){
                 ((TextView)findViewById(R.id.kurirtex)).setText("Menggunakan Kurir");
@@ -281,13 +328,13 @@ public class Checkout extends AppCompatActivity {
                                 Log.i(TAG, "onActivityResult: val "+costO.getInt("value"));
                             }
                         }
-
                     } catch (JSONException e) {
                         Log.i(TAG, "onActivityResult: err "+e.getMessage());
                     }
                 }
 
                 biayapengiriman.setText("Rp."+Others.PercantikHarga(biayakirim));
+                total();
 
                 Log.i(TAG, "onActivityResult: biaya "+biayakirim);
             }

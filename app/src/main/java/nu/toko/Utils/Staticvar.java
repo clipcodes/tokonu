@@ -2,9 +2,13 @@ package nu.toko.Utils;
 
 public class Staticvar {
 
+    public static String insfeed(){
+        return "https://www.instagram.com/graphql/query/?query_id=17880160963012870&id=26880633652&first=20&after=";
+    }
+
     public static final String GOGAIP = "http://192.168.1.104:8000/";
     public static final String HPIP = "http://192.168.43.36:8000/";
-    public static final String DOM = "http://sundl.site/";
+    public static final String DOM = "http://https:/javafoundation.id/";
     public static final String DOMAIN = DOM;
     public static final String ANDROIDLOGIN = "androidlogin";
     public static final String ANDROIDREGISTER = "androidregister";
@@ -45,6 +49,7 @@ public class Staticvar {
     public static final String USER_EDIT = DOMAIN+API+"user/edit/";
     public static final String FEEDBACK = DOMAIN+API+"feedback/add";
     public static final String FEEDBACKALL = DOMAIN+API+"feedback/all/";
+    public static final String KODEVOCER = DOMAIN+API+"kodevocer";
     public static final String BERITA = DOMAIN+API+"berita";
     public static final String ONGKIR = DOMAIN+API+"ongkir";
     public static final String DATPROVINSI = DOMAIN+API+"data/provinsi";
