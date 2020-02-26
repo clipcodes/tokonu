@@ -44,7 +44,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.price.setText("Rp."+ Others.PercantikHarga(Integer.valueOf(items.get(position).getHarga_mitra()+items.get(position).getHarga_admin())));
+        holder.price.setText("Rp."+ Others.PercantikHarga(items.get(position).getHarga_admin()));
         ImageLoader.getInstance().displayImage(FOTOPRODUK + items.get(position).getGambarfirst(), holder.thumb);
         holder.title.setText(items.get(position).getNama_produk());
         holder.star.setRating(items.get(position).getRating());
@@ -54,7 +54,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             public void onClick(View v) {
                 Intent i = new Intent(activity, Details.class);
                 i.putExtra("idproduk", items.get(position).getId_produk());
-                i.putExtra("harga", items.get(position).getHarga_mitra()+items.get(position).getHarga_admin());
+                i.putExtra("harga", items.get(position).getHarga_admin());
                 i.putExtra("produknama", items.get(position).getNama_produk());
                 activity.startActivity(i);
             }

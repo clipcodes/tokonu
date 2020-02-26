@@ -56,6 +56,7 @@ public class Staticvar {
     public static final String DATKOTA = DOMAIN+API+"data/kota/";
     public static final String MITRAKURIR = DOMAIN+API+"mitra/kurir/";
     public static final String DATAKURIR = DOMAIN+API+"data/kurir";
+    public static final String PENGADUAN = DOMAIN+API+"pengaduan/kirim";
     public static final String SLASH = "/";
 
     public static final String GAMBAR_BERITA = "gambar_berita";

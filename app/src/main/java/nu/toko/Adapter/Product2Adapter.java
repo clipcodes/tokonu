@@ -105,7 +105,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         
         public void init(final ProductModelNU productModelNU){
-            price.setText("Rp."+ Others.PercantikHarga(Integer.valueOf(productModelNU.getHarga_mitra()+productModelNU.getHarga_admin())));
+            price.setText("Rp."+ Others.PercantikHarga(Integer.valueOf(productModelNU.getHarga_admin())));
             ImageLoader.getInstance().displayImage(FOTOPRODUK + productModelNU.getGambarfirst(), thumb);
             title.setText(productModelNU.getNama_produk());
             star.setRating(productModelNU.getRating());
@@ -118,7 +118,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 public void onClick(View v) {
                     Intent i = new Intent(activity, Details.class);
                     i.putExtra("idproduk", productModelNU.getId_produk());
-                    i.putExtra("harga", productModelNU.getHarga_mitra()+productModelNU.getHarga_admin());
+                    i.putExtra("harga", productModelNU.getHarga_admin());
                     i.putExtra("produknama", productModelNU.getNama_produk());
                     activity.startActivity(i);
                 }
@@ -146,7 +146,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void init(final ProductModelNU productModelNU){
-            price.setText("Rp."+ Others.PercantikHarga(Integer.valueOf(productModelNU.getHarga_mitra()+productModelNU.getHarga_admin())));
+            price.setText("Rp."+ Others.PercantikHarga(Integer.valueOf(productModelNU.getHarga_admin())));
             ImageLoader.getInstance().displayImage(FOTOPRODUK + productModelNU.getGambarfirst(), thumb);
             title.setText(productModelNU.getNama_produk());
             star.setRating(productModelNU.getRating());
@@ -159,7 +159,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 public void onClick(View v) {
                     Intent i = new Intent(activity, Details.class);
                     i.putExtra("idproduk", productModelNU.getId_produk());
-                    i.putExtra("harga", productModelNU.getHarga_mitra()+productModelNU.getHarga_admin());
+                    i.putExtra("harga", productModelNU.getHarga_admin());
                     i.putExtra("produknama", productModelNU.getNama_produk());
                     activity.startActivity(i);
                 }
@@ -189,7 +189,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void init(final ProductModelNU productModelNU){
-            price.setText("Rp."+ Others.PercantikHarga(Integer.valueOf(productModelNU.getHarga_mitra()+productModelNU.getHarga_admin())));
+            price.setText("Rp."+ Others.PercantikHarga(Integer.valueOf(productModelNU.getHarga_admin())));
             ImageLoader.getInstance().displayImage(FOTOPRODUK + productModelNU.getGambarfirst(), thumb);
             title.setText(productModelNU.getNama_produk());
             star.setRating(productModelNU.getRating());
@@ -203,7 +203,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 public void onClick(View v) {
                     Intent i = new Intent(activity, Details.class);
                     i.putExtra("idproduk", productModelNU.getId_produk());
-                    i.putExtra("harga", productModelNU.getHarga_mitra()+productModelNU.getHarga_admin());
+                    i.putExtra("harga", productModelNU.getHarga_admin());
                     i.putExtra("produknama", productModelNU.getNama_produk());
                     activity.startActivity(i);
                 }

@@ -115,11 +115,7 @@ public class CartOrder extends AppCompatActivity {
         Total = 0;
         for (int i = 0; i < productModelNU.size(); i++){
             if (productModelNU.get(i).isChecked()){
-                Log.i(TAG, "onItemClick A: "+productModelNU.get(i).getHarga_admin());
-                Log.i(TAG, "onItemClick M: "+productModelNU.get(i).getHarga_mitra());
-                Log.i(TAG, "onItemClick D: "+productModelNU.get(i).getDiskon());
-                Log.i(TAG, "onItemClick O: "+productModelNU.get(i).getOngkir());
-                Total+=((productModelNU.get(i).getHarga_admin()+productModelNU.get(i).getHarga_mitra())-productModelNU.get(i).getDiskon()) * productModelNU.get(i).getQty();
+                Total+=(productModelNU.get(i).getHarga_admin()-productModelNU.get(i).getDiskon()) * productModelNU.get(i).getQty();
                 subtotal.setText("Rp."+Others.PercantikHarga(Total));
             }
         }
@@ -131,9 +127,7 @@ public class CartOrder extends AppCompatActivity {
                 subtotal.setText("0");
                 for (int i = 0; i < productModelNU.size(); i++){
                     if (productModelNU.get(i).isChecked()){
-                        Log.i(TAG, "onItemClick: "+productModelNU.get(i).getHarga_admin());
-                        Log.i(TAG, "onItemClick: "+productModelNU.get(i).getHarga_mitra());
-                        Total+=((productModelNU.get(i).getHarga_admin()+productModelNU.get(i).getHarga_mitra())-productModelNU.get(i).getDiskon()) * productModelNU.get(i).getQty();
+                        Total+=(productModelNU.get(i).getHarga_admin()-productModelNU.get(i).getDiskon()) * productModelNU.get(i).getQty();
                         subtotal.setText("Rp."+Others.PercantikHarga(Total));
                     }
                 }

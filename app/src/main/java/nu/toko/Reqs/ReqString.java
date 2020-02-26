@@ -26,8 +26,10 @@ import java.util.Map;
 
 import nu.toko.Model.TransaksiModel;
 import nu.toko.Model.UserPembeliModel;
+import nu.toko.Utils.UserPrefs;
 
 import static nu.toko.Utils.Staticvar.DOMAIN;
+import static nu.toko.Utils.Staticvar.PENGADUAN;
 
 public class ReqString {
 
@@ -133,6 +135,27 @@ public class ReqString {
         smr.addStringParam("bank", bank);
         smr.addStringParam("nominal", nominal);
         smr.addFile("image", uri.toString());
+        requestQueue.add(smr);
+    }
+
+    public void bantuan(Response.Listener<String> responstatus, String pengaduan){
+        SimpleMultiPartRequest smr = new SimpleMultiPartRequest(Request.Method.POST, PENGADUAN,
+                responstatus, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Log.i("RESPON EROR", "TimeoutError NoConnectionError");
+                } else if (error instanceof ServerError) {
+                    Log.i("RESPON EROR", "ServerError");
+                } else if (error instanceof NetworkError) {
+                    Log.i("RESPON EROR", "NetworkError");
+                } else if (error instanceof ParseError) {
+                    Log.i("RESPON EROR", "ParseError");
+                }
+            }
+        });
+        smr.addStringParam("id_pembeli", UserPrefs.getId(activity));
+        smr.addStringParam("pengaduan", pengaduan);
         requestQueue.add(smr);
     }
 

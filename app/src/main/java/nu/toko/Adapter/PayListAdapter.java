@@ -43,7 +43,7 @@ public class PayListAdapter extends RecyclerView.Adapter<PayListAdapter.ViewHold
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         ImageLoader.getInstance().displayImage(FOTOPRODUK + items.get(position).getProduk().getGambarfirst(), holder.productimg);
         holder.productname.setText(items.get(position).getProduk().getNama_produk());
-        holder.productprice.setText("Rp."+ Others.PercantikHarga((items.get(position).getProduk().getHarga_admin()+items.get(position).getProduk().getHarga_mitra()) * items.get(position).getQty()));
+        holder.productprice.setText("Rp."+ Others.PercantikHarga(items.get(position).getProduk().getHarga_admin() * items.get(position).getQty()));
         holder.qty.setText(String.valueOf(items.get(position).getQty())+"x");
     }
 

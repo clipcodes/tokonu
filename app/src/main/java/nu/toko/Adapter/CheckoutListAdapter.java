@@ -43,7 +43,7 @@ public class CheckoutListAdapter extends RecyclerView.Adapter<CheckoutListAdapte
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         ImageLoader.getInstance().displayImage(FOTOPRODUK + items.get(position).getGambarfirst(), holder.productimg);
         holder.productname.setText(items.get(position).getNama_produk());
-        holder.productprice.setText("Rp."+ Others.PercantikHarga((items.get(position).getHarga_admin()+items.get(position).getHarga_mitra()) * items.get(position).getQty()));
+        holder.productprice.setText("Rp."+ Others.PercantikHarga(items.get(position).getHarga_admin()* items.get(position).getQty()));
         holder.qty.setText(String.valueOf(items.get(position).getQty())+"x");
     }
 

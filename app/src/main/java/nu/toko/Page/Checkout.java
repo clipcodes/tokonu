@@ -203,7 +203,7 @@ public class Checkout extends AppCompatActivity {
                         int harga_total;
                         for (int l = 0; l < productModelNU.size(); l++){
                             if (productModelNU.get(l).getId_mitra().equals(mitra.get(i))){
-                                sub_total += (productModelNU.get(l).getHarga_admin()+productModelNU.get(l).getHarga_mitra())*productModelNU.get(l).getQty();
+                                sub_total += productModelNU.get(l).getHarga_admin()*productModelNU.get(l).getQty();
                                 harga_ongkir += productModelNU.get(l).getFixongkir();
 
                                 JSONObject object = new JSONObject();
