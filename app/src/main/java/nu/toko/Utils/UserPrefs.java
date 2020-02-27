@@ -113,7 +113,7 @@ public class UserPrefs {
     }
 
     public static String getNamakab(Context c) {
-        return Pref.read(c, "namakab", "false");
+        return Pref.read(c, "namakab", "Pilih Kabupaten");
     }
 
     public static void setNamakab(String namakab, Context c) {

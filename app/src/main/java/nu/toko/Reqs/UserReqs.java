@@ -57,9 +57,7 @@ public class UserReqs {
                 Map<String, String>  params = new HashMap<>();
                 params.put("email" , usr.getEmail_pembeli());
                 params.put("name" , usr.getNama_pembeli());
-                if (pass!=null){
-                    params.put("password" , pass);
-                }
+                params.put("password" , pass);
                 params.put("hp" , usr.getNo_telp());
                 params.put("provinsi" , usr.getProvinsi_pembeli());
                 params.put("kabupaten" , usr.getKabupaten_pembeli());

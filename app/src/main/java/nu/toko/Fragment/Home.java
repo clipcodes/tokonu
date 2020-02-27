@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -51,6 +52,7 @@ import nu.toko.Utils.Others;
 import static nu.toko.Utils.Staticvar.BERAT_PRODUK;
 import static nu.toko.Utils.Staticvar.DESKRIPSI_PRODUK;
 import static nu.toko.Utils.Staticvar.DIKIRIMDARI;
+import static nu.toko.Utils.Staticvar.DISKON;
 import static nu.toko.Utils.Staticvar.DISKONPERCENT;
 import static nu.toko.Utils.Staticvar.HARGA_ADMIN;
 import static nu.toko.Utils.Staticvar.HARGA_MITRA;
@@ -96,6 +98,7 @@ public class Home extends Fragment {
     FrameLayout cart, chat;
     List<SlideModel> slideModelList;
     SwipeRefreshLayout refresh;
+    TextView totaldonasi;
 
     @Nullable
     @Override
@@ -121,6 +124,7 @@ public class Home extends Fragment {
         nested = root.findViewById(R.id.nested);
         vppromo = root.findViewById(R.id.vppromo);
         donasi = root.findViewById(R.id.donasi);
+        totaldonasi = root.findViewById(R.id.totaldonasi);
         promoAdapter = new PromoAdapter(getActivity(), slideModelList);
 
         cart = root.findViewById(R.id.cart);
@@ -223,6 +227,7 @@ public class Home extends Fragment {
                     pnu.setRating((float)object.getDouble(RATING));
                     pnu.setTotalfeedback(object.getString(TOTALFEEDBACK));
                     pnu.setDikirimdari(object.getString(DIKIRIMDARI));
+                    pnu.setDiskon(object.getInt(DISKON));
                     pnu.setDiskonpercent(object.getString(DISKONPERCENT));
 
                     JSONObject mitrajson = new JSONObject(object.getString("mitra"));
@@ -288,7 +293,9 @@ public class Home extends Fragment {
         public void onResponse(String response) {
             Log.i(TAG, "onResponse: "+response);
             try {
-                JSONArray jsonArray = new JSONArray(response);
+                JSONObject jsonObject = new JSONObject(response);
+                totaldonasi.setText("Rp."+Others.PercantikHarga(jsonObject.getInt("totalkoinnu")));
+                JSONArray jsonArray = jsonObject.getJSONArray("slide");
                 for (int i = 0; i < jsonArray.length(); i++){
                     JSONObject object = jsonArray.getJSONObject(i);
                     SlideModel slideModel = new SlideModel();

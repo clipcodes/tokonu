@@ -73,6 +73,7 @@
                                     android:textColor="@color/textcolor2"
                                     android:text="Rp. 0"
                                     android:textSize="13dp"
+                                    android:id="@+id/totaldonasi"
                                     android:textStyle="bold"
                                     android:layout_height="wrap_content"/>
                                 <TextView

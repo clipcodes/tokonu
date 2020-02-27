@@ -51,7 +51,9 @@ import nu.toko.Utils.UserPrefs;
 import static nu.toko.Utils.Staticvar.BERAT_PRODUK;
 import static nu.toko.Utils.Staticvar.CREATED_AT;
 import static nu.toko.Utils.Staticvar.DESKRIPSI_PRODUK;
+import static nu.toko.Utils.Staticvar.DIKIRIMDARI;
 import static nu.toko.Utils.Staticvar.DISKON;
+import static nu.toko.Utils.Staticvar.DISKONPERCENT;
 import static nu.toko.Utils.Staticvar.FEEDBACKALL;
 import static nu.toko.Utils.Staticvar.HARGA_ADMIN;
 import static nu.toko.Utils.Staticvar.HARGA_MITRA;
@@ -222,6 +224,14 @@ public class Details extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.bantuan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Bantuan.class);
+                startActivity(i);
+            }
+        });
+
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -333,13 +343,13 @@ public class Details extends AppCompatActivity {
             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); i++){
+                    Log.i(TAG, "onResponse: "+i);
                     JSONObject object = jsonArray.getJSONObject(i);
                     ProductModelNU pnu = new ProductModelNU();
                     pnu.setId_produk(object.getString(ID_PRODUK));
                     pnu.setNama_produk(object.getString(NAMA_PRODUK));
                     pnu.setHarga_admin(object.getInt(HARGA_ADMIN));
                     pnu.setHarga_mitra(object.getInt(HARGA_MITRA));
-//                    pnu.setId_mitra(object.getString(ID_MITRA));
                     pnu.setDeskripsi_produk(object.getString(DESKRIPSI_PRODUK));
                     pnu.setId_sub_kategori(object.getString(ID_SUB_KATEGORI));
                     pnu.setKondisi_produk(object.getString(KONDISI_PRODUK));
@@ -348,6 +358,17 @@ public class Details extends AppCompatActivity {
                     pnu.setBerat_produk(object.getString(BERAT_PRODUK));
                     pnu.setRating((float)object.getDouble(RATING));
                     pnu.setTotalfeedback(object.getString(TOTALFEEDBACK));
+                    pnu.setDikirimdari(object.getString(DIKIRIMDARI));
+                    pnu.setDiskon(object.getInt(DISKON));
+                    pnu.setDiskonpercent(object.getString(DISKONPERCENT));
+
+                    JSONObject mitrajson = new JSONObject(object.getString("mitra"));
+                    UserMitra um = new UserMitra();
+                    um.setKabupaten_mitra(mitrajson.getString("kabupaten_mitra"));
+                    um.setNama_toko_mitra(mitrajson.getString("nama_toko_mitra"));
+                    pnu.setId_mitra(mitrajson.getString("id_mitra"));
+
+                    pnu.setOwner(um);
 
                     JSONArray jsonArray1 = new JSONArray(object.getJSONArray("gambar").toString());
                     if (jsonArray1.length() >= 1){

@@ -105,7 +105,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         
         public void init(final ProductModelNU productModelNU){
-            price.setText("Rp."+ Others.PercantikHarga(Integer.valueOf(productModelNU.getHarga_admin())));
+            price.setText("Rp."+ Others.PercantikHarga(productModelNU.getHarga_admin()-productModelNU.getDiskon()));
             ImageLoader.getInstance().displayImage(FOTOPRODUK + productModelNU.getGambarfirst(), thumb);
             title.setText(productModelNU.getNama_produk());
             star.setRating(productModelNU.getRating());
@@ -146,7 +146,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void init(final ProductModelNU productModelNU){
-            price.setText("Rp."+ Others.PercantikHarga(Integer.valueOf(productModelNU.getHarga_admin())));
+            price.setText("Rp."+ Others.PercantikHarga(productModelNU.getHarga_admin()-productModelNU.getDiskon()));
             ImageLoader.getInstance().displayImage(FOTOPRODUK + productModelNU.getGambarfirst(), thumb);
             title.setText(productModelNU.getNama_produk());
             star.setRating(productModelNU.getRating());
@@ -189,7 +189,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void init(final ProductModelNU productModelNU){
-            price.setText("Rp."+ Others.PercantikHarga(Integer.valueOf(productModelNU.getHarga_admin())));
+            price.setText("Rp."+ Others.PercantikHarga(productModelNU.getHarga_admin()-productModelNU.getDiskon()));
             ImageLoader.getInstance().displayImage(FOTOPRODUK + productModelNU.getGambarfirst(), thumb);
             title.setText(productModelNU.getNama_produk());
             star.setRating(productModelNU.getRating());

@@ -44,6 +44,8 @@ import static nu.toko.Utils.Staticvar.ALAMAT_KIRIM;
 import static nu.toko.Utils.Staticvar.BANK;
 import static nu.toko.Utils.Staticvar.CHECKOUT;
 import static nu.toko.Utils.Staticvar.CODE_KURIR;
+import static nu.toko.Utils.Staticvar.DONASI;
+import static nu.toko.Utils.Staticvar.DONASIKEY;
 import static nu.toko.Utils.Staticvar.EMAIL;
 import static nu.toko.Utils.Staticvar.HARGA_ONGKIR;
 import static nu.toko.Utils.Staticvar.HARGA_TOTAL;
@@ -219,6 +221,7 @@ public class Checkout extends AppCompatActivity {
                         transaks.put(SUB_TOTAL, sub_total);
                         transaks.put(HARGA_ONGKIR, harga_ongkir);
                         transaks.put(HARGA_TOTAL, harga_total);
+                        transaks.put(DONASIKEY, koinusumbang);
                         transaks.put(ITEM, jsonArray);
 
                         array.put(transaks);

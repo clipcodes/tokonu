@@ -18,6 +18,7 @@ import nu.toko.Dialog.DialogLogout;
 import nu.toko.Page.Bantuan;
 import nu.toko.Page.CartOrder;
 import nu.toko.Page.Chats;
+import nu.toko.Page.ContactUs;
 import nu.toko.Page.Login;
 import nu.toko.Page.UserSetting;
 import nu.toko.R;
@@ -74,7 +75,7 @@ public class Account extends Fragment {
                     getActivity().startActivity(go);
                     break;
                 case R.id.bantuan:
-                    go = new Intent(getActivity(), Bantuan.class);
+                    go = new Intent(getActivity(), ContactUs.class);
                     getActivity().startActivity(go);
                     break;
                 case R.id.chating:

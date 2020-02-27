@@ -39,6 +39,7 @@ import nu.toko.Reqs.ReqString;
 import static nu.toko.Utils.Staticvar.BERAT_PRODUK;
 import static nu.toko.Utils.Staticvar.DESKRIPSI_PRODUK;
 import static nu.toko.Utils.Staticvar.DIKIRIMDARI;
+import static nu.toko.Utils.Staticvar.DISKON;
 import static nu.toko.Utils.Staticvar.DISKONPERCENT;
 import static nu.toko.Utils.Staticvar.HARGA_ADMIN;
 import static nu.toko.Utils.Staticvar.HARGA_MITRA;
@@ -247,6 +248,7 @@ public class PagePencarian extends AppCompatActivity {
                     pnu.setRating((float)object.getDouble(RATING));
                     pnu.setTotalfeedback(object.getString(TOTALFEEDBACK));
                     pnu.setDikirimdari(object.getString(DIKIRIMDARI));
+                    pnu.setDiskon(object.getInt(DISKON));
                     pnu.setDiskonpercent(object.getString(DISKONPERCENT));
 
                     JSONObject mitrajson = new JSONObject(object.getString("mitra"));

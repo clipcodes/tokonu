@@ -207,7 +207,9 @@ public class Login extends AppCompatActivity implements SignIn.KirimData, SignUp
                 UserPrefs.setKecamatan(object.getString("kecamatan"), getApplicationContext());
                 UserPrefs.setKode_pos(object.getString("kode_pos"), getApplicationContext());
                 UserPrefs.setUrl_profil(object.getString("url_profil"), getApplicationContext());
-                UserPrefs.setNamakab(object.getString("namakota"), getApplicationContext());
+                if (object.has("namakota")){
+                    UserPrefs.setNamakab(object.getString("namakota"), getApplicationContext());
+                }
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 FirebaseMessaging.getInstance().subscribeToTopic("user"+object.getString("id"));
                 startActivity(i);

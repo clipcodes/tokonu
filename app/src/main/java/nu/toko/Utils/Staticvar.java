@@ -69,6 +69,7 @@ public class Staticvar {
     public static final String NOTIF_TITLE = "title";
     public static final String NOTIF_DATA = "data";
     public static final String NOTIF_DATE = "created";
+    public static final String DONASIKEY = "donasi";
     public static final String NOTIF_TYPE = "type";
     public static final String NOTIF_TO = "to";
     public static final String NOTIF_MSG = "msg";
