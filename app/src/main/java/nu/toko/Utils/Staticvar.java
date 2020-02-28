@@ -8,7 +8,7 @@ public class Staticvar {
 
     public static final String GOGAIP = "http://192.168.1.104:8000/";
     public static final String HPIP = "http://192.168.43.36:8000/";
-    public static final String DOM = "http://sundl.site/";
+    public static final String DOM = "http://tokonu.com/public/";
     public static final String DOMAIN = DOM;
     public static final String ANDROIDLOGIN = "androidlogin";
     public static final String ANDROIDREGISTER = "androidregister";
@@ -55,6 +55,7 @@ public class Staticvar {
     public static final String DATPROVINSI = DOMAIN+API+"data/provinsi";
     public static final String DATKOTA = DOMAIN+API+"data/kota/";
     public static final String MITRAKURIR = DOMAIN+API+"mitra/kurir/";
+    public static final String KOINNU = DOMAIN+API+"koinnu/";
     public static final String DATAKURIR = DOMAIN+API+"data/kurir";
     public static final String PENGADUAN = DOMAIN+API+"pengaduan/kirim";
     public static final String SLASH = "/";

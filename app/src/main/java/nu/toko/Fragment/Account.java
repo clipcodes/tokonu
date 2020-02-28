@@ -22,6 +22,7 @@ import nu.toko.Page.CartOrder;
 import nu.toko.Page.Chats;
 import nu.toko.Page.ContactUs;
 import nu.toko.Page.Login;
+import nu.toko.Page.Page_KoinNu;
 import nu.toko.Page.UserSetting;
 import nu.toko.R;
 import nu.toko.Utils.UserPrefs;
@@ -30,8 +31,8 @@ import static nu.toko.Utils.Staticvar.FOTOPRODUK;
 
 public class Account extends Fragment {
 
-    TextView fullname, email;
-    FrameLayout logout, chat;
+    TextView fullname, email, nominal, tanggal;
+    FrameLayout logout, chat, koinnu;
     FrameLayout setting, cart, chating, bantuan;
     CircleImageView fotopengguna;
 
@@ -54,6 +55,7 @@ public class Account extends Fragment {
         chat = v.findViewById(R.id.chat);
         chating = v.findViewById(R.id.chating);
         bantuan = v.findViewById(R.id.bantuan);
+        koinnu = v.findViewById(R.id.koinnu);
         fotopengguna = v.findViewById(R.id.fotopengguna);
 
         if (UserPrefs.getUrl_profil(getActivity()).contains("googleusercontent")){
@@ -69,6 +71,8 @@ public class Account extends Fragment {
         chating.setOnClickListener(new onClick());
         bantuan.setOnClickListener(new onClick());
         logout.setOnClickListener(new onClick());
+        koinnu.setOnClickListener(new onClick());
+
     }
 
     class onClick implements View.OnClickListener {
@@ -95,6 +99,10 @@ public class Account extends Fragment {
                 case R.id.chat:
                     Intent ad = new Intent(getActivity(), Chats.class);
                     getActivity().startActivity(ad);
+                    break;
+                case R.id.koinnu:
+                    Intent kk = new Intent(getActivity(), Page_KoinNu.class);
+                    getActivity().startActivity(kk);
                     break;
                 case R.id.logout:
                     new DialogLogout(getActivity()).mentriger(new DialogLogout.Go() {

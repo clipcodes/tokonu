@@ -123,6 +123,40 @@
 
         </LinearLayout>
 
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/greytranspa1"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/koinnu"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_gravity="center|start"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/koinnu"
+                    android:layout_height="23dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Koin NU"
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </FrameLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
