@@ -5,6 +5,7 @@ import android.widget.EditText;
 public class UserPembeliModel {
 
     String email_pembeli, nama_pembeli, no_telp, provinsi_pembeli, kabupaten_pembeli, kecamatan_pembeli, kode_pos_pembeli, alamat_pembeli;
+    private String foto;
 
     public UserPembeliModel() {
 
@@ -72,5 +73,13 @@ public class UserPembeliModel {
 
     public void setAlamat_pembeli(String alamat_pembeli) {
         this.alamat_pembeli = alamat_pembeli;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

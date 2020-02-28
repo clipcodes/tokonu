@@ -1,34 +1,21 @@
 package nu.toko.Page;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 
-import nu.toko.MainActivity;
 import nu.toko.R;
-import nu.toko.Reqs.ReqString;
 
 public class ContactUs extends AppCompatActivity {
 
     String TAG = getClass().getSimpleName();
-    EditText pengaduan;
-    CardView kirim;
     RequestQueue requestQueue;
 
     @Override

@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import nu.toko.Dialog.DialogLogout;
 import nu.toko.Page.Bantuan;
 import nu.toko.Page.CartOrder;
@@ -24,11 +26,14 @@ import nu.toko.Page.UserSetting;
 import nu.toko.R;
 import nu.toko.Utils.UserPrefs;
 
+import static nu.toko.Utils.Staticvar.FOTOPRODUK;
+
 public class Account extends Fragment {
 
     TextView fullname, email;
     FrameLayout logout, chat;
     FrameLayout setting, cart, chating, bantuan;
+    CircleImageView fotopengguna;
 
     @Nullable
     @Override
@@ -49,6 +54,11 @@ public class Account extends Fragment {
         chat = v.findViewById(R.id.chat);
         chating = v.findViewById(R.id.chating);
         bantuan = v.findViewById(R.id.bantuan);
+        fotopengguna = v.findViewById(R.id.fotopengguna);
+
+        if (UserPrefs.getUrl_profil(getActivity()).contains("googleusercontent")){
+            ImageLoader.getInstance().displayImage(UserPrefs.getUrl_profil(getActivity()), fotopengguna);
+        }
 
         fullname.setText(UserPrefs.getNama(getActivity()));
         email.setText(UserPrefs.getEmail(getActivity()));

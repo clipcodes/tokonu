@@ -46,6 +46,7 @@ public class ProductModelNU {
     private String diskonpercent;
     private int fixongkir;
     private String ongkir;
+    private String kategorimitra;
 
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
@@ -277,5 +278,13 @@ public class ProductModelNU {
 
     public void setFixongkir(int fixongkir) {
         this.fixongkir = fixongkir;
+    }
+
+    public String getKategorimitra() {
+        return kategorimitra;
+    }
+
+    public void setKategorimitra(String kategorimitra) {
+        this.kategorimitra = kategorimitra;
     }
 }

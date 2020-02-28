@@ -73,6 +73,7 @@ public class Login extends AppCompatActivity implements SignIn.KirimData, SignUp
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
             finish();
+            return;
         }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -127,7 +128,6 @@ public class Login extends AppCompatActivity implements SignIn.KirimData, SignUp
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -166,17 +166,19 @@ public class Login extends AppCompatActivity implements SignIn.KirimData, SignUp
 //            UserPrefs.setLogin(getApplicationContext(), true);
 //            startActivity(i);
 //            finish();
+            Log.i(TAG, "updateUI: "+user.getPhotoUrl());
             ngloadview(new Loader());
             UserPembeliModel usr = new UserPembeliModel();
             usr.setEmail_pembeli(user.getEmail());
             usr.setNama_pembeli(user.getDisplayName());
             usr.setNo_telp(user.getPhoneNumber());
+            UserPrefs.setUrl_profil(String.valueOf(user.getPhotoUrl()), getApplicationContext());
             usr.setProvinsi_pembeli("0");
             usr.setKabupaten_pembeli("0");
             usr.setKecamatan_pembeli("0");
             usr.setKode_pos_pembeli("0");
             usr.setAlamat_pembeli("0");
-            Log.i(TAG, "updateUI: "+user.getPhoneNumber());
+
             if (user.getPhoneNumber()==null){
                 usr.setNo_telp("0");
             }
@@ -206,7 +208,6 @@ public class Login extends AppCompatActivity implements SignIn.KirimData, SignUp
                 UserPrefs.setKabupaten(object.getString("kabupaten"), getApplicationContext());
                 UserPrefs.setKecamatan(object.getString("kecamatan"), getApplicationContext());
                 UserPrefs.setKode_pos(object.getString("kode_pos"), getApplicationContext());
-                UserPrefs.setUrl_profil(object.getString("url_profil"), getApplicationContext());
                 if (object.has("namakota")){
                     UserPrefs.setNamakab(object.getString("namakota"), getApplicationContext());
                 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import nu.toko.Fragment.Intro3;
 import nu.toko.Page.Login;
 import nu.toko.R;
 import nu.toko.Utils.Pref;
+import nu.toko.Utils.UserPrefs;
 
 public class Intro extends AppCompatActivity {
 
@@ -36,6 +38,7 @@ public class Intro extends AppCompatActivity {
 
         if (Pref.read(getApplicationContext(), "intro", "0").equals("1")){
             Intent i = new Intent(getApplicationContext(), Login.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
             finish();
         }
@@ -69,15 +72,15 @@ public class Intro extends AppCompatActivity {
                 Log.i("curitem", "onClick: "+pager.getCurrentItem());
                 switch (position){
                     case 0:
-                        prev.setVisibility(View.GONE);
+                        prev.setVisibility(View.INVISIBLE);
                         break;
                     case 1:
                         prev.setVisibility(View.VISIBLE);
                         next.setVisibility(View.VISIBLE);
-                        finish.setVisibility(View.GONE);
+                        finish.setVisibility(View.INVISIBLE);
                         break;
                     case 2:
-                        next.setVisibility(View.GONE);
+                        next.setVisibility(View.INVISIBLE);
                         finish.setVisibility(View.VISIBLE);
                         finish.setOnClickListener(new klik());
                         break;

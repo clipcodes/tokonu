@@ -59,6 +59,7 @@ public class UserReqs {
                 params.put("name" , usr.getNama_pembeli());
                 params.put("password" , pass);
                 params.put("hp" , usr.getNo_telp());
+                params.put("url_profil" , usr.getFoto());
                 params.put("provinsi" , usr.getProvinsi_pembeli());
                 params.put("kabupaten" , usr.getKabupaten_pembeli());
                 params.put("kecamatan" , usr.getKecamatan_pembeli());

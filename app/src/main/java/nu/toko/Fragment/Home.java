@@ -234,6 +234,7 @@ public class Home extends Fragment {
                     UserMitra um = new UserMitra();
                     um.setKabupaten_mitra(mitrajson.getString("kabupaten_mitra"));
                     um.setNama_toko_mitra(mitrajson.getString("nama_toko_mitra"));
+                    pnu.setKategorimitra(mitrajson.getString("kategori"));
                     pnu.setId_mitra(mitrajson.getString("id_mitra"));
 
                     pnu.setOwner(um);

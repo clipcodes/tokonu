@@ -9,12 +9,12 @@
         android:clipToPadding="true"
         app:cardCornerRadius="6dp"
         android:layout_margin="6dp"
-        android:layout_height="120dp">
+        android:layout_height="match_parent">
         <ImageView
             android:layout_width="match_parent"
             android:id="@+id/imagepromo"
             android:background="@color/greytranspa"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:layout_height="match_parent"/>
     </androidx.cardview.widget.CardView>
 </FrameLayout>

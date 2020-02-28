@@ -1,34 +1,71 @@
 {
   "project_info": {
-    "project_number": "534173453620",
-    "firebase_url": "https://toko-nu.firebaseio.com",
-    "project_id": "toko-nu",
-    "storage_bucket": "toko-nu.appspot.com"
+    "project_number": "279120662150",
+    "firebase_url": "https://tokon-u.firebaseio.com",
+    "project_id": "tokon-u",
+    "storage_bucket": "tokon-u.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:534173453620:android:033a369c31f8612ed9a961",
+        "mobilesdk_app_id": "1:279120662150:android:2bdd0fa30b41f2fe7e0b07",
         "android_client_info": {
           "package_name": "nu.toko"
         }
       },
       "oauth_client": [
         {
-          "client_id": "534173453620-5l9kc5jncee6dqapmoh5bqtmpmmhgcfg.apps.googleusercontent.com",
+          "client_id": "279120662150-pco9nig97nrqv8u0a2eeim3mseoqrvru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nu.toko",
+            "certificate_hash": "941f099b181798ba59d2d086ccbe87d4ae11ae6c"
+          }
+        },
+        {
+          "client_id": "279120662150-dh7eb66rdj41q112un86lkh00fqcoemi.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBziiQDAMcNAjcBfhzJRepIepuARgWCB5Y"
+          "current_key": "AIzaSyC9LN3RVogw-tQIEMcOCkbdZatIEH2geq4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "534173453620-5l9kc5jncee6dqapmoh5bqtmpmmhgcfg.apps.googleusercontent.com",
+              "client_id": "279120662150-dh7eb66rdj41q112un86lkh00fqcoemi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279120662150:android:178550e38bd989217e0b07",
+        "android_client_info": {
+          "package_name": "nu.toko.mitra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279120662150-dh7eb66rdj41q112un86lkh00fqcoemi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9LN3RVogw-tQIEMcOCkbdZatIEH2geq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279120662150-dh7eb66rdj41q112un86lkh00fqcoemi.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

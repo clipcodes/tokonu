@@ -87,9 +87,9 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     } 
 
     protected class One extends RecyclerView.ViewHolder {
-
-        TextView title, price, totalfeedback, namatoko, lokasi, stock;
-        ImageView thumb;
+ 
+        TextView title, price, totalfeedback, namatoko, lokasi, stock, texkategori;
+        ImageView thumb, kategorimitra;
         RatingBar star;
 
         public One(View itemView) {
@@ -102,6 +102,8 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             namatoko = itemView.findViewById(R.id.namatoko);
             lokasi = itemView.findViewById(R.id.lokasi);
             totalfeedback = itemView.findViewById(R.id.totalfeedback);
+            kategorimitra = itemView.findViewById(R.id.kategorimitra);
+            texkategori = itemView.findViewById(R.id.texkategori);
         }
         
         public void init(final ProductModelNU productModelNU){
@@ -123,13 +125,23 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     activity.startActivity(i);
                 }
             });
+            if(productModelNU.getKategorimitra().contains("Official")){
+                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.officialstore));
+                texkategori.setText("(Official Store)");
+            } else if(productModelNU.getKategorimitra().contains("Seller")) {
+                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
+                texkategori.setText("(Star Seller)");
+            } else {
+                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
+                texkategori.setText("(Store)");
+            }
         }
     }
 
     protected class Two extends RecyclerView.ViewHolder {
 
-        TextView title, price, totalfeedback, namatoko, lokasi, stock, diskon;
-        ImageView thumb;
+        TextView title, price, totalfeedback, namatoko, lokasi, stock, diskon, texkategori;
+        ImageView thumb, kategorimitra;
         RatingBar star;
 
         public Two(View itemView) {
@@ -143,6 +155,8 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             namatoko = itemView.findViewById(R.id.namatoko);
             lokasi = itemView.findViewById(R.id.lokasi);
             totalfeedback = itemView.findViewById(R.id.totalfeedback);
+            kategorimitra = itemView.findViewById(R.id.kategorimitra);
+            texkategori = itemView.findViewById(R.id.texkategori);
         }
 
         public void init(final ProductModelNU productModelNU){
@@ -164,13 +178,23 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     activity.startActivity(i);
                 }
             });
+            if(productModelNU.getKategorimitra().contains("Official")){
+                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.officialstore));
+                texkategori.setText("(Official Store)");
+            } else if(productModelNU.getKategorimitra().contains("Seller")) {
+                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
+                texkategori.setText("(Star Seller)");
+            } else {
+                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
+                texkategori.setText("(Store)");
+            }
         }
     }
 
     protected class Three extends RecyclerView.ViewHolder {
 
-        TextView title, price, totalfeedback, namatoko, lokasi, stock, diskon;
-        ImageView thumb;
+        TextView title, price, totalfeedback, namatoko, lokasi, stock, diskon, texkategori;
+        ImageView thumb, kategorimitra;
         FrameLayout diskoncontainer;
         RatingBar star;
 
@@ -186,6 +210,8 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             namatoko = itemView.findViewById(R.id.namatoko);
             lokasi = itemView.findViewById(R.id.lokasi);
             totalfeedback = itemView.findViewById(R.id.totalfeedback);
+            kategorimitra = itemView.findViewById(R.id.kategorimitra);
+            texkategori = itemView.findViewById(R.id.texkategori);
         }
 
         public void init(final ProductModelNU productModelNU){
@@ -208,6 +234,16 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     activity.startActivity(i);
                 }
             });
+            if(productModelNU.getKategorimitra().contains("Official")){
+                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.officialstore));
+                texkategori.setText("(Official Store)");
+            } else if(productModelNU.getKategorimitra().contains("Seller")) {
+                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
+                texkategori.setText("(Star Seller)");
+            } else {
+                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
+                texkategori.setText("(Store)");
+            }
         }
     }
 
