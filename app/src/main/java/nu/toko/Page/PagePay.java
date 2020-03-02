@@ -34,6 +34,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.request.SimpleMultiPartRequest;
@@ -67,6 +68,7 @@ import nu.toko.Utils.Others;
 
 import static nu.toko.Utils.Staticvar.BANKSUPPORT;
 import static nu.toko.Utils.Staticvar.BAYAR;
+import static nu.toko.Utils.Staticvar.FOTOBUKTI;
 import static nu.toko.Utils.Staticvar.GAMBARADD;
 import static nu.toko.Utils.Staticvar.GAMBARFIRST;
 import static nu.toko.Utils.Staticvar.HARGA_ADMIN;
@@ -111,7 +113,7 @@ public class PagePay extends AppCompatActivity {
     List<BankSupportModel> bankSupportModelList;
     String namabanktujuan, norektujuan;
 
-    File file = null;
+    Bitmap file = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,16 +122,16 @@ public class PagePay extends AppCompatActivity {
 
         idtrans = String.valueOf(getIntent().getIntExtra(ID_TRANSAKSI, 0));
         init();
-        new ReqString(this, requestQueue).go(respon, TRANSAKSIDETAIL+idtrans);
-        new ReqString(this, requestQueue).go(bank, BANKSUPPORT);
+        new ReqString(PagePay.this, requestQueue).go(respon, TRANSAKSIDETAIL+idtrans);
+        new ReqString(PagePay.this, requestQueue).go(bank, BANKSUPPORT);
     }
 
     void init(){
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
         rvbanksupport = findViewById(R.id.rvbanksupport);
         paytex = findViewById(R.id.paytex);
         progres = findViewById(R.id.progres);
         pilihfile = findViewById(R.id.pilihfile);
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
         rvpay = findViewById(R.id.rvpay);
         bankSupportModelList = new ArrayList<>();
         bankSupportAdapter = new BankSupportAdapter(this, bankSupportModelList);
@@ -226,7 +228,7 @@ public class PagePay extends AppCompatActivity {
                     paytex.setVisibility(View.INVISIBLE);
                     cofirm.setCardBackgroundColor(getResources().getColor(R.color.white));
                     progres.setVisibility(View.VISIBLE);
-                    new ReqString(PagePay.this, requestQueue).multipart(responmultipart, BAYAR, idtrans, tanggal, file, nama, noo, bank, nominal);
+                    new ReqString(PagePay.this, requestQueue).foto("bukti"+idtrans, file, fotorespon, FOTOBUKTI);
                 break;
                 case R.id.tentukan:
                     // Get Current Date
@@ -316,6 +318,14 @@ public class PagePay extends AppCompatActivity {
         }
     };
 
+    public Response.Listener<NetworkResponse> fotorespon = new Response.Listener<NetworkResponse>() {
+        @Override
+        public void onResponse(NetworkResponse response) {
+//            Log.i(TAG, "onResponse: fotorespon . "+response);
+            new ReqString(PagePay.this, requestQueue).multipart(responmultipart, BAYAR, idtrans,
+                    tanggal, namalengkap.getText().toString(), norektujuan, namabanktujuan, jumlahtransfer.getText().toString());
+        }
+    };
 
     Response.Listener<String> bank = new Response.Listener<String>() {
         @Override
@@ -379,7 +389,7 @@ public class PagePay extends AppCompatActivity {
                     Bitmap foto = MediaStore.Images.Media.getBitmap(getContentResolver(), result.getUri());
                     buktitrans = foto;
 
-                    file = new File(new URI(path));
+                    file = foto;
                 } catch (Exception e){
                     Log.i("Catch", e.getMessage());
                 }
@@ -391,7 +401,7 @@ public class PagePay extends AppCompatActivity {
     Response.Listener<String> responmultipart = new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
-            Log.i(TAG, "onResponse: Sukses");
+            Log.i(TAG, "onResponse: Sukses = "+response);
             finish();
         }
     };

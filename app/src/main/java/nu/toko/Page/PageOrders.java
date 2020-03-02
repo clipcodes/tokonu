@@ -26,10 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nu.toko.Adapter.PayListAdapter;
+import nu.toko.Adapter.TrackingAdapter;
 import nu.toko.Dialog.DialogInfo;
 import nu.toko.Model.BillingItemModel;
 import nu.toko.Model.BillingModelNU;
 import nu.toko.Model.ProductModelNU;
+import nu.toko.Model.TrackingModel;
 import nu.toko.R;
 import nu.toko.Reqs.ReqString;
 import nu.toko.Utils.Others;
@@ -57,12 +59,13 @@ import static nu.toko.Utils.Staticvar.RESI;
 import static nu.toko.Utils.Staticvar.STATUS_TRANSAKSI;
 import static nu.toko.Utils.Staticvar.SUB_TOTAL;
 import static nu.toko.Utils.Staticvar.TGL_PEMESANAN;
+import static nu.toko.Utils.Staticvar.TRACKING;
 import static nu.toko.Utils.Staticvar.TRANSAKSIDETAIL;
 import static nu.toko.Utils.Staticvar.TRANSAKSIDITERIMA;
 
 public class PageOrders  extends AppCompatActivity {
 
-    TextView alamat, subtotal, ongkir, total, kurir;
+    TextView subtotal, ongkir, total;
     String TAG = getClass().getSimpleName();
     List<BillingItemModel> billingItemModels;
     PayListAdapter billadap;
@@ -74,6 +77,9 @@ public class PageOrders  extends AppCompatActivity {
     RatingBar star;
     EditText ulasan;
     JSONObject j;
+    List<TrackingModel> trackingModelList;
+    RecyclerView rvtracking;
+    TrackingAdapter trackingAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,6 +91,7 @@ public class PageOrders  extends AppCompatActivity {
         status = getIntent().getIntExtra(STATUS_TRANSAKSI, 0);
 
         init();
+
         new ReqString(this, requestQueue).go(respon, TRANSAKSIDETAIL+idtrans);
     }
 
@@ -100,11 +107,9 @@ public class PageOrders  extends AppCompatActivity {
         star = findViewById(R.id.star);
         ulasan = findViewById(R.id.ulasan);
 
-        alamat = findViewById(R.id.alamat);
         subtotal = findViewById(R.id.subtotal);
         ongkir = findViewById(R.id.ongkir);
         total = findViewById(R.id.total);
-        kurir = findViewById(R.id.kurir);
 
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +131,15 @@ public class PageOrders  extends AppCompatActivity {
             paytex.setTextColor(getResources().getColor(R.color.textcolor2));
             diterima.setOnClickListener(null);
             return;
+        }
+        if (status == 3){
+            findViewById(R.id.containertracking).setVisibility(View.VISIBLE);
+            new ReqString(this, requestQueue).go(tracking, TRACKING+idtrans);
+            trackingModelList = new ArrayList<>();
+            trackingAdapter = new TrackingAdapter(this, trackingModelList);
+            rvtracking = findViewById(R.id.rvtracking);
+            rvtracking.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            rvtracking.setAdapter(trackingAdapter);
         }
         if (status == 4){
             diterima.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -213,8 +227,6 @@ public class PageOrders  extends AppCompatActivity {
                     addulasan();
                 }
 
-                alamat.setText(jsonObject.getString(ALAMAT_KIRIM));
-                kurir.setText(jsonObject.getString(KURIR));
                 subtotal.setText("Rp."+ Others.PercantikHarga(jsonObject.getInt(SUB_TOTAL)));
                 ongkir.setText("Rp."+Others.PercantikHarga(jsonObject.getInt(HARGA_ONGKIR)));
                 total.setText("Rp."+Others.PercantikHarga(jsonObject.getInt(HARGA_TOTAL)));
@@ -249,6 +261,55 @@ public class PageOrders  extends AppCompatActivity {
                 }
 
                 billadap.notifyDataSetChanged();
+            } catch (JSONException e){
+                Log.i(TAG, "extracdata: Err "+e.getMessage());
+            }
+        }
+    };
+
+    Response.Listener<String> tracking = new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            Log.i(TAG, "onResponse: "+response);
+            try {
+                JSONObject object = new JSONObject(response);
+                JSONObject summary = object.getJSONObject("summary");
+                String nomerresi = summary.getString("waybill_number");
+                String lokasi = summary.getString("origin");
+                String tujuan = summary.getString("destination");
+                String pengirim = summary.getString("shipper_name");
+
+                ((TextView)findViewById(R.id.koderesi)).setText(nomerresi);
+                ((TextView)findViewById(R.id.lokasipesan)).setText(lokasi);
+                ((TextView)findViewById(R.id.lokasitujuan)).setText(tujuan);
+                ((TextView)findViewById(R.id.namapengirim)).setText(pengirim);
+
+                JSONObject delivery_status = object.getJSONObject("delivery_status");
+                String status = delivery_status.getString("status");
+                String penerima = delivery_status.getString("pod_receiver");
+                String tanggal = delivery_status.getString("pod_date");
+                String waktu = delivery_status.getString("pod_time");
+
+                ((TextView)findViewById(R.id.delivered)).setText(status);
+                ((TextView)findViewById(R.id.penerima)).setText(penerima);
+                ((TextView)findViewById(R.id.tanggal)).setText(tanggal);
+                ((TextView)findViewById(R.id.waktu)).setText(waktu);
+
+                JSONArray manifest = object.getJSONArray("manifest");
+                for (int i = 0; i < manifest.length(); i++){
+                    JSONObject manifestobj = manifest.getJSONObject(i);
+                    TrackingModel tm = new TrackingModel();
+                    tm.setCity_name(manifestobj.getString("city_name"));
+                    tm.setManifest_code(manifestobj.getString("manifest_code"));
+                    tm.setManifest_date(manifestobj.getString("manifest_date"));
+                    tm.setManifest_description(manifestobj.getString("manifest_description"));
+                    tm.setManifest_time(manifestobj.getString("manifest_time"));
+
+                    trackingModelList.add(tm);
+                }
+
+                trackingAdapter.notifyDataSetChanged();
+
             } catch (JSONException e){
                 Log.i(TAG, "extracdata: Err "+e.getMessage());
             }

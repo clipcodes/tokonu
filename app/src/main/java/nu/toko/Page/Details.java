@@ -251,8 +251,7 @@ public class Details extends AppCompatActivity {
             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); i++){
-                    JSONArray parentarr = jsonArray.getJSONArray(i);
-                    JSONObject json = parentarr.getJSONObject(0);
+                    JSONObject json = jsonArray.getJSONObject(i);
                     JSONArray costs = json.getJSONArray("costs");
                     JSONObject costsO = costs.getJSONObject(0);
                     JSONArray cost = costsO.getJSONArray("cost");

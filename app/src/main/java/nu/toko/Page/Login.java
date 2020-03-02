@@ -173,15 +173,6 @@ public class Login extends AppCompatActivity implements SignIn.KirimData, SignUp
             usr.setNama_pembeli(user.getDisplayName());
             usr.setNo_telp(user.getPhoneNumber());
             UserPrefs.setUrl_profil(String.valueOf(user.getPhotoUrl()), getApplicationContext());
-            usr.setProvinsi_pembeli("0");
-            usr.setKabupaten_pembeli("0");
-            usr.setKecamatan_pembeli("0");
-            usr.setKode_pos_pembeli("0");
-            usr.setAlamat_pembeli("0");
-
-            if (user.getPhoneNumber()==null){
-                usr.setNo_telp("0");
-            }
 
             new UserReqs(this, requestQueue).daftar(res, usr, "x", USER_DAFTAR);
         }
@@ -200,6 +191,7 @@ public class Login extends AppCompatActivity implements SignIn.KirimData, SignUp
                 }
                 UserPrefs.setLogin(getApplicationContext(), true);
                 UserPrefs.setId(object.getString("id"), getApplicationContext());
+                Log.i(TAG, "onResponse: Ex "+object.getString("alamat"));
                 UserPrefs.setAlamat(object.getString("alamat"), getApplicationContext());
                 UserPrefs.setEmail(object.getString("email"), getApplicationContext());
                 UserPrefs.setNama(object.getString("name"), getApplicationContext());
@@ -213,6 +205,7 @@ public class Login extends AppCompatActivity implements SignIn.KirimData, SignUp
                 }
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 FirebaseMessaging.getInstance().subscribeToTopic("user"+object.getString("id"));
+                FirebaseMessaging.getInstance().subscribeToTopic("users");
                 startActivity(i);
                 finish();
             } catch (JSONException e) {

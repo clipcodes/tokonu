@@ -44,7 +44,7 @@ public class Page_KoinNu extends AppCompatActivity {
 
         init();
 
-        new ReqString(this, requestQueue).go(respon, KOINNU+"1");
+        new ReqString(this, requestQueue).go(respon, KOINNU+UserPrefs.getId(getApplicationContext()));
     }
 
     void init(){
@@ -73,12 +73,16 @@ public class Page_KoinNu extends AppCompatActivity {
                     JSONObject object = array.getJSONObject(i);
                     KoinNuModel km = new KoinNuModel();
                     km.setNominal(object.getInt("donasi_koin"));
-                    if (object.has("tanggal")){
-                        km.setTanggal(object.getString("tanggal"));
-                    } else {
-                        km.setTanggal("Belom");
+                    if (!object.getString("trans").equals("null")){
+                        JSONObject trans = object.getJSONObject("trans");
+                        km.setTanggal(trans.getString("tgl_pemesanan"));
                     }
+
                     koinNuModelList.add(km);
+                }
+
+                if (array.length()<=0){
+                    findViewById(R.id.nodata).setVisibility(View.VISIBLE);
                 }
                 koinNuAdapter.notifyDataSetChanged();
             } catch (JSONException e){

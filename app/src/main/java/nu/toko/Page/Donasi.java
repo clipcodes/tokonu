@@ -24,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -32,18 +33,23 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
 import java.net.URI;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import nu.toko.Dialog.DialogInfo;
 import nu.toko.R;
 import nu.toko.Reqs.ReqString;
 import nu.toko.Utils.UserPrefs;
 
+import static nu.toko.Utils.Staticvar.BAYAR;
 import static nu.toko.Utils.Staticvar.DONASI;
+import static nu.toko.Utils.Staticvar.FOTODONASI;
 
 public class Donasi extends AppCompatActivity {
 
     String TAG = getClass().getSimpleName();
-    File bukti = null;
+    Bitmap bukti = null;
     CardView kirim;
     TextView kirimtex;
     ProgressBar progres;
@@ -53,12 +59,16 @@ public class Donasi extends AppCompatActivity {
     ImageView imagetampil, ikonupload;
     RequestQueue requestQueue;
     String nll = null;
+    String namafile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_donasi);
 
+        DateFormat nama = new SimpleDateFormat("yyyyMMddHHmmSSss");
+        Date date = new Date();
+        namafile = "donasi"+nama.format(date);
         init();
     }
 
@@ -109,7 +119,7 @@ public class Donasi extends AppCompatActivity {
                 kirimtex.setVisibility(View.INVISIBLE);
                 progres.setVisibility(View.VISIBLE);
 
-                new ReqString(Donasi.this, requestQueue).donasi(respon, nl, jml, bukti, DONASI);
+                new ReqString(Donasi.this, requestQueue).foto(namafile, bukti, fotorespon, FOTODONASI);
             }
         });
     }
@@ -128,6 +138,12 @@ public class Donasi extends AppCompatActivity {
         }
     };
 
+    public Response.Listener<NetworkResponse> fotorespon = new Response.Listener<NetworkResponse>() {
+        @Override
+        public void onResponse(NetworkResponse response) {
+            new ReqString(Donasi.this, requestQueue).donasi(respon, namafile, namalengkap.getText().toString(), jumlahtransfer.getText().toString(), DONASI);
+        }
+    };
 
     private void Ngecorep(Uri imageUri) {
         CropImage.activity(imageUri)
@@ -168,7 +184,7 @@ public class Donasi extends AppCompatActivity {
                     imagetampil.setImageBitmap(foto);
                     ikonupload.setVisibility(View.GONE);
 
-                    bukti = new File(new URI(path));
+                    bukti = foto;
                 } catch (Exception e){
                     Log.i("Catch", e.getMessage());
                 }

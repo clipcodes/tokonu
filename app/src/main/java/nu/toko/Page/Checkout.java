@@ -314,9 +314,8 @@ public class Checkout extends AppCompatActivity {
                         JSONArray jsonArray = new JSONArray(productModelNU.get(i).getOngkir());
                         //Loop Panjang Ongkir
                         for (int x = 0; x < jsonArray.length(); x++) {
-                            //Fetch Data Ongkir
-                            JSONArray parentarr = jsonArray.getJSONArray(x);
-                            JSONObject json = parentarr.getJSONObject(0);
+                            //Fetch Data Ongkir 
+                            JSONObject json = jsonArray.getJSONObject(0);
                             JSONArray costs = json.getJSONArray("costs");
                             //Ketika Kode Sama Dengan Code Ongkir Yang Dipilih Maka Lanjut
                             if (json.getString("code").equals(kurirdipilih)){

@@ -31,7 +31,7 @@ dependencies {
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.5.1'
-    implementation 'dev.dworks.libs:volleyplus:0.1.4'
+    implementation 'dev.dworks.libs:volleyplus:+'
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 
     implementation 'com.google.firebase:firebase-core:17.2.2'

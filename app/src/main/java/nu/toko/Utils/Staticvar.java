@@ -35,7 +35,10 @@ public class Staticvar {
     public static final String FOTOPRODUK =  DOMAIN+"images/produk/";
     public static final String FOTOBERITA =  DOMAIN+"images/berita/";
     public static final String FOTOSLIDE =  DOMAIN+"images/slide/";
+    public static final String TRACKING =  DOMAIN+API+"tracking/";
     public static final String FOTOKATEGORI =  DOMAIN+"images/kategori_produk/";
+    public static final String FOTOBUKTI =  DOMAIN+API+"upload/bukti";
+    public static final String FOTODONASI =  DOMAIN+API+"upload/donasi";
     public static final String CHECKOUT = DOMAIN+API+"transaksi/beli";
     public static final String TRANSAKSIPEMBELI = DOMAIN+API+"transaksi/pembeli/";
     public static final String TRANSAKSIBAYAR = DOMAIN+API+"transaksi/pembeli/bayar/";

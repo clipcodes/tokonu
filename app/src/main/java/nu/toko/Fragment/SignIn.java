@@ -139,6 +139,7 @@ public class SignIn extends Fragment {
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 UserPrefs.setLogin(getActivity(), true);
 
+                FirebaseMessaging.getInstance().subscribeToTopic("users");
                 FirebaseMessaging.getInstance().subscribeToTopic("user"+object.getString("id"));
 
                 startActivity(i);

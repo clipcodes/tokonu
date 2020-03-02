@@ -108,24 +108,22 @@ public class UserSetting extends AppCompatActivity {
         email.setText(UserPrefs.getEmail(getApplicationContext()));
         nama_pembeli.setText(UserPrefs.getNama(getApplicationContext()));
 
-        Log.i(TAG, "init: "+UserPrefs.getProvinsi(getApplicationContext()).equals("0"));
-
-        if (!UserPrefs.getNo_telp(getApplicationContext()).equals("0")){
+        if (!UserPrefs.getNo_telp(getApplicationContext()).equals("null")){
             no_telp.setText(UserPrefs.getNo_telp(getApplicationContext()));
         }
-        if (!UserPrefs.getProvinsi(getApplicationContext()).equals("0")){
+        if (!UserPrefs.getProvinsi(getApplicationContext()).equals("null")){
             provinsi_pembeli.setText(UserPrefs.getProvinsi(getApplicationContext()));
         }
-        if (!UserPrefs.getKecamatan(getApplicationContext()).equals("0")){
+        if (!UserPrefs.getKecamatan(getApplicationContext()).equals("null")){
             kecamatan_pembeli.setText(UserPrefs.getKecamatan(getApplicationContext()));
         }
-        if (!UserPrefs.getNamakab(getApplicationContext()).equals("0")){
+        if (!UserPrefs.getNamakab(getApplicationContext()).equals("null")){
             kabupaten_pembeli.setText(UserPrefs.getNamakab(getApplicationContext()));
         }
-        if (!UserPrefs.getKode_pos(getApplicationContext()).equals("0")){
+        if (!UserPrefs.getKode_pos(getApplicationContext()).equals("null")){
             kode_pos_pembeli.setText(UserPrefs.getKode_pos(getApplicationContext()));
         }
-        if (!UserPrefs.getAlamat(getApplicationContext()).equals("0")){
+        if (!UserPrefs.getAlamat(getApplicationContext()).equals("null")){
             alamat_pembeli.setText(UserPrefs.getAlamat(getApplicationContext()));
         }
 

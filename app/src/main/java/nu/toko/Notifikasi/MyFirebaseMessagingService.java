@@ -126,6 +126,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         message = "Halo "+UserPrefs.getNama(getApplicationContext())+", mohon maaf karena barang yang anda pesan sedang kosong";
                     }
                     break;
+                case "info":
+                    title = "Informasi Umum";
+                    message = dataadd.getString("msg");
+                    break;
             }
 
             resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

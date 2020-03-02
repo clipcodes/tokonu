@@ -88,11 +88,11 @@ public class CartOrder extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), Checkout.class);
                 i.putExtra("subtotal", Total);
 
-                if (UserPrefs.getKabupaten(getApplicationContext()).equals("0")
-                        || UserPrefs.getKecamatan(getApplicationContext()).equals("0")
-                        || UserPrefs.getProvinsi(getApplicationContext()).equals("0")
-                        || UserPrefs.getKode_pos(getApplicationContext()).equals("0")
-                        || UserPrefs.getAlamat(getApplicationContext()).equals("0")){
+                if (UserPrefs.getKabupaten(getApplicationContext()).equals("null")
+                        || UserPrefs.getKecamatan(getApplicationContext()).equals("null")
+                        || UserPrefs.getProvinsi(getApplicationContext()).equals("null")
+                        || UserPrefs.getKode_pos(getApplicationContext()).equals("null")
+                        || UserPrefs.getAlamat(getApplicationContext()).equals("null")){
                     new DialogLengkapi(CartOrder.this).mentriger(new DialogLengkapi.Go() {
                         @Override
                         public void trigerbos() {
