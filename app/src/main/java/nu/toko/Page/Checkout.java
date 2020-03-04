@@ -322,6 +322,8 @@ public class Checkout extends AppCompatActivity {
 
                                                 productModelNU.get(i).setFixongkir(costO.getInt("value"));
                                                 biayakirim += costO.getInt("value");
+                                                productModelNU.get(i).setFixongkir(costO.getInt("value"));
+
                                                 Log.i(TAG, "onActivityResult: val " + costO.getInt("value"));
                                             }
                                         }

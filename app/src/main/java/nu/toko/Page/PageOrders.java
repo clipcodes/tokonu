@@ -277,6 +277,9 @@ public class PageOrders  extends AppCompatActivity {
             try {
                 JSONObject object = new JSONObject(response);
                 JSONObject summary = object.getJSONObject("summary");
+                if (summary.getString("waybill_number").length()<=5){
+                    return;
+                }
                 String nomerresi = summary.getString("waybill_number");
                 String lokasi = summary.getString("origin");
                 String tujuan = summary.getString("destination");
