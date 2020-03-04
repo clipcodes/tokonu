@@ -270,6 +270,9 @@ public class PageOrders  extends AppCompatActivity {
     Response.Listener<String> tracking = new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
+            if (response.equals("false")){
+                return;
+            }
             Log.i(TAG, "onResponse: "+response);
             try {
                 JSONObject object = new JSONObject(response);

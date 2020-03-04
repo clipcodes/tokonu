@@ -32,11 +32,13 @@ public class Staticvar {
     public static final String FILTERBYRANGE = DOMAIN+API+"filter/range/";
     public static final String DONASI =  DOMAIN+API+"donasi/add";
     public static final String SLIDE = DOMAIN+API+"slide";
+    public static final String KATEGORILEVEL =  DOMAIN+"images/kategori_level/";
     public static final String FOTOPRODUK =  DOMAIN+"images/produk/";
     public static final String FOTOBERITA =  DOMAIN+"images/berita/";
     public static final String FOTOSLIDE =  DOMAIN+"images/slide/";
     public static final String TRACKING =  DOMAIN+API+"tracking/";
     public static final String FOTOKATEGORI =  DOMAIN+"images/kategori_produk/";
+    public static final String FOTOSUBKATEGORI =  DOMAIN+"images/sub_kategori_produk/";
     public static final String FOTOBUKTI =  DOMAIN+API+"upload/bukti";
     public static final String FOTODONASI =  DOMAIN+API+"upload/donasi";
     public static final String CHECKOUT = DOMAIN+API+"transaksi/beli";
@@ -114,6 +116,7 @@ public class Staticvar {
     public static final String RATING = "rating";
     public static final String ALAMAT_KIRIM = "alamat_kirim";
     public static final String CODE_KURIR = "code_kurir";
+    public static final String KURIR_SERVICE = "kurir_service";
     public static final String KURIR = "kurir";
     public static final String URL_BUKTI_TRANSAKSI = "url_bukti_transaksi";
     public static final String NAMALENGKAP = "namalengkap";
@@ -151,6 +154,7 @@ public class Staticvar {
     public static final String ID_KATEGORI = "id_kategori";
     public static final String NAMA_KATEGORI = "nama_kategori";
     public static final String URL_GAMBAR_KATEGORI = "url_gambar_kategori";
+    public static final String URL_GAMBAR_SUBKATEGORI = "url_gambar_subkategori";
 
     public static final String ID_SLIDE = "id_slide";
     public static final String URL_SLIDE = "url_slide";

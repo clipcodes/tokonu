@@ -2,6 +2,7 @@ package nu.toko.Adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import static nu.toko.Utils.Staticvar.FOTOPRODUK;
 
 public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
+    String TAG = getClass().getSimpleName();
     Activity activity;
     List<ProductModelNU> items;
     OnClickBuy onClickBuy;
@@ -125,6 +127,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     activity.startActivity(i);
                 }
             });
+
             if(productModelNU.getKategorimitra().contains("Official")){
                 kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.officialstore));
                 texkategori.setText("(Official Store)");
@@ -132,8 +135,8 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
                 texkategori.setText("(Star Seller)");
             } else {
-                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
-                texkategori.setText("(Store)");
+                kategorimitra.setVisibility(View.GONE);
+                texkategori.setVisibility(View.GONE);
             }
         }
     }
@@ -178,6 +181,7 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     activity.startActivity(i);
                 }
             });
+
             if(productModelNU.getKategorimitra().contains("Official")){
                 kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.officialstore));
                 texkategori.setText("(Official Store)");
@@ -185,8 +189,8 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
                 texkategori.setText("(Star Seller)");
             } else {
-                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
-                texkategori.setText("(Store)");
+                kategorimitra.setVisibility(View.GONE);
+                texkategori.setVisibility(View.GONE);
             }
         }
     }
@@ -241,8 +245,8 @@ public class Product2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
                 texkategori.setText("(Star Seller)");
             } else {
-                kategorimitra.setImageDrawable(activity.getResources().getDrawable(R.drawable.starseller));
-                texkategori.setText("(Store)");
+                kategorimitra.setVisibility(View.GONE);
+                texkategori.setVisibility(View.GONE);
             }
         }
     }

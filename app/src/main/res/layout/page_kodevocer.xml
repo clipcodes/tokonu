@@ -61,20 +61,34 @@
             </FrameLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:id="@+id/nested"
         android:background="@color/greytranspa0"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:id="@+id/rvvocer"
-                android:layout_height="match_parent"/>
+            android:id="@+id/nodata"
+            android:visibility="gone"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_width="35dp"
+                android:src="@drawable/nodata"
+                android:layout_gravity="center"
+                android:layout_height="35dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Tidak Ada Data"
+                android:layout_marginTop="10dp"
+                android:textSize="17sp"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/rvvocer"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

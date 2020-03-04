@@ -251,20 +251,23 @@ public class Details extends AppCompatActivity {
             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); i++){
-                    JSONObject json = jsonArray.getJSONObject(i);
-                    JSONArray costs = json.getJSONArray("costs");
-                    JSONObject costsO = costs.getJSONObject(0);
-                    JSONArray cost = costsO.getJSONArray("cost");
-                    JSONObject costO = cost.getJSONObject(0);
+                    Log.i(TAG, "onResponse: String "+jsonArray.getString(i));
+                    if (!jsonArray.getString(i).equals("false")){
+                        JSONObject json = jsonArray.getJSONObject(i);
+                        JSONArray costs = json.getJSONArray("costs");
+                        if (costs.length()!=0){
+                            JSONObject costsO = costs.getJSONObject(0);
+                            JSONArray cost = costsO.getJSONArray("cost");
+                            JSONObject costO = cost.getJSONObject(0);
 
-                    OngkosKirimModel ongkosKirimModel = new OngkosKirimModel();
-                    ongkosKirimModel.setKurir(json.getString("name"));
-                    ongkosKirimModel.setCode(json.getString("code"));
-                    ongkosKirimModel.setValue(costO.getInt("value"));
+                            OngkosKirimModel ongkosKirimModel = new OngkosKirimModel();
+                            ongkosKirimModel.setKurir(json.getString("name"));
+                            ongkosKirimModel.setCode(json.getString("code"));
+                            ongkosKirimModel.setValue(costO.getInt("value"));
 
-                    Log.i(TAG, "onResponse: name "+json.getString("name"));
-                    Log.i(TAG, "onResponse: value "+costO.getInt("value"));
-                    ongkosKirimModelList.add(ongkosKirimModel);
+                            ongkosKirimModelList.add(ongkosKirimModel);
+                        }
+                    }
                 }
 
                 pnu.setOngkir(response);
@@ -394,7 +397,7 @@ public class Details extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(response);
 
-                review.setText("  "+jsonObject.getString("totalfeedback")+" Reviews | "+jsonObject.getString("terjual")+" Terjual");
+                review.setText("  "+jsonObject.getString("totalfeedback")+" Ulasan | "+jsonObject.getString("terjual")+" Terjual");
                 rating.setText("("+jsonObject.getString("rating")+")");
                 ratingfeed.setText("("+jsonObject.getString("rating")+")");
                 star.setRating(Float.valueOf(jsonObject.getString("rating")));

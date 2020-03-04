@@ -55,6 +55,7 @@ import static nu.toko.Utils.Staticvar.ID_PRODUK;
 import static nu.toko.Utils.Staticvar.ITEM;
 import static nu.toko.Utils.Staticvar.KODEPOS;
 import static nu.toko.Utils.Staticvar.KODEVOCER;
+import static nu.toko.Utils.Staticvar.KURIR_SERVICE;
 import static nu.toko.Utils.Staticvar.NAMALENGKAP;
 import static nu.toko.Utils.Staticvar.NOMINAL;
 import static nu.toko.Utils.Staticvar.NOREK;
@@ -86,6 +87,7 @@ public class Checkout extends AppCompatActivity {
     TextView koinu;
     int koinusumbang = 0;
     String kurirdipilih = null;
+    String kurirdetdipilih = null;
     int vocersum =0;
     int i;
 
@@ -145,24 +147,11 @@ public class Checkout extends AppCompatActivity {
                 onBackPressed();
             }
         });
-//        address.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(getApplicationContext(), PageAddress.class);
-//                startActivityForResult(i, ALAMAT);
-//            }
-//        });
-//        paymentmethod.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(getApplicationContext(), PagePaymentMethod.class);
-//                startActivityForResult(i, PAYMETHOD);
-//            }
-//        });
         findViewById(R.id.kurir).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), KurirChoose.class);
+                i.putExtra("kurir", productModelNU.get(0).getOngkir());
                 startActivityForResult(i, KURIR);
             }
         });
@@ -171,6 +160,10 @@ public class Checkout extends AppCompatActivity {
             public void onClick(View v) {
                 if (kurirdipilih == null) {
                     Toast.makeText(getApplicationContext(), "Pilih Opsi Pengiriman", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (kurirdetdipilih == null) {
+                    Toast.makeText(getApplicationContext(), "Pilih Opsi Pilihan Kurir", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (alamatkirim == null) {
@@ -199,6 +192,7 @@ public class Checkout extends AppCompatActivity {
                         transaks.put(ID_PEMBELI, UserPrefs.getId(getApplicationContext()));
                         transaks.put(ALAMAT_KIRIM, alamatkirim);
                         transaks.put(CODE_KURIR, kurirdipilih);
+                        transaks.put(KURIR_SERVICE, kurirdetdipilih);
                         JSONArray jsonArray = new JSONArray();
                         int sub_total = 0;
                         int harga_ongkir = 0;
@@ -300,34 +294,39 @@ public class Checkout extends AppCompatActivity {
                 Log.i(TAG, "onActivityResult: Vocer "+km.getKode());
             }
             if (requestCode == KURIR){
+//                Toast.makeText(this, data.getStringExtra("kode")+" "+data.getStringExtra("kurirdet"), Toast.LENGTH_SHORT).show();
                 ((TextView)findViewById(R.id.kurirtex)).setText("Menggunakan Kurir");
                 ((TextView)findViewById(R.id.selectkurirtex)).setText(data.getStringExtra("kurir"));
                 kurirdipilih = data.getStringExtra("kode");
+                kurirdetdipilih = data.getStringExtra("kurirdet");
 
                 //Reload Totalan Biaya Kirim
                 biayakirim = 0;
 
-                //Lopig by produk yang ada
                 for (int i = 0; i < productModelNU.size(); i++) {
                     try {
-                        //Ambil Array Produk Ongkir
                         JSONArray jsonArray = new JSONArray(productModelNU.get(i).getOngkir());
-                        //Loop Panjang Ongkir
                         for (int x = 0; x < jsonArray.length(); x++) {
-                            //Fetch Data Ongkir 
-                            JSONObject json = jsonArray.getJSONObject(0);
-                            JSONArray costs = json.getJSONArray("costs");
-                            //Ketika Kode Sama Dengan Code Ongkir Yang Dipilih Maka Lanjut
-                            if (json.getString("code").equals(kurirdipilih)){
-                                JSONObject costsO = costs.getJSONObject(0);
-                                JSONArray cost = costsO.getJSONArray("cost");
-                                JSONObject costO = cost.getJSONObject(0);
+                            if (!jsonArray.getString(x).equals("false")){
+                                JSONObject obj1 = jsonArray.getJSONObject(x);
+                                if (obj1.getString("code").equals(kurirdipilih)){
+                                    Log.i(TAG, "onActivityResult: cok");
+                                    JSONArray costs = obj1.getJSONArray("costs");
+                                    if (costs.length()!=0){
+                                        for (int o = 0; o < costs.length(); o++){
+                                            JSONObject obj2 = costs.getJSONObject(o);
+                                            if (obj2.getString("service").equals(kurirdetdipilih)){
+                                                Log.i(TAG, "onActivityResult: wow "+obj2.getString("cost"));
+                                                JSONArray cost = obj2.getJSONArray("cost");
+                                                JSONObject costO = cost.getJSONObject(0);
 
-                                productModelNU.get(i).setFixongkir(costO.getInt("value"));
-
-                                biayakirim += costO.getInt("value");
-
-                                Log.i(TAG, "onActivityResult: val "+costO.getInt("value"));
+                                                productModelNU.get(i).setFixongkir(costO.getInt("value"));
+                                                biayakirim += costO.getInt("value");
+                                                Log.i(TAG, "onActivityResult: val " + costO.getInt("value"));
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     } catch (JSONException e) {

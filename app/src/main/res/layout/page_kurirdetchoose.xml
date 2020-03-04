@@ -51,7 +51,7 @@
                             android:layout_width="match_parent"
                             android:textSize="18sp"
                             android:lines="1"
-                            android:text="Pilih Kurir"
+                            android:text="Pilihan Kurir"
                             android:id="@+id/titel"
                             android:ellipsize="end"
                             android:textColor="@color/textcolor1"

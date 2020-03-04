@@ -46,8 +46,7 @@ public class PromoAdapter extends PagerAdapter {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context, Categories.class);
-                i.putExtra("id", images.get(position).getParameter());
-                i.putExtra("kat", images.get(position).getLink_slide());
+                i.putExtra("id", Integer.valueOf(images.get(position).getParameter()));
                 context.startActivity(i);
             }
         });

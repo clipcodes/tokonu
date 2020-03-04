@@ -135,7 +135,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:textSize="15sp"
-                        android:text="Product Information"
+                        android:text="Informasi Produk"
                         android:textStyle="bold"
                         android:layout_gravity="center|start"
                         android:textColor="@color/textcolor1"
@@ -258,7 +258,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:textSize="15sp"
-            android:text="Description"
+            android:text="Deskripsi"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:layout_gravity="center|start"

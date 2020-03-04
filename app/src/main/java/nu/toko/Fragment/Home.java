@@ -134,7 +134,7 @@ public class Home extends Fragment {
         wormDotsIndicator = root.findViewById(R.id.wormDotsIndicator);
 
         rvcategories = root.findViewById(R.id.rvcategories);
-        categoriesAdapter = new CategoriesAdapter(getActivity(), categoriesModelList, 1);
+        categoriesAdapter = new CategoriesAdapter(getActivity(), categoriesModelList);
         rvcategories.setLayoutManager(new GridLayoutManager(getActivity(), 4, RecyclerView.VERTICAL, false));
         rvcategories.setAdapter(categoriesAdapter);
 
@@ -270,6 +270,7 @@ public class Home extends Fragment {
         @Override
         public void onResponse(String response) {
             Log.i(TAG, "onResponse: "+response);
+            int batasi = 0;
             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); i++){
@@ -281,6 +282,11 @@ public class Home extends Fragment {
 
                     categoriesModelList.add(categoriesModelNU);
                     categoriesAdapter.notifyItemInserted(-1);
+
+                    batasi++;
+                    if (batasi==7){
+                        return;
+                    }
                 }
 
             } catch (JSONException e){

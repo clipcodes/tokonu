@@ -275,6 +275,8 @@ public class PagePay extends AppCompatActivity {
                 bill.setTgl_pemesanan(jsonObject.getString(TGL_PEMESANAN));
                 bill.setResi(jsonObject.getString(RESI));
 
+                jumlahtransfer.setText(jsonObject.getInt(HARGA_TOTAL));
+
                 JSONObject mitra = jsonObject.getJSONObject("mitra");
                 bill.setId_mitra(mitra.getInt(ID_MITRA));
 

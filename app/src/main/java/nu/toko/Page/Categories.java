@@ -37,6 +37,7 @@ import java.util.List;
 import nu.toko.Adapter.CategoriesAdapter;
 import nu.toko.Adapter.FilterLocationAdapter;
 import nu.toko.Adapter.Product2Adapter;
+import nu.toko.Adapter.SubCategoriesAdapter;
 import nu.toko.Model.CategoriesModelNU;
 import nu.toko.Model.ProductModelNU;
 import nu.toko.Model.UserMitra;
@@ -70,6 +71,7 @@ import static nu.toko.Utils.Staticvar.SUBKATEGORI;
 import static nu.toko.Utils.Staticvar.TERJUAL;
 import static nu.toko.Utils.Staticvar.TOTALFEEDBACK;
 import static nu.toko.Utils.Staticvar.URL_GAMBAR;
+import static nu.toko.Utils.Staticvar.URL_GAMBAR_SUBKATEGORI;
 
 public class Categories extends AppCompatActivity {
 
@@ -78,7 +80,7 @@ public class Categories extends AppCompatActivity {
     Product2Adapter product2Adapter;
     List<ProductModelNU> productModelList;
     List<CategoriesModelNU> categoriesModelList;
-    CategoriesAdapter categoriesAdapter;
+    SubCategoriesAdapter subCategoriesAdapter;
     TextView categoriesname;
     String CATEGORY;
     int IDCATEGORY;
@@ -105,7 +107,11 @@ public class Categories extends AppCompatActivity {
         setContentView(R.layout.categoriesdrawer);
 
         IDCATEGORY = getIntent().getIntExtra("id", 0);
-        CATEGORY = getIntent().getStringExtra("kat");
+        if (getIntent().getStringExtra("kat")!=null){
+            CATEGORY = getIntent().getStringExtra("kat");
+        } else {
+            CATEGORY = "";
+        }
 
         init();
         URLFLEKSIBEL = PRODUCTKATEGORI+IDCATEGORY+"/terbaru";
@@ -193,10 +199,10 @@ public class Categories extends AppCompatActivity {
 
         rvsubcategories = findViewById(R.id.rvsubcategories);
         categoriesModelList = new ArrayList<>();
-        categoriesAdapter = new CategoriesAdapter(this, categoriesModelList, 2);
+        subCategoriesAdapter = new SubCategoriesAdapter(this, categoriesModelList);
         rvsubcategories.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false));
-        rvsubcategories.setAdapter(categoriesAdapter);
-        categoriesAdapter.setOnItemClickListener(new CategoriesAdapter.OnClick() {
+        rvsubcategories.setAdapter(subCategoriesAdapter);
+        subCategoriesAdapter.setOnItemClickListener(new SubCategoriesAdapter.OnClick() {
             @Override
             public void onItemClick(CategoriesModelNU categoriesModelNU) {
                 Log.i(TAG, "onItemClick: "+categoriesModelNU.getNama_kategori());
@@ -355,12 +361,13 @@ public class Categories extends AppCompatActivity {
                     categoriesModelNU.setId_kategori(object.getInt(ID_KATEGORI));
                     categoriesModelNU.setNama_kategori(object.getString(NAMA_KATEGORI));
                     categoriesModelNU.setId_sub_kategori(object.getInt(ID_SUBKATEGORI));
+                    categoriesModelNU.setUrl_gambar_kategori(object.getString(URL_GAMBAR_SUBKATEGORI));
 
                     categoriesModelList.add(categoriesModelNU);
                 }
 
                 Log.i(TAG, "onResponse: productModelList size="+productModelList.size());
-                categoriesAdapter.notifyDataSetChanged();
+                subCategoriesAdapter.notifyDataSetChanged();
             } catch (JSONException e){
                 Log.i(TAG, "onResponse: Err:"+e.getMessage());
             }

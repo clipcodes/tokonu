@@ -4,6 +4,7 @@ public class KurirModel {
 
     private String kurir;
     private String kode;
+    private String arrchoose;
 
     public KurirModel() {
 
@@ -23,5 +24,13 @@ public class KurirModel {
 
     public void setKode(String kode) {
         this.kode = kode;
+    }
+
+    public String getArrchoose() {
+        return arrchoose;
+    }
+
+    public void setArrchoose(String arrchoose) {
+        this.arrchoose = arrchoose;
     }
 }

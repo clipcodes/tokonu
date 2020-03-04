@@ -3,6 +3,7 @@ package nu.toko.Page;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +18,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import nu.toko.Adapter.KodeVocerAdapter;
@@ -87,9 +91,20 @@ public class KodeVocer extends AppCompatActivity {
                     kv.setWaktuakhir(object.getString("waktu_ahir"));
                     kv.setWaktuawal(object.getString("waktu_awal"));
 
-                    kodeVocerModelList.add(kv);
+                    final DateFormat nama = new SimpleDateFormat("yyyyMMdd");
+                    final Date date = new Date();
+                    String[] nomer = object.getString("waktu_ahir").split("-");
+                    String oke = nomer[0]+nomer[1]+nomer[2];
+                    int exp = Integer.valueOf(oke);
+                    int now = Integer.valueOf(nama.format(date));
+                    if (now <= exp){
+                        kodeVocerModelList.add(kv);
+                    }
                 }
 
+                if (kodeVocerModelList.size()<=0){
+                    findViewById(R.id.nodata).setVisibility(View.GONE);
+                }
                 kodeVocerAdapter.notifyDataSetChanged();
             } catch (JSONException e){
                 Log.i(TAG, "onResponse: ERR "+e.getMessage());
