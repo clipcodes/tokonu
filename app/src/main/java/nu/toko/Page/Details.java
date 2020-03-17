@@ -251,18 +251,19 @@ public class Details extends AppCompatActivity {
             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); i++){
-                    Log.i(TAG, "onResponse: String "+jsonArray.getString(i));
-                    if (!jsonArray.getString(i).equals("false")){
-                        JSONObject json = jsonArray.getJSONObject(i);
-                        JSONArray costs = json.getJSONArray("costs");
+                    JSONArray parr = jsonArray.getJSONArray(i);
+                    Log.i(TAG, "onResponse: String "+parr.getJSONObject(0));
+                    if (!parr.getString(0).equals("false")){
+                        JSONObject jobj = parr.getJSONObject(0);
+                        JSONArray costs = jobj.getJSONArray("costs");
                         if (costs.length()!=0){
                             JSONObject costsO = costs.getJSONObject(0);
                             JSONArray cost = costsO.getJSONArray("cost");
                             JSONObject costO = cost.getJSONObject(0);
 
                             OngkosKirimModel ongkosKirimModel = new OngkosKirimModel();
-                            ongkosKirimModel.setKurir(json.getString("name"));
-                            ongkosKirimModel.setCode(json.getString("code"));
+                            ongkosKirimModel.setKurir(jobj.getString("name"));
+                            ongkosKirimModel.setCode(jobj.getString("code"));
                             ongkosKirimModel.setValue(costO.getInt("value"));
 
                             ongkosKirimModelList.add(ongkosKirimModel);

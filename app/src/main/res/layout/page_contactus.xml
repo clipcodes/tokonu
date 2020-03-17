@@ -96,102 +96,58 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_height="1dp"/>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/phone"
-                        android:layout_height="40dp"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:text="Telepon"
-                            android:textAlignment="center"
-                            android:textColor="@color/textcolor2"
-                            android:textSize="16sp"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:text="0821 3724 1320"
-                            android:layout_marginTop="6dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/textcolor2"
-                            android:textSize="17sp"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:layout_height="wrap_content">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_height="wrap_content">-->
+<!--                    <ImageView-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:src="@drawable/phone"-->
+<!--                        android:layout_height="40dp"/>-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:layout_marginStart="15dp"-->
+<!--                        android:layout_height="wrap_content">-->
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:text="Telepon"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:textAlignment="center"-->
+<!--                            android:textColor="@color/textcolor2"-->
+<!--                            android:textSize="16sp"-->
+<!--                            android:layout_height="wrap_content"/>-->
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:text="0821 3724 1320"-->
+<!--                            android:layout_marginTop="6dp"-->
+<!--                            android:textAlignment="center"-->
+<!--                            android:textColor="@color/textcolor2"-->
+<!--                            android:textSize="17sp"-->
+<!--                            android:layout_height="wrap_content"/>-->
+<!--                    </LinearLayout>-->
+<!--                </LinearLayout>-->
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:text="HUBUNGI"
-                    android:id="@+id/hubungihp"
-                    android:textSize="15sp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_gravity="end|center"
-                    android:layout_height="wrap_content"/>
-            </FrameLayout>
+<!--                <Button-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:text="HUBUNGI"-->
+<!--                    android:id="@+id/hubungihp"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:layout_gravity="end|center"-->
+<!--                    android:layout_height="wrap_content"/>-->
+<!--            </FrameLayout>-->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:src="@drawable/wa"
-                        android:layout_gravity="center"
-                        android:layout_height="40dp"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:text="Whatsapp"
-                            android:textAlignment="center"
-                            android:textColor="@color/textcolor2"
-                            android:textSize="16sp"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:text="0821 3724 1320"
-                            android:layout_marginTop="6dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/textcolor2"
-                            android:textSize="17sp"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:text="HUBUNGI"
-                    android:textSize="15sp"
-                    android:layout_marginEnd="10dp"
-                    android:id="@+id/hubungiwa"
-                    android:layout_gravity="end|center"
-                    android:layout_height="wrap_content"/>
-            </FrameLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -207,18 +163,19 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="15dp"
                         android:layout_height="wrap_content">
                         <TextView
                             android:layout_width="wrap_content"
                             android:text="Email"
+                            android:textStyle="bold"
                             android:textAlignment="center"
                             android:textColor="@color/textcolor2"
                             android:textSize="16sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:text="Nginepajaid@gmail.com"
+                            android:text="admin@tokonu.com"
                             android:layout_marginTop="6dp"
                             android:textAlignment="center"
                             android:textColor="@color/textcolor2"
@@ -236,46 +193,66 @@
                     android:layout_gravity="end|center"
                     android:layout_height="wrap_content"/>
             </FrameLayout>
-            <View
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:background="@color/greytranspa"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_height="1dp"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="Media Sosial"
-                    android:textAlignment="center"
-                    android:textColor="@color/textcolor2"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:layout_width="60dp"
+                        android:layout_width="50dp"
                         android:src="@drawable/ig"
                         android:layout_gravity="center"
-                        android:layout_height="60dp"/>
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:src="@drawable/ic_fab"
-                        android:layout_gravity="center"
-                        android:layout_height="60dp"/>
+                        android:layout_height="50dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="Instagram"
+                            android:textStyle="bold"
+                            android:textAlignment="center"
+                            android:textColor="@color/textcolor2"
+                            android:textSize="16sp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:text="tokonu_official"
+                            android:layout_marginTop="6dp"
+                            android:textAlignment="center"
+                            android:textColor="@color/textcolor2"
+                            android:textSize="17sp"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:text="LIHAT"
+                    android:textSize="15sp"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/goig"
+                    android:layout_gravity="end|center"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
             <View
                 android:layout_width="match_parent"
                 android:background="@color/greytranspa"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:layout_height="1dp"/>
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:background="@color/greytranspa"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:layout_height="1dp"/>-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_marginStart="10dp"
@@ -290,7 +267,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="PT. YOGI Group"
+                    android:text="PT.PELITA NUSWATARA ABADI"
                     android:textAlignment="center"
                     android:textColor="@color/textcolor2"
                     android:textStyle="bold"
@@ -300,7 +277,7 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="Jl. Trans kalimantan Utara Np.1, Panca Agung, Bulungan"
+                    android:text="Jl. Bantaran Indah Blok H Dalam No.4a Kota Malang"
                     android:textColor="@color/textcolor2"
                     android:textSize="16sp"
                     android:layout_height="wrap_content"/>

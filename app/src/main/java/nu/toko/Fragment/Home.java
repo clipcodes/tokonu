@@ -3,6 +3,7 @@ package nu.toko.Fragment;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -184,7 +185,6 @@ public class Home extends Fragment {
                 reqString.go(suksesproducthome, PRODUCTHOME);
             }
         });
-
     }
 
     private void onscroll(){
@@ -316,10 +316,29 @@ public class Home extends Fragment {
 
                 vppromo.setAdapter(promoAdapter);
                 wormDotsIndicator.setViewPager(vppromo);
+                anim();
+
             } catch (JSONException e){
                 Log.i(TAG, "onResponse: Err:"+e.getMessage());
             }
         }
     };
+
+    void anim(){
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int saiki = vppromo.getCurrentItem();
+                if (saiki == slideModelList.size()-1){
+                    vppromo.setCurrentItem(0);
+                    anim();
+                    return;
+                }
+                anim();
+                vppromo.setCurrentItem(saiki+1);
+            }
+        }, 3000);
+    }
 
 }

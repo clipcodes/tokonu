@@ -78,9 +78,10 @@ public class KurirChoose extends AppCompatActivity {
         try {
             JSONArray jsonArray = new JSONArray(data);
             for (int i = 0; i < jsonArray.length(); i++){
-                Log.i(TAG, "onResponse: String "+jsonArray.getString(i));
-                if (!jsonArray.getString(i).equals("false")){
-                    JSONObject object = jsonArray.getJSONObject(i);
+                JSONArray parr = jsonArray.getJSONArray(i);
+                Log.i(TAG, "onResponse: String "+parr.getJSONObject(0));
+                if (!parr.getString(0).equals("false")){
+                    JSONObject object = parr.getJSONObject(0);
                     KurirModel kurirModel = new KurirModel();
                     kurirModel.setKurir(object.getString("name"));
                     kurirModel.setKode(object.getString("code"));

@@ -1,5 +1,6 @@
 package nu.toko.Page;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,19 +24,29 @@ public class ContactUs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_contactus);
 
-        findViewById(R.id.hubungihp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:+6282137241320"));
-                startActivity(intent);
-            }
-        });
+//        findViewById(R.id.hubungihp).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_DIAL);
+//                intent.setData(Uri.parse("tel:+6282137241320"));
+//                startActivity(intent);
+//            }
+//        });
 
-        findViewById(R.id.hubungiwa).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.goig).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openWhatsApp();
+                Uri uri = Uri.parse("http://instagram.com/_u/tokonu_official");
+                Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+                likeIng.setPackage("com.instagram.android");
+
+                try {
+                    startActivity(likeIng);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://instagram.com/tokonu_official")));
+                }
             }
         });
 

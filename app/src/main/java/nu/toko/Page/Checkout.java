@@ -307,11 +307,13 @@ public class Checkout extends AppCompatActivity {
                     try {
                         JSONArray jsonArray = new JSONArray(productModelNU.get(i).getOngkir());
                         for (int x = 0; x < jsonArray.length(); x++) {
-                            if (!jsonArray.getString(x).equals("false")){
-                                JSONObject obj1 = jsonArray.getJSONObject(x);
-                                if (obj1.getString("code").equals(kurirdipilih)){
+                            JSONArray parr = jsonArray.getJSONArray(x);
+                            Log.i(TAG, "onResponse: String "+parr.getJSONObject(0));
+                            if (!parr.getString(0).equals("false")){
+                                JSONObject jobj = parr.getJSONObject(0);
+                                if (jobj.getString("code").equals(kurirdipilih)){
                                     Log.i(TAG, "onActivityResult: cok");
-                                    JSONArray costs = obj1.getJSONArray("costs");
+                                    JSONArray costs = jobj.getJSONArray("costs");
                                     if (costs.length()!=0){
                                         for (int o = 0; o < costs.length(); o++){
                                             JSONObject obj2 = costs.getJSONObject(o);
