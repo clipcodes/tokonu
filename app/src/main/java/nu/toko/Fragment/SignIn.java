@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.RequestQueue;
@@ -49,7 +50,7 @@ public class SignIn extends Fragment {
     ProgressBar progress;
     RequestQueue requestQueue;
     KirimData kirimData;
-    SignInButton google;
+    CardView google;
 
     public SignIn() {
     }
@@ -103,12 +104,12 @@ public class SignIn extends Fragment {
 
     void go(boolean go){
         if (go){
-            login.setCardBackgroundColor(getActivity().getResources().getColor(R.color.white));
+            login.setCardBackgroundColor(ContextCompat.getColor(getActivity(), R.color.white));
             progress.setVisibility(View.VISIBLE);
             gotex.setVisibility(View.INVISIBLE);
             err.setText("");
         } else {
-            login.setCardBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+            login.setCardBackgroundColor(ContextCompat.getColor(getActivity(), R.color.white));
             progress.setVisibility(View.INVISIBLE);
             gotex.setVisibility(View.VISIBLE);
         }

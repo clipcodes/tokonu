@@ -99,13 +99,40 @@
             android:textSize="16sp"
             android:layout_height="wrap_content"/>
 
-        <com.google.android.gms.common.SignInButton
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/google"
-            android:layout_marginBottom="5dp"
-            android:layout_height="wrap_content"/>
+            app:cardBackgroundColor="@color/greytranspa1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_margin="1dp"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:src="@drawable/googlelogo"
+                        android:layout_gravity="start|center"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Login Dengan Google"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/textcolor2"
+                        android:layout_height="wrap_content"/>
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
 </FrameLayout>

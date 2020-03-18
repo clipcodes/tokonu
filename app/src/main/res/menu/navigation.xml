@@ -11,7 +11,7 @@
         android:icon="@drawable/feed" />
     <item
         android:id="@+id/transaction"
-        android:title="Trasaksi"
+        android:title="Transaksi"
         android:icon="@drawable/trnasaksi" />
     <item
         android:id="@+id/koinnu"

@@ -4,6 +4,9 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -23,6 +26,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
@@ -35,9 +40,13 @@ import java.io.File;
 import java.net.URI;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import nu.toko.Adapter.BankSupportAdapter;
 import nu.toko.Dialog.DialogInfo;
+import nu.toko.Model.BankSupportModel;
 import nu.toko.R;
 import nu.toko.Reqs.ReqString;
 import nu.toko.Utils.UserPrefs;
@@ -60,6 +69,9 @@ public class Donasi extends AppCompatActivity {
     RequestQueue requestQueue;
     String nll = null;
     String namafile;
+    RecyclerView rvbanksupport;
+    List<BankSupportModel> bankSupportModelList;
+    BankSupportAdapter bankSupportAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +94,11 @@ public class Donasi extends AppCompatActivity {
         pilihfile = findViewById(R.id.pilihfile);
         imagetampil = findViewById(R.id.imagetampil);
         ikonupload = findViewById(R.id.ikonupload);
+        rvbanksupport = findViewById(R.id.rvbanksupport);
+        bankSupportModelList = new ArrayList<>();
+        bankSupportAdapter = new BankSupportAdapter(this, bankSupportModelList);
+        rvbanksupport.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvbanksupport.setAdapter(bankSupportAdapter);
 
         namalengkap.setText(UserPrefs.getNama(getApplicationContext()));
 
@@ -120,6 +137,19 @@ public class Donasi extends AppCompatActivity {
                 progres.setVisibility(View.VISIBLE);
 
                 new ReqString(Donasi.this, requestQueue).foto(namafile, bukti, fotorespon, FOTODONASI);
+            }
+        });
+
+        bankSupportAdapter.setOnItemClickListener(new BankSupportAdapter.OnClick() {
+            @Override
+            public void onItemClick(BankSupportModel bs) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("x", bs.getNorek());
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(getApplicationContext(), "Nomor Rekening Disalin", Toast.LENGTH_SHORT).show();
+
+                Log.i(TAG, "onItemClick: "+bs.getBank());
             }
         });
     }

@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.request.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.wang.avi.AVLoadingIndicatorView;
 
