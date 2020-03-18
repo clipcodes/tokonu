@@ -190,7 +190,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:textSize="15sp"
-                        android:text="Kirim Bukti Foto Transfer"
+                        android:text="3. Kirim Bukti Foto Transfer"
                         android:textStyle="bold"
                         android:layout_gravity="center|start"
                         android:textColor="@color/textcolor1"

@@ -36,6 +36,10 @@ import com.android.volley.toolbox.Volley;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.net.URI;
 import java.text.DateFormat;
@@ -51,6 +55,7 @@ import nu.toko.R;
 import nu.toko.Reqs.ReqString;
 import nu.toko.Utils.UserPrefs;
 
+import static nu.toko.Utils.Staticvar.BANKSUPPORT;
 import static nu.toko.Utils.Staticvar.BAYAR;
 import static nu.toko.Utils.Staticvar.DONASI;
 import static nu.toko.Utils.Staticvar.FOTODONASI;
@@ -82,6 +87,7 @@ public class Donasi extends AppCompatActivity {
         Date date = new Date();
         namafile = "donasi"+nama.format(date);
         init();
+        new ReqString(Donasi.this, requestQueue).go(bank, BANKSUPPORT);
     }
 
     void init(){
@@ -153,6 +159,30 @@ public class Donasi extends AppCompatActivity {
             }
         });
     }
+
+    Response.Listener<String> bank = new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            Log.i(TAG, "onResponse: "+response);
+            try {
+                JSONArray array = new JSONArray(response);
+                for (int i = 0; i < array.length(); i++){
+                    JSONObject object = array.getJSONObject(i);
+                    BankSupportModel bs = new BankSupportModel();
+                    bs.setBank(object.getString("bank"));
+                    bs.setNama(object.getString("nama"));
+                    bs.setNorek(object.getString("norek"));
+
+                    bankSupportModelList.add(bs);
+                }
+
+                bankSupportAdapter.notifyDataSetChanged();
+            } catch (JSONException e){
+                Log.i(TAG, "extracdata: Err "+e.getMessage());
+            }
+        }
+    };
+
 
     Response.Listener<String> respon = new Response.Listener<String>() {
         @Override
